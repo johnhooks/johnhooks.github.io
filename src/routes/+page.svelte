@@ -51,9 +51,3 @@
     {/each}
   </ul>
 </div>
-
-<div class="text-center mb-2">
-  <h3 class="text-xl tracking-tight font-extrabold text-gray-900 sm:text-2xl">
-    {data.secret}
-  </h3>
-</div>

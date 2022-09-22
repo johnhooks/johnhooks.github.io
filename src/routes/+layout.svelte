@@ -8,11 +8,11 @@
 <div class="container">
   <slot />
 
-  <div class="text-center">
-    <p class="tracking-tight text-gray-900">
+  <div class="text-center pt-10 pb-16">
+    <p class="text-sm text-zinc-400 dark:text-zinc-500">
       John Hooks © 2021 —
       <!--  -->
-      2022
+      2022. All rights reserved.
     </p>
   </div>
 </div>

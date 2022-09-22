@@ -5,7 +5,7 @@ import { importPosts } from "./import-posts";
 import { Metadata } from "$lib/schema/metadata-schema";
 
 /** @type {import('./$types').PageLoad} */
-export async function load({ data }) {
+export async function load() {
   const posts = await importPosts();
 
   const metadata = [];
@@ -22,7 +22,6 @@ export async function load({ data }) {
     }
   }
   return {
-    secret: data.secret,
     posts: reverse(
       sortBy(
         metadata
