@@ -1,0 +1,8 @@
+---
+title: About
+author: John Hooks
+---
+
+# {title} by {author}
+
+This is my personal website, the source code is at [github.com/johnhooks](https://github.com/johnhooks/johnhooks.github.io)
