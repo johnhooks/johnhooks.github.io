@@ -6,7 +6,7 @@
   <header>
     <nav class="flex justify-center pt-6">
       <ul class="flex px-3 text-sm font-medium text-zinc-800">
-        <Link to="/">johnhooks.github.io</Link>
+        <Link to="/">johnhooks.io</Link>
         <Link to="/about">about</Link>
       </ul>
     </nav>
