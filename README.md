@@ -1,6 +1,12 @@
-# johnhooks.github.io
+# My Website
 
-My personal website build with [SvelteKit](https://kit.svelte.dev).
+[johnhooks.io](https://johnhooks.io)
+
+This is the repo for my personal website. Using [SvelteKit](https://kit.svelte.dev), it is
+statically built though a GitHub Action and deployed to GitHub Pages.
+
+I use this site as a place to learn new things and also make notes that as much for my own retention
+of information as for sharing with others.
 
 ## Developing
 

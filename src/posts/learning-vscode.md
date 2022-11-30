@@ -15,6 +15,10 @@ publishedOn: 2021-09-10
 - `[Cmd]+[&#96;]` - toggle between open windows
 - `[Cmd]+[K] -> [S]` - `File: Save without Formatting`
 
+### Important Commands
+
+- `Emmet: Wrap with Abbreviation` - TODO - make into keyboard shortcut.
+
 ### Reading
 
 - [How to Format Code on Save in VS Code with ESlint](https://www.aleksandrhovhannisyan.com/blog/format-code-on-save-vs-code-eslint/)

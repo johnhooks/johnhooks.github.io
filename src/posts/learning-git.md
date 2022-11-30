@@ -7,6 +7,16 @@ isPublished: false
 publishedOn: 2021-07-22
 ---
 
+## Squash
+
+[Git Tools - Rewriting History](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History)
+
+[Squash and merge](https://docs.gitlab.com/ee/user/project/merge_requests/squash_and_merge.html)
+
+## Syncing
+
+[Syncing Tutorial](https://www.atlassian.com/git/tutorials/syncing)
+
 ## References
 
 - [Configuring a remote for a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/configuring-a-remote-for-a-fork)

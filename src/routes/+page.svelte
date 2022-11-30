@@ -51,3 +51,13 @@
     {/each}
   </ul>
 </div>
+
+<div class="mt-8 sm:mt-16 text-center">
+  <p>
+    This is my personal website, the source code is on
+    <a
+      href="https://github.com/johnhooks/johnhooks.github.io"
+      class="text-base font-semibold text-indigo-600 hover:text-indigo-500">GitHub</a
+    >
+  </p>
+</div>
