@@ -13,4 +13,4 @@ package-lock.json
 yarn.lock
 
 # Ignore vendor files
-static/vender/**
+static/vendor
