@@ -3,7 +3,7 @@ title: SvelteKit on GitHub Pages
 seoTitle: How to deploy SvelteKit to GitHub Pages using Actions
 slug: sveltekit-on-github-pages
 abstract: Learn how to automate deployment of a static SvelteKit to GitHub Pages using a GitHub Action workflow
-isPublished: true
+isPublished: false
 publishedOn: 2022-09-22
 ---
 
