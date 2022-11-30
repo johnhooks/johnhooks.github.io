@@ -16,10 +16,7 @@ An optional `transformer` parameter had recently been added to the format functi
 ### Simplified example of the original type declaration
 
 ```ts
-declare function toDecimal<TOutput>(
-  dineroObject: Dinero,
-  transformer?: (value: string) => TOutput
-);
+declare function toDecimal<TOutput>(dineroObject: Dinero, transformer?: (value: string) => TOutput);
 ```
 
 The concept was for `TOutput` to be inferred by the transform function. The default argument to `transformer` is a function that returns a string representation of a decimal.
@@ -29,14 +26,10 @@ Note there is no explicit return type. Type inference in the function definition
 ### Simplified example of the original function definition
 
 ```ts
-
-function toDecimal(
-  dineroObject,
-  transformer = (value) => value as TOutput,
-  ) {
-    const value: string = toDecimalFn(dineroObject);
-    return transformer(value);
-  };
+function toDecimal(dineroObject, transformer = (value) => value as TOutput) {
+  const value: string = toDecimalFn(dineroObject);
+  return transformer(value);
+}
 ```
 
 Note the return `value` has to be coerced to `TOutput`. Without using `as`, the compiler gave a very cryptic error.
