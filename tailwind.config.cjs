@@ -6,26 +6,53 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            //https://github.com/tailwindlabs/tailwindcss-typography/blob/master/src/styles.js
-            // https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/defaultConfig.stub.js
-            code: {
-              fontWeight: "400",
-              color: theme("colors.black"),
-              // backgroundColor: theme("colors.white"),
-              // paddingTop: em(6, 16),
-              // paddingRight: em(10, 16),
-              // paddingBottom: em(6, 16),
-              // paddingLeft: em(10, 16),
-              // borderRadius: rem(6),
-              // border: "1px solid #dddddd"
-            },
             // https://github.com/tailwindlabs/tailwindcss-typography/issues/18#issuecomment-733045571
-            // "code::before": {
-            //   content: '""'
-            // },
-            // "code::after": {
-            //   content: '""'
-            // }
+            "code::before": {
+              content: '""',
+            },
+            "code::after": {
+              content: '""',
+            },
+          },
+        },
+        sm: {
+          css: {
+            "code::before": {
+              content: '""',
+            },
+            "code::after": {
+              content: '""',
+            },
+          },
+        },
+        lg: {
+          css: {
+            "code::before": {
+              content: '""',
+            },
+            "code::after": {
+              content: '""',
+            },
+          },
+        },
+        xl: {
+          css: {
+            "code::before": {
+              content: '""',
+            },
+            "code::after": {
+              content: '""',
+            },
+          },
+        },
+        "2xl": {
+          css: {
+            "code::before": {
+              content: '""',
+            },
+            "code::after": {
+              content: '""',
+            },
           },
         },
       }),
