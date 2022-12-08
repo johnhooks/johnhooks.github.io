@@ -19,7 +19,8 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "prettier --check . && eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "1.0.0-next.48",
@@ -33,6 +34,8 @@
     "eslint": "8.29.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-svelte3": "4.0.0",
+    "husky": "8.0.2",
+    "lint-staged": "13.1.0",
     "mdsvex": "0.10.6",
     "postcss": "8.4.19",
     "prettier": "2.8.1",
