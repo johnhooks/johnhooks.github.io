@@ -40,7 +40,7 @@ const config = {
     () => (node) =>
       selectAll("h1,h2,h3,h4,h5,h6", node).forEach(({ properties }) => {
         if (!properties.className) properties.className = ["flex", "flex-row"];
-        else properties.className.push("flex", "flex-col");
+        else properties.className.push("flex", "flex-row");
       }),
     // https://github.com/rehypejs/rehype-autolink-headings
     [
@@ -50,7 +50,7 @@ const config = {
         properties: {
           ariaHidden: true,
           tabIndex: -1,
-          class: "flex flex-wrap content-center",
+          class: "flex flex-row flex-wrap content-center",
         },
         content(node) {
           return [h("span.hidden", "Read the “", toString(node), "” section"), linkIcon()];
