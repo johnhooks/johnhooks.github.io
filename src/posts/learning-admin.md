@@ -130,7 +130,7 @@ sudo apt install build-essential
 6. `sudo systemctl start pm2-{user_name}`
 7. `systemctl status pm2-{user_name}`
 
-#### Changing PM2 Configuration After `pm2 startup`
+#### Changing PM2 Configuration After startup
 
 ```shell
 pm2 startOrReload ecosystem.config.js --update-env
