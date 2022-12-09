@@ -38,9 +38,9 @@ const config = {
     // Add flex to h1, h2 and h3 headings
     // ref: https://github.com/martypdx/rehype-add-classes
     () => (node) =>
-      selectAll("h1,h2,h3", node).forEach(({ properties }) => {
-        if (!properties.className) properties.className = "flex";
-        else properties.className += " flex";
+      selectAll("h1,h2,h3,h4,h5,h6", node).forEach(({ properties }) => {
+        if (!properties.className) properties.className = ["flex", "flex-row"];
+        else properties.className.push("flex", "flex-col");
       }),
     // https://github.com/rehypejs/rehype-autolink-headings
     [

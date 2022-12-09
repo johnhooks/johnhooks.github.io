@@ -77,3 +77,31 @@ code > .line[data-highlight]:after {
   top: 0;
   width: 100%;
 }
+
+.autolink {
+  visibility: hidden;
+}
+
+.prose h1:hover .autolink {
+  visibility: visible;
+}
+
+.prose h2:hover .autolink {
+  visibility: visible;
+}
+
+.prose h3:hover .autolink {
+  visibility: visible;
+}
+
+.prose h4:hover .autolink {
+  visibility: visible;
+}
+
+.prose h5:hover .autolink {
+  visibility: visible;
+}
+
+.prose h6:hover .autolink {
+  visibility: visible;
+}

@@ -9,7 +9,7 @@ export default function () {
       viewbox: "0 0 24 24",
       strokeWidth: "1.5",
       stroke: "currentColor",
-      class: "w-5 h-5 ml-2 inline-block text-gray-400 hover:text-gray-700",
+      class: "w-5 h-5 ml-2 inline-block text-gray-400 hover:text-gray-700 autolink",
       ariaHidden: "true",
     },
     [
