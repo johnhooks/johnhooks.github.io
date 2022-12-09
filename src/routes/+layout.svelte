@@ -3,6 +3,11 @@
   import Navigation from "$lib/components/navigation.svelte";
 </script>
 
+<svelte:head>
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="johnhooks.io" />
+</svelte:head>
+
 <Navigation />
 
 <div class="container">

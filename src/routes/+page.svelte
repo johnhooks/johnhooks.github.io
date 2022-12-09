@@ -5,6 +5,7 @@
 
 <svelte:head>
   <title>johnhooks.io</title>
+  <meta property="og:type" content="website" />
 </svelte:head>
 
 <div class="mt-8 sm:mt-16 text-center">

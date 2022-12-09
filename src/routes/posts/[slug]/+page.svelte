@@ -1,10 +1,22 @@
 <script>
   /** @type {import('./$types').PageData} */
   export let data;
+
+  const postUrl = `https://johnhooks.io/posts/${data.slug}`;
 </script>
 
 <svelte:head>
-  <title>{data.seoTitle}</title>
+  <title>{data.seoTitle} / johnhooks.io</title>
+  <meta name="description" content={data.abstract} />
+  <link rel="canonical" href={postUrl} />
+  <meta property="og:title" content={data.title} />
+  <meta property="og:description" content={data.abstract} />
+  <meta property="og:url" content={postUrl} />
+
+  <meta property="og:site_name" content="johnhooks.io" />
+  <meta property="article:author" content="https://github.com/johnhooks" />
+  <!-- <meta property="article:published_time" content={data.publishedAt} /> -->
+  <!-- <meta property="article:modified_time" content={data.updatedAt} /> -->
 </svelte:head>
 
 <div class="antialiased text-gray-900">
