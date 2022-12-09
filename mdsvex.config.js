@@ -1,42 +1,62 @@
+// import * as path from "path";
 import { fileURLToPath } from "url";
 
+import gfm from "remark-gfm";
 import slug from "rehype-slug";
 import link from "rehype-autolink-headings";
-import shiki from "shiki";
+import { toString } from "hast-util-to-string";
+import { selectAll } from "hast-util-select";
+import { h } from "hastscript";
+
+import { highlighter } from "./scripts/highligher.js";
+import linkIcon from "./scripts/link-icon.js";
 
 export const __dirname = fileURLToPath(new URL(".", import.meta.url));
-
-const escape_svelty = (str) =>
-  str
-    .replace(/[{}`]/g, (c) => ({ "{": "&#123;", "}": "&#125;", "`": "&#96;" }[c]))
-    .replace(/\\([trn])/g, "&#92;$1");
 
 const config = {
   extensions: [".svelte.md", ".md", ".svx"],
 
-  // layout: join(__dirname, "./src/lib/components/post-layout.svelte"),
+  // This overrides the rehype plugins, so not very useful.
+  // layout: path.join(__dirname, "./src/lib/components/post-layout.svelte"),
 
   highlight: {
-    highlighter: async (raw, lang) => {
-      const highlighter = await shiki.getHighlighter({ theme: "nord" });
-      const code = escape_svelty(highlighter.codeToHtml(raw, { lang: lang || "text" }));
-      return `${code}`;
-    },
+    highlighter,
+    // Bypass highlighting
+    // highlighter(code, lang) {
+    //   return `<pre><code>${code}</code></pre>`;
+    // },
   },
 
   smartypants: {
     dashes: "oldschool",
   },
 
-  remarkPlugins: [],
+  remarkPlugins: [gfm],
 
   rehypePlugins: [
     slug,
-    /**
-     * TODO Configure rehype-autolink-heading
-     * https://github.com/rehypejs/rehype-autolink-headings
-     */
-    link,
+    // Add flex to h1, h2 and h3 headings
+    // ref: https://github.com/martypdx/rehype-add-classes
+    () => (node) =>
+      selectAll("h1,h2,h3", node).forEach(({ properties }) => {
+        if (!properties.className) properties.className = "flex";
+        else properties.className += " flex";
+      }),
+    // https://github.com/rehypejs/rehype-autolink-headings
+    [
+      link,
+      {
+        behavior: "append",
+        properties: {
+          ariaHidden: true,
+          tabIndex: -1,
+          class: "flex flex-wrap content-center",
+        },
+        content(node) {
+          return [h("span.hidden", "Read the “", toString(node), "” section"), linkIcon()];
+        },
+      },
+    ],
   ],
 };
 

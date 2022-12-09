@@ -7,3 +7,73 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6;
   }
 }
+
+.prose code[data-line-numbers] {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+pre > code {
+  word-wrap: normal;
+  background-color: initial;
+  border: 0;
+  border-radius: initial;
+  display: flex;
+  flex-direction: column;
+  line-height: inherit;
+  margin: 0;
+  max-width: auto;
+  overflow: visible;
+}
+
+code {
+  counter-reset: line;
+}
+
+code[data-line-numbers] > .line::before {
+  counter-increment: line;
+  content: counter(line);
+
+  /* Other styling */
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  text-align: right;
+  color: gray;
+}
+
+code > .line {
+  position: relative;
+}
+
+code > .line.highlighted {
+  /* https://github.com/shikijs/shiki/blob/f8bd1fbd91e0890743e1ed815993f85cc7115343/packages/shiki/themes/nord.json#L64 */
+  background: #3b4252;
+  width: 100%;
+}
+/**
+ * TODO: figure out how to add the data-code-title
+ * [reference](https://remix.run/docs/en/v1/tutorials/blog#quickstart)
+ */
+/* pre[data-code-title]:before {
+  color: #616e88;
+  font-weight: 400;
+  content: attr(data-code-title);
+  display: block;
+  margin-top: 1rem;
+  margin-left: 1.5rem;
+} */
+
+code > .line[data-highlight]:after {
+  --tw-bg-opacity: 1;
+  /* background-color: #3b4252; */
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  content: " ";
+  left: 0;
+  opacity: 0.1;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}

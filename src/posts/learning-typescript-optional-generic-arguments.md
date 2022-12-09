@@ -13,9 +13,7 @@ An optional `transformer` parameter had recently been added to the format functi
 
 ## The Problem
 
-### Simplified example of the original type declaration
-
-```ts
+```ts title="Simplified example of the original type declaration"
 declare function toDecimal<TOutput>(dineroObject: Dinero, transformer?: (value: string) => TOutput);
 ```
 
@@ -23,9 +21,7 @@ The concept was for `TOutput` to be inferred by the transform function. The defa
 
 Note there is no explicit return type. Type inference in the function definition was relied on to provide the return type.
 
-### Simplified example of the original function definition
-
-```ts
+```ts title="Simplified example of the original function definition" showLineNumbers {1}
 function toDecimal(dineroObject, transformer = (value) => value as TOutput) {
   const value: string = toDecimalFn(dineroObject);
   return transformer(value);
@@ -47,9 +43,7 @@ I spend a lot of time trying to think though how to use conditional types to sol
 
 Now if the `transformer` is not provided, the return type is `string`, though if provided the return type of the format function is inferred from the return type of the `transformer`!
 
-### Simplified example of the solution to adding an optional generic argument
-
-```ts
+```ts title="Simplified example of the solution to add an optional generic argument" showLineNumbers
 declare function toDecimal(dineroObject: Dinero): string;
 
 declare function toDecimal<TOutput>(
@@ -58,4 +52,4 @@ declare function toDecimal<TOutput>(
 ): TOutput;
 ```
 
-Source of [toDecimal with overloads](https://github.com/dinerojs/dinero.js/blob/64facb5cd6b66ebddc0622558a88b3a2e69c6dc7/packages/dinero.js/src/api/toDecimal.ts)
+Source of [toDecimal with overloads](https://github.com/dinerojs/dinero.js/blob/2117fd35855d5e36530f76eb2b62cc94fbce66a3/packages/dinero.js/src/api/toDecimal.ts)
