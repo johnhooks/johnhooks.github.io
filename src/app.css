@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6;
-  }
-}
-
 .prose code[data-line-numbers] {
   padding-left: 0;
   padding-right: 0;

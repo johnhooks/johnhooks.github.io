@@ -13,7 +13,6 @@
   <meta property="og:description" content={data.abstract} />
   <meta property="og:url" content={postUrl} />
 
-  <meta property="og:site_name" content="johnhooks.io" />
   <meta property="article:author" content="https://github.com/johnhooks" />
   <!-- <meta property="article:published_time" content={data.publishedAt} /> -->
   <!-- <meta property="article:modified_time" content={data.updatedAt} /> -->
