@@ -34,9 +34,13 @@ module.exports = {
               boxShadow: theme("boxShadow.md"),
               "> code": {
                 paddingTop: em(12, 14),
-                paddingRight: em(16, 14),
+                paddingRight: 0,
                 paddingBottom: em(12, 14),
-                paddingLeft: em(16, 14),
+                paddingLeft: 0,
+                "> span": {
+                  paddingRight: em(16, 14),
+                  paddingLeft: em(16, 14),
+                },
               },
             },
           },
@@ -63,9 +67,13 @@ module.exports = {
               boxShadow: theme("boxShadow.sm"),
               "> code": {
                 paddingTop: em(8, 12),
-                paddingRight: em(12, 12),
+                paddingRight: 0,
                 paddingBottom: em(8, 12),
-                paddingLeft: em(12, 12),
+                paddingLeft: 0,
+                "> span": {
+                  paddingRight: em(12, 12),
+                  paddingLeft: em(12, 12),
+                },
               },
             },
             "code::before": {
@@ -98,9 +106,13 @@ module.exports = {
               boxShadow: theme("boxShadow.lg"),
               "> code": {
                 paddingTop: em(16, 16),
-                paddingRight: em(24, 16),
+                paddingRight: 0,
                 paddingBottom: em(16, 16),
-                paddingLeft: em(24, 16),
+                paddingLeft: 0,
+                "> span": {
+                  paddingRight: em(24, 16),
+                  paddingLeft: em(24, 16),
+                },
               },
             },
             "code::before": {
@@ -124,8 +136,12 @@ module.exports = {
             boxShadow: theme("boxShadow.md"),
             "> code": {
               paddingTop: em(20, 18),
-              paddingRight: em(24, 18),
+              paddingRight: 0,
               paddingBottom: em(20, 18),
+              paddingLeft: 0,
+            },
+            "> span": {
+              paddingRight: em(24, 18),
               paddingLeft: em(24, 18),
             },
           },

@@ -39,8 +39,8 @@ pre > code {
   overflow: visible;
 }
 
-span[data-line-number] {
-  padding-right: 1rem;
+code[data-line-numbers] > span[data-line-number] {
+  padding-left: 0;
 }
 
 code[data-line-numbers] > span[data-line-number]::before {
