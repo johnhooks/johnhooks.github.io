@@ -17,16 +17,6 @@
     property="og:description"
     content="This is my website. I use it to learn new web tech and document my journey."
   />
-  <meta property="og:image" content="https://johnhooks.io/images/johnhooks_avatar.jpg" />
-  <meta property="og:image:width" content="640" />
-  <meta property="og:image:height" content="640" />
-  <meta
-    property="og:image:alt"
-    content="Drawn dizzy eyed avatar of John Hooks, inspired by a drawing done by his daughter Helen when she was three years old."
-  />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:image" content="https://johnhooks.io/images/johnhooks_avatar.jpg" />
-  <meta name="twitter:creator" content="@_johnhooks" />
 </svelte:head>
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6">
