@@ -9,6 +9,8 @@ publishedOn: 2022-09-20
 
 ## Learning Postgres
 
+At the moment this is less an article and more of a dumping zone for tidbits I would like to include in an article... And since I published it from the start of my website, I'll leave it here and let it grow.
+
 _Note: Any name or variable that need to be provided is wrapped in curly brackets, example:_ `{user_name}`
 
 ### psql
@@ -49,8 +51,7 @@ CREATE USER {user_name} WITH PASSWORD {password};
 
 ##### References
 
-["Granting access to all tables for a user"](https://dba.stackexchange.com/a/202917)<br />
-["ERROR: permission denied for sequence..."](https://stackoverflow.com/a/37675460)
+["Granting access to all tables for a user"](https://dba.stackexchange.com/a/202917)<br /> ["ERROR: permission denied for sequence..."](https://stackoverflow.com/a/37675460)
 
 _Reminder: Switch to the database on which you want to grant privileges._
 
@@ -102,10 +103,7 @@ pg_dump dbname > infile
 
 ### Restoring
 
-Databases are not automatically created when restoring from a dump. Before restoring with `psql`
-create the new database from `template0`. Also all users who own own or have permissions on objects
-in the dumped database must already exist before restoring. Otherwise it will not be restored with
-the same ownerships or permissions.
+Databases are not automatically created when restoring from a dump. Before restoring with `psql` create the new database from `template0`. Also all users who own own or have permissions on objects in the dumped database must already exist before restoring. Otherwise it will not be restored with the same ownerships or permissions.
 
 ```sh
 createdb -T template0 dbname

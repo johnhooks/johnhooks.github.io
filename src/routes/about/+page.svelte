@@ -31,38 +31,42 @@
   <p>
     Coming from an art background, I remember visiting a large web development company in Seattle,
     Washington. My graphic design professor was the lead designer there and was giving my class a
-    tour. So clearly I remember seeing a computer screen with a mess of code and my reaction in that
-    moment was to be so glad to be studying graphic design and not programming!
+    tour. I vividly remember seeing a computer screen with a mess of code, and in that moment, I was
+    so glad to be studying graphic design and not programming!
   </p>
 
   <p>
-    It feels like a missed opportunity. If I could relive that moment as the person I am now, I
-    would have dove in and have seen what that guy was working on. It's taken a while to catch up,
-    but I finally feel like I'm making progress in my programming goals.
+    Now it feels like a missed opportunity. If I could relive that moment as the person I am now, I
+    would have dove in and have seen what that guy was working on. Even though it may have taken a
+    while to sink in, I'm finally committed to pushing my programming skills forward and I'm excited
+    for where it will take me.
   </p>
 
   <h3>Past</h3>
 
   <ul>
     <li>
-      <span class="font-mono mr-2">01-03</span> Columbia Basin College &#8212 Art Program
+      <span class="mr-2">01-03</span> Columbia Basin College &#8212 Art Program &#8212 Drawing, painting
+      and a bit of sculpture.
     </li>
     <li>
-      <span class="font-mono mr-2">03-04</span>
+      <span class="mr-2">03-04</span>
       <a href="https://www.cornish.edu/">Cornish College of the Arts</a> &#8212 Graphic Design Program
+      &#8212 What you need a subscription for Illustrator now?!?
     </li>
     <li>
-      <span class="font-mono mr-2">04-05</span>
+      <span class="mr-2">04-05</span>
       Wenatchee Community College &#8212
-      <a href="https://en.wikipedia.org/wiki/Pomology">Pomology</a>
-      Program
+      <a href="https://en.wikipedia.org/wiki/Pomology">Pomology</a> Program &#8212 Fruit trees are cool
+      and so are the people who grow them.
     </li>
   </ul>
 
   <h3>Present</h3>
   <ul>
     <li>
-      <span class="font-mono mr-2">05-Present</span> Hooks Crane Service, Inc &#8212 Owner
+      <span class="mr-2">05-Present</span> Hooks Crane Service, Inc &#8212 Owner, Operator, Oiler and
+      Bookkeeper &#8212 Yep... its just me over here
     </li>
   </ul>
 </Article>

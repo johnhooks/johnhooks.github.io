@@ -11,7 +11,7 @@ publishedOn: 2022-11-30
   import DocInfo from '../lib/components/doc-info.svelte';
 </script>
 
-While performing a code review for [Dinero.js](https://github.com/dinerojs/dinero.js), an awesome JavaScript money library maintained by [Sarah Dayan](https://github.com/sarahdayan), I noticed something odd. A newly added format function's return type was of type `unknown`.
+While performing a code review for [Dinero.js](https://github.com/dinerojs/dinero.js), an awesome JavaScript money library maintained by [Sarah Dayan](https://github.com/sarahdayan), I noticed something odd. A newly added format function's return type was `unknown`, when it was expected to be a generic.
 
 An optional `transformer` parameter had recently been added to the function. If provided, the transformer should convert a money object to another type.
 
@@ -21,7 +21,7 @@ An optional `transformer` parameter had recently been added to the function. If 
 function toDecimal<TOutput>(dineroObject: Dinero, transformer?: (value: string) => TOutput);
 ```
 
-The intent was for `TOutput` to be inferred by the transform function's return type. The default argument to `transformer` is a function that returns a string representation of a decimal.
+The intent was for `TOutput` to be inferred by the transform function return type. The default argument to `transformer` is a function that returns a string representation of a decimal.
 
 <DocInfo>
   There is no explicit return type. Type inference in the function definition was relied on to provide the return type.
@@ -51,25 +51,23 @@ Requirements to make the typing work as intended:
   - The `TOutput` generic argument should not be used or required.
   - The return type of `toDecimal` should be `string`.
 - When a transform argument is provided:
-  - `TOutput` needs to be inferred from the return type of the transform argument.
+  - `TOutput` should be inferred from the return type of the `transformer` argument.
   - The return type of `toDecimal` should be `TOutput`
 
 I spend a lot of time thinking though how to use conditional types to solve this issue. Though fortunately Sarah put out a call on Twitter for help and [Matt Pocock](https://github.com/mattpocock) kindly provided an answer, use overloads.
 
 ## The Fix: Using Overloads
 
-Overloading the function declaration of `toDecimal` allows `TOutput` to be an optional generic argument.
-If not provided, the return type is `string`. Though if provided, the return type of the `toDecimal` function is inferred by the return type of the `transformer`!
+Overloading the function declaration of `toDecimal` allows `TOutput` to be an optional generic argument. If not provided, the return type is `string`. Though if provided, the return type of `toDecimal` is inferred by the return type of the `transformer`, just as intended!
+
+Since `TOutput` can't be inferred by the return type of a default `transformer` argument, it was removed in favor of branching. In the overload declaration, `TOutput` doesn't even exist if a `transformer` isn't provided. Coercing it into `TOutput` was wrong, because it that situation it should explicitly be a `string` not a generic.
 
 ```ts title="Simplified example of the solution to add an optional generic argument" showLineNumbers
 function toDecimal(dineroObject: Dinero): string;
 
 function toDecimal<TOutput>(dineroObject: Dinero, transformer: (value: string) => TOutput): TOutput;
 
-function toDecimal<TOutput>(
-  dineroObject: Dinero,
-  transformer?: (value: string) => TOutput
-): TOutput {
+function toDecimal<TOutput>(dineroObject: Dinero, transformer?: (value: string) => TOutput) {
   const value: string = toDecimalFn(dineroObject);
   if (!transformer) return value;
   return transformer(value);
