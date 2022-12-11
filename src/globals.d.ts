@@ -10,3 +10,7 @@ declare module "*.md" {
   }
   export const metadata: Record<string, unknown>;
 }
+
+declare module "*.svelte" {
+  export { SvelteComponentDev as default } from "svelte/internal";
+}

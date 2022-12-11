@@ -1,12 +1,13 @@
-<script>
+<script lang="ts">
   import Link from "./navigation-link.svelte";
+  export let pathname: string;
 </script>
 
 <footer class="mx-auto max-w-7xl px-4 sm:px-6">
   <nav class="flex justify-center pt-6">
     <ul class="flex px-3 text-sm font-medium text-zinc-800">
-      <Link to="/">home</Link>
-      <Link to="/about">about</Link>
+      <Link to="/" {pathname}>home</Link>
+      <Link to="/about" {pathname}>about</Link>
     </ul>
   </nav>
   <div class="text-center pt-10 pb-16">
