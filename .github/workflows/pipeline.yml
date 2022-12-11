@@ -1,16 +1,12 @@
-name: Check build
+name: Run build pipeline
 
 on:
-  # Runs on pushes targeting the default branch
   push:
   pull_request:
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-  # Build Job
-  build:
+  pipeline:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -23,7 +19,7 @@ jobs:
 
       - name: Cache dependencies
         uses: actions/cache@v3
-        id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
+        id: npm-cache
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
