@@ -1,4 +1,5 @@
 <script>
+  import { page } from "$app/stores";
   import "../app.css";
   import Navigation from "$lib/components/navigation.svelte";
   import Footer from "$lib/components/footer.svelte";
@@ -19,8 +20,8 @@
   <meta name="twitter:creator" content="@_johnhooks" />
 </svelte:head>
 
-<Navigation />
+<Navigation pathname={$page.url.pathname} />
 
 <slot />
 
-<Footer />
+<Footer pathname={$page.url.pathname} />
