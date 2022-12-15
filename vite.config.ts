@@ -11,6 +11,12 @@ const config: UserConfig = {
     port: 4173,
     strictPort: false,
   },
+  test: {
+    include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts}"],
+    globals: true,
+    environment: "jsdom",
+    setupFiles: ["./setupTests.js"],
+  },
 };
 
 export default config;
