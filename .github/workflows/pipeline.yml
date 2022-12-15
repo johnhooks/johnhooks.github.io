@@ -2,6 +2,9 @@ name: Run build pipeline
 
 on:
   push:
+    -branches:
+      - "**"
+      - "!pages"
   pull_request:
   workflow_dispatch:
 
