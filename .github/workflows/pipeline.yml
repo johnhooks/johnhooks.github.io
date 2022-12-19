@@ -8,6 +8,15 @@ on:
   pull_request:
   workflow_dispatch:
 
+env:
+  # environment variables to config `turbo` to use the local cache server
+  TURBO_API: "http://127.0.0.1:9080"
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: "dinero"
+  TURBO_REMOTE_ONLY: true
+  # Used by scripts/build/types.js
+  CI: true
+
 jobs:
   pipeline:
     runs-on: ubuntu-latest
@@ -20,27 +29,43 @@ jobs:
         with:
           node-version: "16"
 
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        id: npm-cache
+      - name: Turborepo local server
+        uses: felixmosh/turborepo-gh-artifacts@v2.1.0
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-            ${{ runner.os }}-node-
+          repo-token: $TURBO_TOKEN
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install specific Yarn version
+        shell: bash
+        run: |
+          curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.22.19
+          echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> $GITHUB_PATH
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        shell: bash
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install Packages
+        shell: bash
+        run: yarn install --frozen-lockfile
 
       - name: Build application
-        run: npm run build
+        run: yarn build
 
       - name: Test application
-        run: npm run test
+        run: yarn test
 
       - name: Lint application
-        run: npm run lint
+        run: yarn lint
 
       - name: Type check application
-        run: npm run check
+        run: yarn run check

@@ -1,0 +1,42 @@
+{
+  "name": "@bitmachina/midi",
+  "version": "1.0.0-alpha.1",
+  "type": "module",
+  "description": "Web MIDI helpers",
+  "homepage": "https://johnhooks.io",
+  "bugs": "https://github.com/johnhooks/johnhooks.github.io/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnhooks/johnhooks.github.io.git"
+  },
+  "author": {
+    "name": "John Hooks",
+    "url": "https://johnhooks.io"
+  },
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "clean": "rimraf ./{dist,temp}",
+    "clean:tsc": "rimraf ./lib",
+    "build:esm": "../../scripts/build/esm.sh",
+    "build:tsc": "tsc -b",
+    "build:types": "../../scripts/build/types.sh",
+    "build:umd:cjs": "rollup --config",
+    "check": "tsc --noEmit",
+    "lint": "../../scripts/build/lint.sh"
+  },
+  "dependencies": {
+    "@bitmachina/reactive": "1.0.0-alpha.1",
+    "xstate": "4.35.1"
+  },
+  "devDependencies": {
+    "@types/webmidi": "2.0.6"
+  }
+}

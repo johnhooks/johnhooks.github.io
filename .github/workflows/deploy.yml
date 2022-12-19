@@ -56,6 +56,9 @@ jobs:
       - name: Test application
         run: npm run test
 
+      - name: Build audio worklets
+        run: npm run build:worklets
+
       - name: Build application
         run: npm run build
 

@@ -1,7 +1,6 @@
 {
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
-  "editor.renderWhitespace": "boundary",
   "editor.rulers": [100],
   "editor.formatOnSave": true,
   "files.encoding": "utf8",
@@ -33,6 +32,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "typescript.autoClosingTags": false,
+  "html.autoClosingTags": true,
   "typescript.suggest.completeJSDocs": false,
   "typescript.disableAutomaticTypeAcquisition": true,
   "cSpell.words": [
