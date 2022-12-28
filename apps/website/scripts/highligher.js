@@ -23,7 +23,7 @@ export const reverseString = (s) => s?.split("").reverse().join("");
 
 const hastParser = unified().use(rehypeParse, { fragment: true });
 
-const shikiHighlighter = await shiki.getHighlighter({ theme: "nord" });
+const shikiHighlighter = await shiki.getHighlighter({ theme: "css-variables" });
 
 /**
  * Highlighter function for Mdsvex codeblocks.
