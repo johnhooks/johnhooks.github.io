@@ -1,8 +1,15 @@
 .DS_Store
 node_modules
-/build
-/.svelte-kit
-/package
+build
+.svelte-kit
+package
+
+dist
+lib
+temp
+
+**/*.md
+
 .env
 .env.*
 !.env.example
@@ -11,6 +18,3 @@ node_modules
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
-
-# Ignore vendor files
-static/vendor

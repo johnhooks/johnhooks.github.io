@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "module": "ES2020",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2022",
+    "composite": true,
+    "incremental": true,
+    "noEmit": false,
+    "declaration": true,
+    "paths": {
+      "@bitmachina/audio": ["./packages/audio/src/index"],
+      "@bitmachina/midi": ["./packages/midi/src/index"],
+      "@bitmachina/reactive": ["./packages/reactive/src/index"],
+    }
+  }
+}
