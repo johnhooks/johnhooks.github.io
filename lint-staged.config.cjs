@@ -1,8 +1,11 @@
 module.exports = {
   "**/*.(ts|svelte)": () => "yarn run check",
   "!(apps/)**/*.(js|cjs|mjs|ts|svelte)": (filenames) => [
-    `eslint --ext .js,.cjs,.ts,.svelte --fix ${filenames.join(" ")}`,
+    `eslint --ext .js,.cjs,.mjs,.ts,.svelte --fix ${filenames.join(" ")}`,
     `prettier --write ${filenames.join(" ")}`,
   ],
-  // TODO lint apps/*
+  "apps/website/**/*.(js|cjs|mjs|ts|svelte)": (filenames) => [
+    `yarn website:lint --fix ${filenames.join(" ")}`,
+    `yarn website:format --write ${filenames.join(" ")}`,
+  ],
 };

@@ -26,7 +26,9 @@
     "test": "turbo test",
     "website:dev": "yarn --cwd apps/website/ dev",
     "website:start": "yarn --cwd apps/website/ start",
-    "website:build": "turbo build --filter=./packages/* --filter=./apps/website"
+    "website:build": "turbo build --filter=./packages/* --filter=./apps/website",
+    "website:format": "yarn --cwd ./apps/website format",
+    "website:lint": "yarn --cwd ./apps/website lint"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "7.33.7",

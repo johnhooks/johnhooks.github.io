@@ -8,8 +8,8 @@ import { toString } from "hast-util-to-string";
 import { selectAll } from "hast-util-select";
 import { h } from "hastscript";
 
-import { highlighter } from "./scripts/highligher.js";
-import linkIcon from "./scripts/link-icon.js";
+import { highlighter } from "./mdsvex/highligher.js";
+import linkIcon from "./mdsvex/link-icon.js";
 
 export const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
