@@ -30,7 +30,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Prepare Environment
+      - name: Build application
         uses: ./.github/actions/build
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
