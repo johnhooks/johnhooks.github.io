@@ -11,6 +11,7 @@
     "packages/*"
   ],
   "scripts": {
+    "check": "turbo check",
     "clean": "turbo clean",
     "clean:tsc": "turbo clean:tsc",
     "clean:all": "turbo clean:all",
@@ -21,7 +22,7 @@
     "build": "turbo build",
     "format": "prettier --write .",
     "lint": "turbo lint",
-    "check": "turbo check",
+    "prepare": "husky install && turbo prepare",
     "test": "turbo test",
     "website:dev": "yarn --cwd apps/website/ dev",
     "website:start": "yarn --cwd apps/website/ start",

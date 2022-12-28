@@ -30,43 +30,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - name: Prepare Environment
+        uses: ./.github/actions/build
         with:
-          node-version: "16"
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
-        with:
-          static_site_generator: sveltekit
-
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-            ${{ runner.os }}-node-
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Test application
-        run: npm run test
-
-      - name: Build audio worklets
-        run: npm run build:worklets
-
-      - name: Build application
-        run: npm run build
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       # This action uploads an artifact named `github-pages` which will be used by actions/deploy-pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./build
+          path: ./apps/website/build
 
   # Deploy job
   deploy:
