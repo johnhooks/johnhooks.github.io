@@ -17,7 +17,7 @@
       "outputs": ["dist/esm/**/*.js"]
     },
     "build": {
-      "dependsOn": ["build:esm", "build:types"],
+      "dependsOn": ["^build", "build:esm", "build:types"],
       "outputs": ["dist/**"]
     },
     "check": {
