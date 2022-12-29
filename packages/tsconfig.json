@@ -5,6 +5,7 @@
   "references": [
     { "path": "./audio" },
     { "path": "./midi" },
+    { "path": "./highlighter" },
     { "path": "./reactive" }
   ]
 }

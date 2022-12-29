@@ -19,7 +19,7 @@
     "build:definitions": "turbo build:definitions --filter=./packages/*",
     "build:types": "turbo build:types --filter=./packages/*",
     "build:umd:cjs": "turbo build:umd:cjs --filter=./packages/*",
-    "build": "turbo build",
+    "build": "turbo build --filter=./packages/*",
     "format": "prettier --write .",
     "lint": "turbo lint",
     "prepare": "husky install && turbo prepare",
@@ -28,7 +28,8 @@
     "website:start": "yarn --cwd apps/website/ start",
     "website:build": "turbo build --filter=./packages/* --filter=./apps/website",
     "website:format": "yarn --cwd ./apps/website format",
-    "website:lint": "yarn --cwd ./apps/website lint"
+    "website:lint": "yarn --cwd ./apps/website lint",
+    "website:preview": "yarn --cwd ./apps/website preview"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "7.33.7",

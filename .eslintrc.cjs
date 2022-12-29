@@ -26,13 +26,6 @@ module.exports = {
         },
         "newlines-between": "always",
         groups: ["builtin", "external", "parent", "sibling", "index"],
-        pathGroups: [
-          {
-            pattern: "$lib/**/*",
-            group: "parent",
-            position: "before",
-          },
-        ],
         pathGroupsExcludedImportTypes: ["builtin"],
       },
     ],

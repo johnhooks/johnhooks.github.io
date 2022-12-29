@@ -1,0 +1,55 @@
+{
+  "name": "@bitmachina/highlighter",
+  "version": "1.0.0-alpha.3",
+  "type": "module",
+  "description": "Highlight MDsveX files with the Shiki highlighter",
+  "keywords": [
+    "mdsvex",
+    "shiki",
+    "highlight",
+    "svelte",
+    "markdown"
+  ],
+  "homepage": "https://github.com/johnhooks/johnhooks.github.io/blob/main/packages/mdsvex-shiki/README.md",
+  "bugs": "https://github.com/johnhooks/johnhooks.github.io/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnhooks/johnhooks.github.io.git"
+  },
+  "author": {
+    "name": "John Hooks",
+    "url": "https://johnhooks.io"
+  },
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "clean": "rimraf ./{dist,temp}",
+    "clean:tsc": "rimraf ./lib",
+    "build:esm": "../../scripts/build/esm.sh",
+    "build:tsc": "tsc -b",
+    "build:types": "../../scripts/build/types.sh",
+    "build:umd:cjs": "rollup --config",
+    "check": "tsc --noEmit",
+    "lint": "../../scripts/build/lint.sh"
+  },
+  "dependencies": {
+    "hast-util-to-html": "8.0.3",
+    "hast-util-to-string": "2.0.0",
+    "hastscript": "7.1.0",
+    "parse-numeric-range": "^1.3.0",
+    "rehype-parse": "8.0.4",
+    "shiki": "0.11.1",
+    "unified": "10.1.2",
+    "unist-util-visit": "4.1.1"
+  },
+  "devDependencies": {
+    "@types/hast": "2.3.4"
+  }
+}
