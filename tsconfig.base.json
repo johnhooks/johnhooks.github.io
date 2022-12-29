@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
-    "module": "ES2020",
+    "module": "ES2015",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "noFallthroughCasesInSwitch": true,
@@ -11,7 +11,7 @@
     "noUnusedParameters": false,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES2022",
+    "target": "ES2017",
     "composite": true,
     "incremental": true,
     "noEmit": false,
