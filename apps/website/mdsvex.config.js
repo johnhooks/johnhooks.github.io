@@ -1,6 +1,7 @@
 // import * as path from "path";
 import { fileURLToPath } from "url";
 
+import { createHighlighter } from "@bitmachina/highlighter";
 import { selectAll } from "hast-util-select";
 import { toString } from "hast-util-to-string";
 import { h } from "hastscript";
@@ -8,7 +9,6 @@ import link from "rehype-autolink-headings";
 import slug from "rehype-slug";
 import gfm from "remark-gfm";
 
-import { highlighter } from "./mdsvex/highligher.js";
 import linkIcon from "./mdsvex/link-icon.js";
 
 export const __dirname = fileURLToPath(new URL(".", import.meta.url));
@@ -20,7 +20,7 @@ const config = {
   // layout: path.join(__dirname, "./src/lib/components/post-layout.svelte"),
 
   highlight: {
-    highlighter,
+    highlighter: await createHighlighter({ theme: "css-variables" }),
   },
 
   smartypants: {

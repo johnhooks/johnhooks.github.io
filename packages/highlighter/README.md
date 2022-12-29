@@ -26,7 +26,7 @@ import { createHighlighter } from "@bitmachina/highlighter";
 export default {
   extensions: [".svelte.md", ".md", ".svx"],
   highlight: {
-    highlighter: createHighlighter({ theme: "css-variables" }),
+    highlighter: await createHighlighter({ theme: "css-variables" }),
   },
 };
 ```
