@@ -1,12 +1,12 @@
 // import * as path from "path";
 import { fileURLToPath } from "url";
 
-import gfm from "remark-gfm";
-import slug from "rehype-slug";
-import link from "rehype-autolink-headings";
-import { toString } from "hast-util-to-string";
 import { selectAll } from "hast-util-select";
+import { toString } from "hast-util-to-string";
 import { h } from "hastscript";
+import link from "rehype-autolink-headings";
+import slug from "rehype-slug";
+import gfm from "remark-gfm";
 
 import { highlighter } from "./mdsvex/highligher.js";
 import linkIcon from "./mdsvex/link-icon.js";
@@ -21,10 +21,6 @@ const config = {
 
   highlight: {
     highlighter,
-    // Bypass highlighting
-    // highlighter(code, lang) {
-    //   return `<pre><code>${code}</code></pre>`;
-    // },
   },
 
   smartypants: {

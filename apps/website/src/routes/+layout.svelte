@@ -1,8 +1,9 @@
 <script>
   import { page } from "$app/stores";
-  import "../app.css";
-  import Navigation from "$lib/components/navigation.svelte";
+
   import Footer from "$lib/components/footer.svelte";
+  import Navigation from "$lib/components/navigation.svelte";
+  import "../app.css";
 </script>
 
 <svelte:head>

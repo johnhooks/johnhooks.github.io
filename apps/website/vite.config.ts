@@ -1,9 +1,7 @@
 import { sveltekit } from "@sveltejs/kit/vite";
-import type { InlineConfig } from "vitest";
-
 import type { UserConfig } from "vite";
-
 import { defineConfig } from "vite";
+import type { InlineConfig } from "vitest";
 
 interface VitestConfigExport extends UserConfig {
   test: InlineConfig;

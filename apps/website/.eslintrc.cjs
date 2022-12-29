@@ -1,9 +1,41 @@
+const path = require("node:path");
+
 module.exports = {
   root: true,
   parser: "@typescript-eslint/parser",
   extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
-  plugins: ["svelte3", "@typescript-eslint"],
+  plugins: ["svelte3", "@typescript-eslint", "import"],
   ignorePatterns: ["*.cjs"],
+  rules: {
+    "import/no-extraneous-dependencies": [
+      "error",
+      { packageDir: [__dirname, path.resolve(__dirname, "../../")] },
+    ],
+    "import/order": [
+      "error",
+      {
+        alphabetize: {
+          order: "asc",
+          caseInsensitive: true,
+        },
+        "newlines-between": "always",
+        groups: ["builtin", "external", "parent", "sibling", "index"],
+        pathGroups: [
+          {
+            pattern: "$app/**/*",
+            group: "parent",
+            position: "before",
+          },
+          {
+            pattern: "$lib/**/*",
+            group: "parent",
+            position: "before",
+          },
+        ],
+        pathGroupsExcludedImportTypes: ["builtin"],
+      },
+    ],
+  },
   overrides: [
     {
       files: ["**/*.(js|ts)"],

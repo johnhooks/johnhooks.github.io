@@ -35,7 +35,7 @@
   "html.autoClosingTags": true,
   "typescript.suggest.completeJSDocs": false,
   "typescript.disableAutomaticTypeAcquisition": true,
-  "eslint.workingDirectories": [ "./apps/website", "./" ],
+  "eslint.workingDirectories": ["./apps/website", "./"],
   "cSpell.words": [
     "compile",
     "csrf",

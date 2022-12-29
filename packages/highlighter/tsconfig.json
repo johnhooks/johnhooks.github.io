@@ -6,7 +6,5 @@
     "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo"
   },
   "include": ["src"],
-  "references": [
-    { "path": "../reactive" }
-  ]
+  "references": [{ "path": "../reactive" }]
 }

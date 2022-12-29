@@ -1,4 +1,5 @@
 :root {
+  --shiki-color-background: theme("colors.zinc.800");
   --shiki-color-text: theme("colors.white");
   --shiki-token-constant: theme("colors.emerald.300");
   --shiki-token-string: theme("colors.emerald.300");
@@ -62,18 +63,17 @@ code > .line.highlighted {
  * TODO: figure out how to add the data-code-title
  * [reference](https://remix.run/docs/en/v1/tutorials/blog#quickstart)
  */
-/* pre[data-code-title]:before {
+pre[data-code-title]:before {
   color: #616e88;
   font-weight: 400;
   content: attr(data-code-title);
   display: block;
   margin-top: 1rem;
   margin-left: 1.5rem;
-} */
+}
 
 code > .line[data-highlight]:after {
   --tw-bg-opacity: 1;
-  /* background-color: #3b4252; */
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
   content: " ";
   left: 0;

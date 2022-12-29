@@ -20,7 +20,7 @@
       "@bitmachina/audio": ["./packages/audio/src/index"],
       "@bitmachina/midi": ["./packages/midi/src/index"],
       "@bitmachina/reactive": ["./packages/reactive/src/index"],
-      "@bitmachina/highlighter": ["./packages/reactive/src/index"],
+      "@bitmachina/highlighter": ["./packages/reactive/src/index"]
     }
   }
 }
