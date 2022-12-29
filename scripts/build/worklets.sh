@@ -1,3 +1,5 @@
+#!/bin/bash
+
 out=./static/worklets
 
 [ -d $out ] && rm -rf $out

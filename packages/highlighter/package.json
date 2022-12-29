@@ -32,10 +32,12 @@
   "scripts": {
     "clean": "rimraf ./{dist,temp}",
     "clean:tsc": "rimraf ./lib",
+    "clean:all": "yarn clean && yarn clean:tsc",
     "build:esm": "../../scripts/build/esm.sh",
     "build:tsc": "tsc -b",
-    "build:types": "../../scripts/build/types.sh",
+    "build:types": "../../scripts/build/build-types.sh",
     "build:umd:cjs": "rollup --config",
+    "build:pkg": "../../scripts/build/build-pkg.sh",
     "check": "tsc --noEmit",
     "lint": "../../scripts/build/lint.sh"
   },

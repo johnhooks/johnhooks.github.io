@@ -1,7 +1,7 @@
 {
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
-  "editor.rulers": [100],
+  "editor.rulers": [84],
   "editor.formatOnSave": true,
   "files.encoding": "utf8",
   "files.trimTrailingWhitespace": true,

@@ -22,4 +22,5 @@ elif [ $CI = true ] ; then
   done
 fi
 
+echo "api-extractor run ${args[@]}"
 ../../node_modules/.bin/api-extractor run ${args[@]}
