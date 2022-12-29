@@ -114,7 +114,7 @@ Place a numeric range inside `{}`.
 
 ## Notes
 
-If languages are known ahead of time, limiting them could speed up loading the highlighter.
+If languages are known ahead of time, limiting them should speed up loading the highlighter.
 
 ```js
 // mdsvex.config.js

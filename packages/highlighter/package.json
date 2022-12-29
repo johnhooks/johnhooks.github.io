@@ -1,6 +1,6 @@
 {
   "name": "@bitmachina/highlighter",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "type": "module",
   "description": "Highlight MDsveX files with the Shiki highlighter",
   "keywords": [
@@ -10,7 +10,7 @@
     "svelte",
     "markdown"
   ],
-  "homepage": "https://github.com/johnhooks/johnhooks.github.io/blob/main/packages/mdsvex-shiki/README.md",
+  "homepage": "https://github.com/johnhooks/johnhooks.github.io/tree/main/packages/highlighter",
   "bugs": "https://github.com/johnhooks/johnhooks.github.io/issues",
   "repository": {
     "type": "git",
