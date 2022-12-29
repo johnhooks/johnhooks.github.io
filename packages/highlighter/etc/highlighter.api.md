@@ -4,10 +4,12 @@
 
 ```ts
 
-import { Highlighter } from 'shiki';
+import { HighlighterOptions } from 'shiki';
 
+// Warning: (ae-forgotten-export) The symbol "Highlighter" needs to be exported by the entry point index.d.ts
+//
 // @public
-export function createHighlighter(shikiHighlighter: Highlighter): (raw: string, lang: string, meta: string) => any;
+export function createHighlighter(options: HighlighterOptions): Promise<Highlighter>;
 
 // (No @packageDocumentation comment for this package)
 

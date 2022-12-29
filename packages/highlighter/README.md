@@ -14,24 +14,24 @@ yarn add @bitmachina/highlighter@alpha
 
 ## ⚡️ Quick start
 
-You can use any Shiki theme, but usage with the `css-variables` theme is really flexible.
+The `createHighlighter` function takes an argument of Shiki `HighlighterOptions`.
+
+Any [Shiki theme](https://github.com/shikijs/shiki/blob/main/docs/themes.md#all-themes) can be used. This example uses the `css-variables` theme, which is really flexible.
 
 ```js
 // mdsvex.config.js
 import { createHighlighter } from "@bitmachina/highlighter";
-import * as shiki from "shiki";
-
-const shikiHighlighter = await shiki.getHighlighter({ theme: "css-variables" });
-const highlighter = createHighlighter(shikiHighlighter);
 
 /** @type {import('mdsvex').MdsvexOptions} */
 export default {
   extensions: [".svelte.md", ".md", ".svx"],
   highlight: {
-    highlighter,
+    highlighter: createHighlighter({ theme: "css-variables" }),
   },
 };
 ```
+
+If using the `css-variables` theme, add the variables to your css.
 
 ```css
 /* app.css */
@@ -48,3 +48,92 @@ export default {
   --shiki-token-punctuation: #e4e4e7;
 }
 ```
+
+## Meta strings
+
+Code blocks are configured via the meta string on the top codeblock fence.
+
+Some features have been added to make this package comparable to [Rehype Pretty Code](https://rehype-pretty-code.netlify.app/).
+
+### Titles
+
+Add a file title to your code block, with text inside double quotes (`""`):
+
+````md
+```js title="..."
+```
+````
+
+### Line numbers
+
+CSS Counters can be used to add line numbers.
+
+```css
+code {
+  counter-reset: line;
+}
+
+code > .line::before {
+  counter-increment: line;
+  content: counter(line);
+
+  /* Other styling */
+  display: inline-block;
+  width: 1rem;
+  margin-right: 2rem;
+  text-align: right;
+  color: gray;
+}
+```
+
+If you want to conditionally show them, use showLineNumbers:
+
+````md
+```js showLineNumbers
+  // <code> will have a `data-line-numbers` attribute
+```
+````
+
+The starting line number can be specified by providing a line number argument, use `showLineNumbers{number}`.
+
+````md
+```js showLineNumbers{64}
+// the first line of this code block will start at {number}
+```
+````
+
+### Highlight lines
+
+Place a numeric range inside `{}`.
+
+````md
+```js {1-3,4}
+
+```
+````
+
+## Notes
+
+If languages are known ahead of time, limiting them could speed up loading the highlighter.
+
+```js
+// mdsvex.config.js
+export default {
+  // ...rest of the MDsveX options
+  highlight: {
+    highlighter: createHighlighter({
+      //  ...rest of the Shiki options
+      lang: ["css", "html", "js", "ts", "sh"]
+     }),
+  },
+};
+```
+
+## References
+
+- [Shiki - Theming with CSS Variables](https://github.com/shikijs/shiki/blob/main/docs/themes.md#theming-with-css-variables)
+- [Rehype Pretty Code](https://github.com/atomiks/rehype-pretty-code)
+
+## License
+
+MIT
