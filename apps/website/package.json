@@ -27,7 +27,7 @@
     "test": "vitest run"
   },
   "devDependencies": {
-    "@bitmachina/highlighter": "1.0.0-alpha.4",
+    "@bitmachina/highlighter": "1.0.0-alpha.5",
     "@sveltejs/adapter-static": "1.0.0",
     "@sveltejs/kit": "1.0.0",
     "@sveltejs/vite-plugin-svelte": "2.0.2",

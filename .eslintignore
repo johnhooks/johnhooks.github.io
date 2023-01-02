@@ -5,6 +5,7 @@ node_modules
 
 dist
 lib
+!apps/website/src/lib
 temp
 
 .env

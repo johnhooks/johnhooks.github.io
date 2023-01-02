@@ -7,7 +7,7 @@
   <div class="px-4 py-10 max-w-3xl mx-auto sm:px-6 sm:py-12 lg:max-w-4xl lg:py-16 lg:px-8">
     <article>
       <div class="space-y-10 sm:space-y-12 lg:space-y-20 ">
-        <div class="prose prose-sm sm:prose lg:prose-lg mx-auto">
+        <div class="prose lg:prose-lg mx-auto">
           <h1>
             <span
               class="block text-xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"

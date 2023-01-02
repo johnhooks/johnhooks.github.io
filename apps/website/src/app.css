@@ -20,6 +20,10 @@
   padding-right: 0;
 }
 
+.prose ul {
+  padding-left: 0.75em;
+}
+
 pre > code {
   word-wrap: normal;
   background-color: initial;
@@ -29,18 +33,18 @@ pre > code {
   flex-direction: column;
   line-height: inherit;
   margin: 0;
+  width: max-content;
+  min-width: 100%;
   max-width: auto;
   overflow: visible;
 }
 
-code {
-  counter-reset: line;
+span[data-line-number] {
+  padding-right: 1rem;
 }
 
-code[data-line-numbers] > .line::before {
-  counter-increment: line;
-  content: counter(line);
-
+code[data-line-numbers] > span[data-line-number]::before {
+  content: attr(data-line-number);
   /* Other styling */
   display: inline-block;
   width: 1rem;
@@ -54,34 +58,36 @@ code > .line {
   position: relative;
 }
 
-code > .line.highlighted {
+code > span[data-highlighted] {
   /* https://github.com/shikijs/shiki/blob/f8bd1fbd91e0890743e1ed815993f85cc7115343/packages/shiki/themes/nord.json#L64 */
-  background: #3b4252;
+  background: rgba(255, 255, 255, 0.075);
   width: 100%;
 }
+
+code > span[data-highlighted] + span[data-highlighted] {
+  border-top: 1px solid theme("colors.slate.800");
+}
+
 /**
  * TODO: figure out how to add the data-code-title
  * [reference](https://remix.run/docs/en/v1/tutorials/blog#quickstart)
  */
 pre[data-code-title]:before {
-  color: #616e88;
-  font-weight: 400;
+  color: rgb(255 255 255 1);
+  background: rgb(39 39 42);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  line-height: 1.5rem;
+  min-height: calc(3rem + 1px);
   content: attr(data-code-title);
   display: block;
-  margin-top: 1rem;
-  margin-left: 1.5rem;
-}
-
-code > .line[data-highlight]:after {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-  content: " ";
-  left: 0;
-  opacity: 0.1;
-  pointer-events: none;
-  position: absolute;
-  top: 0;
-  width: 100%;
+  padding-top: 0.75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-bottom: solid 1px rgb(63 63 70);
 }
 
 .autolink {
