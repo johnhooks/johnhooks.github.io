@@ -35,15 +35,14 @@
   dependencies:
     regenerator-runtime "^0.13.11"
 
-"@bitmachina/highlighter@1.0.0-alpha.5":
-  version "1.0.0-alpha.5"
-  resolved "https://registry.yarnpkg.com/@bitmachina/highlighter/-/highlighter-1.0.0-alpha.5.tgz#8798a94eedb32f9ca72c470b7e51267c91f03f27"
-  integrity sha512-YyMylz+cxQ4DPmskX7fnNyHLgd1YNMkw0Z3gwDfp71upRYkdqFx2kdZTqpQEpY8/YzCTbLIqy0jlAEbT03mCCA==
+"@bitmachina/highlighter@1.0.0-alpha.6":
+  version "1.0.0-alpha.6"
+  resolved "https://registry.yarnpkg.com/@bitmachina/highlighter/-/highlighter-1.0.0-alpha.6.tgz#5bd5edd5d55f3b6e9c05cf5b874a2776621e1951"
+  integrity sha512-f3KLy64cZnO58GuRswbk/oo3rKoRXz0zE3JtpCrIHr/RmT3gjBH8O1CeKxBdfx3fWvdnrGfEkkHSKBHRbf6/dw==
   dependencies:
-    hast-util-to-html "8.0.3"
     hast-util-to-string "2.0.0"
-    hastscript "7.1.0"
     parse-numeric-range "1.3.0"
+    property-information "6.2.0"
     rehype-parse "8.0.4"
     shiki "0.11.1"
     unified "10.1.2"
@@ -4620,7 +4619,7 @@ promise-retry@^2.0.1:
     err-code "^2.0.2"
     retry "^0.12.0"
 
-property-information@^6.0.0:
+property-information@6.2.0, property-information@^6.0.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/property-information/-/property-information-6.2.0.tgz#b74f522c31c097b5149e3c3cb8d7f3defd986a1d"
   integrity sha512-kma4U7AFCTwpqq5twzC1YVIDXSqg6qQK6JN0smOw8fgRy1OkMi0CYSzFmsy6dnqSenamAtj0CyXMUJ1Mf6oROg==
