@@ -4,7 +4,7 @@ seoTitle: Add beautifully highlighted code to a SvelteKit project using MDsveX a
 slug: highlighter
 abstract: How to configure MDSveX and @bitmachina/highlighter in a SvelteKit project.
 isPublished: true
-publishedOn: 2023-01-03
+publishedOn: 2023-01-06
 ---
 
 <script>
