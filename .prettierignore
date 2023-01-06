@@ -8,6 +8,8 @@ dist
 lib
 temp
 
+!apps/*/src/lib
+
 **/*.md
 
 .env

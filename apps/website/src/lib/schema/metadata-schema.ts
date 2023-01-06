@@ -4,6 +4,8 @@ export const Frontmatter = z.object({
   title: z.string(),
   seoTitle: z.string(),
   abstract: z.string(),
+  cardFilename: z.string().optional(),
+  cardAlt: z.string().optional(),
   isPublished: z.boolean(),
   publishedOn: z.string(),
   updatedOn: z.string().optional(),

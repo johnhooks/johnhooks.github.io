@@ -1,4 +1,6 @@
 <script>
+  import MetaCard from "$lib/components/meta-card.svelte";
+
   /** @type {import('./$types').PageData} */
   export let data;
 </script>
@@ -17,6 +19,7 @@
     property="og:description"
     content="This is my website. I use it to learn new web tech and document my journey."
   />
+  <MetaCard />
 </svelte:head>
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6">
@@ -118,7 +121,7 @@
               href="/projects/{project.slug}"
               class="text-base font-semibold text-indigo-600 hover:text-indigo-500"
             >
-              Read full story
+              Read more
             </a>
           </div>
         </li>

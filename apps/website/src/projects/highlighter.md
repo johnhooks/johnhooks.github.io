@@ -3,6 +3,8 @@ title: Beautiful MDSveX Code Blocks
 seoTitle: Add beautifully highlighted code to a SvelteKit project using MDsveX and the Shiki syntax highlighter
 slug: highlighter
 abstract: How to configure MDSveX and @bitmachina/highlighter in a SvelteKit project.
+cardFilename: highlighter_640.jpg
+cardAlt: The triple backtick highlighter logo.
 isPublished: true
 publishedOn: 2023-01-06
 ---
@@ -113,14 +115,14 @@ The line number is made available in the `data-line-number` attribute on the `<s
 
 ````txt title="example source"
 ```js showLineNumbers
-  console.log("Show me the numbers!")
-  console.log("Show me more!")
+console.log("Show me the numbers!")
+console.log("Show me more!")
 ```
 ````
 
 ```js title="example rendered" showLineNumbers
-  console.log("Show me the numbers!")
-  console.log("Show me more!")
+console.log("Show me the numbers!")
+console.log("Show me more!")
 ```
 
 ```js title="example of generated html"
