@@ -70,12 +70,14 @@ Some features have been added to make this package comparable to [Rehype Pretty 
 Add a title to your code block, with text inside double quotes (`""`):
 
 ````txt title="example source"
-```js title="Title directive example"
+```js title="Say hello to Shiki highlighting"
 console.log('Hello, Shiki!");
 ```
 ````
 
-```js title="example rendered"
+renders...
+
+```js title="Say hello to Shiki highlighting"
 console.log('Hello, Shiki!");
 ```
 
@@ -130,7 +132,7 @@ The line number is made available in the `data-line-number` attribute on the `<s
 
 A starting line number can be provided as an argument to `showLineNumbers`.
 
-````md title="example source"
+````txt title="example source"
 ```js showLineNumbers{64}
 const example="The first line of this code block will start at 64"
 ```
