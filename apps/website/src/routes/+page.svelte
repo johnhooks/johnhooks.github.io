@@ -97,6 +97,35 @@
     </ul>
   </div>
 
+  <div class="relative divide-y-2 divide-gray-200 mt-8 sm:mt-16">
+    <div class="text-center">
+      <h2 class="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl">Projects</h2>
+    </div>
+
+    <ul class="mt-6 pt-10 grid gap-16 lg:grid-cols-2 lg:gap-x-5 lg:gap-y-12">
+      {#each data.projects as project}
+        <li>
+          <a href="/projects/{project.slug}" class="mt-2 block">
+            <p class="text-xl font-semibold text-gray-900">
+              {project.title}
+            </p>
+            <p class="mt-3 text-base text-gray-500">
+              {project.abstract}
+            </p>
+          </a>
+          <div class="mt-3">
+            <a
+              href="/projects/{project.slug}"
+              class="text-base font-semibold text-indigo-600 hover:text-indigo-500"
+            >
+              Read full story
+            </a>
+          </div>
+        </li>
+      {/each}
+    </ul>
+  </div>
+
   <div class="mt-8 sm:mt-16 text-center">
     <p>
       This is my personal website, the source code is on
