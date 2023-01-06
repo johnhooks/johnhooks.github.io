@@ -1,12 +1,21 @@
 <script lang="ts">
+  import Image from "$lib/components/image.svelte";
+
   export let title: string;
   export let subtitle: string;
+  export let image: { filename?: string; alt?: string } = {};
 </script>
 
 <div class="antialiased text-gray-900">
-  <div class="px-4 py-10 max-w-3xl mx-auto sm:px-6 sm:py-12 lg:max-w-4xl lg:py-16 lg:px-8">
+  <div
+    class="px-4 pt-2 pb-16 max-w-3xl mx-auto sm:px-6 sm:pt-6 sm:pb-12 lg:max-w-4xl lg:pt-8 lg:pb-16 lg:px-8"
+  >
     <article>
       <div class="space-y-10 sm:space-y-12 lg:space-y-20 ">
+        {#if image.filename}
+          <Image {...image} />
+        {/if}
+
         <div class="prose lg:prose-lg mx-auto">
           <h1>
             <span

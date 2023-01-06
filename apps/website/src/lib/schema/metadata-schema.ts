@@ -6,6 +6,8 @@ export const Frontmatter = z.object({
   abstract: z.string(),
   cardFilename: z.string().optional(),
   cardAlt: z.string().optional(),
+  imageFilename: z.string().optional(),
+  imageAlt: z.string().optional(),
   isPublished: z.boolean(),
   publishedOn: z.string(),
   updatedOn: z.string().optional(),

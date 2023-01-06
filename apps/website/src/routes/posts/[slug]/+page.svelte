@@ -15,6 +15,7 @@
   <meta property="og:title" content={data.title} />
   <meta property="og:description" content={data.abstract} />
   <meta property="og:url" content={postUrl} />
+  <meta property="og:type" content="article" />
 
   <MetaCard filename={data.cardFilename} alt={data.cardAlt} />
 

@@ -5,6 +5,7 @@ slug: highlighter
 abstract: How to configure MDSveX and @bitmachina/highlighter in a SvelteKit project.
 cardFilename: highlighter_640.jpg
 cardAlt: The triple backtick highlighter logo.
+imageFilename: highlighter_512.jpg
 isPublished: true
 publishedOn: 2023-01-06
 ---

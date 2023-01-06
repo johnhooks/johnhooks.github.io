@@ -1,4 +1,5 @@
 <script>
+  import Image from "$lib/components/image.svelte";
   import MetaCard from "$lib/components/meta-card.svelte";
 
   /** @type {import('./$types').PageData} */
@@ -23,13 +24,7 @@
 </svelte:head>
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6">
-  <div class="flex justify-center my-4">
-    <img
-      src="/images/computer_512.png"
-      class="w-32 h-32 sm:w-64 sm:h-64"
-      alt="Hand drawn crazy-eyed computer looking at me"
-    />
-  </div>
+  <Image filename="computer_512.png" alt="Hand drawn crazy-eyed computer looking at me" />
 
   <div class="mt-2 sm:mt-4 text-center">
     <h1 class="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-5xl">

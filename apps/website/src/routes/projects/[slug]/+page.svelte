@@ -4,6 +4,7 @@
   /** @type {import('./$types').PageData} */
   export let data;
 
+  const image = { filename: data.imageFilename, alt: data.cardAlt || data.imageAlt };
   const project = `https://johnhooks.io/projects/${data.slug}`;
 </script>
 
@@ -14,6 +15,7 @@
   <meta property="og:title" content={data.title} />
   <meta property="og:description" content={data.abstract} />
   <meta property="og:url" content={project} />
+  <meta property="og:type" content="article" />
 
   <MetaCard filename={data.cardFilename} alt={data.cardAlt} />
 
@@ -22,6 +24,6 @@
   <!-- <meta property="article:modified_time" content={data.updatedAt} /> -->
 </svelte:head>
 
-<Article title={data.title} subtitle={data.abstract}>
+<Article title={data.title} subtitle={data.abstract} {image}>
   <svelte:component this={data.content} />
 </Article>
