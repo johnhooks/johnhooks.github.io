@@ -4,12 +4,15 @@ node_modules
 .turbo
 .svelte-kit
 package
-apps/website/static/worklets
-apps/website/build/
+
 
 dist
 lib
 temp
+
+apps/website/static/worklets
+apps/website/build/
+!apps/*/src/lib
 
 .env
 .env.*

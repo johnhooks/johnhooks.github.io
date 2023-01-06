@@ -8,7 +8,7 @@ const em = (px, base) => `${round(px / base)}em`;
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./{src,scripts}/**/*.{html,js,svelte,ts}", "./mdsvex.config.js"],
+  content: ["./{src,scripts}/**/*.{html,js,md,svelte,ts}", "./mdsvex.config.js"],
   theme: {
     extend: {
       typography: (theme) => ({
