@@ -22,6 +22,10 @@
 <Article
   title="this is my website"
   subtitle=" I use it to learn new web tech and document my journey."
+  image={{
+    filename: "johnhooks_avatar_512.jpg",
+    alt: "Drawn dizzy eyed avatar of John Hooks, inspired by a drawing done by his daughter Helen when she was three years old.",
+  }}
 >
   <p>
     I've been interested in web design and JavaScript for over 20 years. Though only recently have I
