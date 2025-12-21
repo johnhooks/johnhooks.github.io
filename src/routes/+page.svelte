@@ -76,7 +76,7 @@
     </div>
 
     <ul class="mt-6 pt-10 grid gap-16 lg:grid-cols-2 lg:gap-x-5 lg:gap-y-12">
-      {#each data.posts as post}
+      {#each data.posts as post (post.slug)}
         <li>
           <!-- <p class="text-sm text-gray-500">
             <time datetime="{formatDate(post.publishedOn, "yyyy-MM-dd")}">
@@ -110,7 +110,7 @@
     </div>
 
     <ul class="mt-6 pt-10 grid gap-16 lg:grid-cols-2 lg:gap-x-5 lg:gap-y-12">
-      {#each data.projects as project}
+      {#each data.projects as project (project.slug)}
         <li>
           <a href="/projects/{project.slug}" class="mt-2 block">
             <p class="text-xl font-semibold text-gray-900">

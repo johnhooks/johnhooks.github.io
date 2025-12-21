@@ -43,7 +43,7 @@ ${allUrls
   .map(
     (url) => `  <url>
     <loc>${SITE_URL}${url}</loc>
-  </url>`
+  </url>`,
   )
   .join("\n")}
 </urlset>`;
@@ -71,6 +71,7 @@ ${allUrls
 ## Verification
 
 After implementation:
+
 1. Run `pnpm build` and check `.svelte-kit/cloudflare/sitemap.xml` exists
 2. Validate XML structure at https://www.xml-sitemaps.com/validate-xml-sitemap.html
 3. Submit to Google Search Console when ready

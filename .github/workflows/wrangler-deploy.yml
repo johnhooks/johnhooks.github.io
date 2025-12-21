@@ -1,0 +1,48 @@
+name: Reusable Workflow - Wrangler Deploy
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+        description: Environment to deploy (production or staging)
+      site_url:
+        required: true
+        type: string
+        description: Site URL for build
+      ref:
+        required: false
+        type: string
+        description: Git ref to deploy
+        default: ""
+    secrets:
+      cloudflare_api_token:
+        required: true
+      cloudflare_account_id:
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Build
+        run: pnpm build
+        env:
+          SITE_URL: ${{ inputs.site_url }}
+
+      - name: Deploy to Cloudflare
+        run: pnpm wrangler deploy --env ${{ inputs.environment }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.cloudflare_api_token }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.cloudflare_account_id }}
