@@ -1,6 +1,14 @@
 {
-  "extends": "./tsconfig.base",
-  "files": [],
-  "include": [],
-  "references": [{ "path": "./packages" }, { "path": "./apps" }]
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true
+  }
 }
