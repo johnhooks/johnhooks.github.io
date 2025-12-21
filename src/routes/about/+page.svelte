@@ -9,13 +9,13 @@
   <title>about me / johnhooks.io</title>
   <meta
     name="description"
-    content="I am a hobbyist programmer. Maybe someday I'll do it for a living."
+    content="Web developer, former crane operator. Now building automation systems in Laravel."
   />
   <link rel="canonical" href={pageUrl} />
   <meta property="og:title" content="about me" />
   <meta
     property="og:description"
-    content="I am a hobbyist programmer. Maybe someday I'll do it for a living."
+    content="Web developer, former crane operator. Now building automation systems in Laravel."
   />
   <meta property="og:url" content={pageUrl} />
 
@@ -23,57 +23,64 @@
 </svelte:head>
 
 <Article
-  title="this is my website"
-  subtitle=" I use it to learn new web tech and document my journey."
+  title="about me"
+  subtitle="Web developer, former crane operator."
   image={{
     filename: "johnhooks_avatar_512.jpg",
     alt: "Drawn dizzy eyed avatar of John Hooks, inspired by a drawing done by his daughter Helen when she was three years old.",
   }}
 >
   <p>
-    I've been interested in web design and JavaScript for over 20 years. Though only recently have I
-    committed the time to really learn programming.
+    In art school I visited a web development company in Seattle. A professor was giving us a tour
+    and I remember seeing a screen full of code - dense, monochrome, nothing like the work I was
+    making. I thought, "I'm glad that's not me."
   </p>
 
   <p>
-    Coming from an art background, I remember visiting a large web development company in Seattle,
-    Washington. My graphic design professor was the lead designer there and was giving my class a
-    tour. I vividly remember seeing a computer screen with a mess of code, and in that moment, I was
-    so glad to be studying graphic design and not programming!
+    I've changed my mind. Programming might be the most creative medium there is. It's the biggest
+    set of LEGO blocks you can get your hands on, and you can build almost anything.
   </p>
 
   <p>
-    Now it feels like a missed opportunity. If I could relive that moment as the person I am now, I
-    would have dove in and have seen what that guy was working on. Even though it may have taken a
-    while to sink in, I'm finally committed to pushing my programming skills forward and I'm excited
-    for where it will take me.
+    I ran a crane business for 18 years. I liked the independence - all the power to succeed or
+    fail, nobody else to blame. That's also what made it scary. The whole time I was tinkering on
+    the side, learning to program, going down rabbit holes. I have trouble letting problems go. If
+    something doesn't make sense I keep pulling at it until it does.
+  </p>
+
+  <p>
+    In 2023 I made the switch to software full-time and joined Liquid Web. I like learning how
+    things work. This site is where I write about it.
   </p>
 
   <h3>Past</h3>
 
   <ul>
     <li>
-      <span class="mr-2">01-03</span> Columbia Basin College &#8212 Art Program &#8212 Drawing, painting
-      and a bit of sculpture.
+      <span class="mr-2">01-03</span> Columbia Basin College, Art Program. Drawing, painting,
+      sculpture.
     </li>
     <li>
       <span class="mr-2">03-04</span>
-      <a href="https://www.cornish.edu/">Cornish College of the Arts</a> &#8212 Graphic Design Program
-      &#8212 What you need a subscription for Illustrator now?!?
+      <a href="https://www.cornish.edu/">Cornish College of the Arts</a>, Graphic Design.
     </li>
     <li>
       <span class="mr-2">04-05</span>
-      Wenatchee Community College &#8212
-      <a href="https://en.wikipedia.org/wiki/Pomology">Pomology</a> Program &#8212 Fruit trees are cool
-      and so are the people who grow them.
+      Wenatchee Community College,
+      <a href="https://en.wikipedia.org/wiki/Pomology">Pomology</a>.
+    </li>
+    <li>
+      <span class="mr-2">05-23</span> Hooks Crane Service. Ran my own business for 18 years.
+      Scheduling, operations, maintenance, books. High stakes and early mornings.
     </li>
   </ul>
 
   <h3>Present</h3>
   <ul>
     <li>
-      <span class="mr-2">05-Present</span> Hooks Crane Service, Inc &#8212 Owner, Operator, Oiler and
-      Bookkeeper &#8212 Yep... its just me over here
+      <span class="mr-2">23-Present</span>
+      Liquid Web. Came in knowing JavaScript and React, learned PHP and Laravel on the job. Now
+      building queue orchestration and API systems for WordPress automation.
     </li>
   </ul>
 </Article>
