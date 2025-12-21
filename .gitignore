@@ -1,19 +1,10 @@
 .DS_Store
 node_modules
 
-.turbo
 .svelte-kit
-package
-
-
-dist
-lib
-temp
-
-apps/website/static/worklets
-apps/website/build/
-!apps/*/src/lib
+.wrangler
+build
 
 .env
 .env.*
-!.env.example
+!.env.dist

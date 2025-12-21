@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width" />
+    <script>
+      // Initialize the agent on page load.
+      const fpPromise =
+        import("https://fpjscdn.net/v3/h7Y33UUCeemER3W7dVpx").then(
+          (FingerprintJS) => FingerprintJS.load(),
+        );
+
+      // Get the visitorId when you need it.
+      fpPromise
+        .then((fp) => fp.get())
+        .then((result) => {
+          const visitorId = result.visitorId;
+          console.log(visitorId);
+        });
+    </script>
+    %sveltekit.head%
+  </head>
+
+  <body class="bg-gray-50">
+    <div>%sveltekit.body%</div>
+  </body>
+</html>

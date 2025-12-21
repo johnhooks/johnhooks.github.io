@@ -1,28 +1,32 @@
-# My Website
+# johnhooks.io
 
 [johnhooks.io](https://johnhooks.io)
 
-This is the repo for my personal website. Using [SvelteKit](https://kit.svelte.dev), it is statically built though a GitHub Action and deployed to GitHub Pages.
-
-I use this site as a place to learn new things and also make notes that as much for my own retention of information as for sharing with others.
+Personal website built with [SvelteKit](https://kit.svelte.dev) and deployed to Cloudflare Workers.
 
 ## Developing
 
-Once you've downloaded the project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+pnpm install
+pnpm dev
 ```
 
 ## Building
 
-To create a production version of the app:
-
 ```bash
-npm run build
+pnpm build
+pnpm preview
 ```
 
-You can preview the production build with `npm run preview`.
+## Deployment
+
+```bash
+pnpm deploy
+```
+
+Or test locally with wrangler:
+
+```bash
+pnpm build
+wrangler dev .svelte-kit/cloudflare
+```

@@ -1,0 +1,21 @@
+name: Deploy Staging
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Branch or tag to deploy (leave empty for default branch)"
+        required: false
+        type: string
+        default: ""
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/wrangler-deploy.yml
+    with:
+      environment: staging
+      site_url: https://website-staging.johnhooks.workers.dev
+      ref: ${{ inputs.ref }}
+    secrets:
+      cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      cloudflare_account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
