@@ -42,7 +42,7 @@ jobs:
           SITE_URL: ${{ inputs.site_url }}
 
       - name: Deploy to Cloudflare
-        run: pnpm wrangler deploy --env ${{ inputs.environment }}
+        run: pnpm wrangler deploy --env ${{ inputs.environment }} --message "Deployed from Actions"
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.cloudflare_api_token }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.cloudflare_account_id }}
