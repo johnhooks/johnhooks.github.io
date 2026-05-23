@@ -1,19 +1,35 @@
+@import "tailwindcss";
+@config "../tailwind.config.cjs";
+
 :root {
-  --shiki-color-background: theme("colors.zinc.800");
-  --shiki-color-text: theme("colors.white");
-  --shiki-token-constant: theme("colors.emerald.300");
-  --shiki-token-string: theme("colors.emerald.300");
-  --shiki-token-comment: theme("colors.zinc.500");
-  --shiki-token-keyword: theme("colors.sky.300");
-  --shiki-token-parameter: theme("colors.pink.300");
-  --shiki-token-function: theme("colors.violet.300");
-  --shiki-token-string-expression: theme("colors.emerald.300");
-  --shiki-token-punctuation: theme("colors.zinc.200");
+  color-scheme: light;
+  --astro-code-background: var(--color-zinc-100);
+  --astro-code-foreground: var(--color-zinc-900);
+  --astro-code-token-constant: var(--color-emerald-700);
+  --astro-code-token-string: var(--color-emerald-700);
+  --astro-code-token-comment: var(--color-zinc-500);
+  --astro-code-token-keyword: var(--color-sky-700);
+  --astro-code-token-parameter: var(--color-pink-700);
+  --astro-code-token-function: var(--color-violet-700);
+  --astro-code-token-string-expression: var(--color-emerald-700);
+  --astro-code-token-punctuation: var(--color-zinc-700);
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --astro-code-background: var(--color-zinc-800);
+    --astro-code-foreground: var(--color-white);
+    --astro-code-token-constant: var(--color-emerald-300);
+    --astro-code-token-string: var(--color-emerald-300);
+    --astro-code-token-comment: var(--color-zinc-500);
+    --astro-code-token-keyword: var(--color-sky-300);
+    --astro-code-token-parameter: var(--color-pink-300);
+    --astro-code-token-function: var(--color-violet-300);
+    --astro-code-token-string-expression: var(--color-emerald-300);
+    --astro-code-token-punctuation: var(--color-zinc-200);
+  }
+}
 
 .prose code[data-line-numbers] {
   padding-left: 0;
@@ -45,23 +61,62 @@ code[data-line-numbers] > span[data-line-number] {
 
 code[data-line-numbers] > span[data-line-number]::before {
   content: attr(data-line-number);
-  /* Other styling */
   display: inline-block;
   width: 1rem;
   margin-right: 1rem;
   margin-left: 1rem;
   text-align: right;
-  color: gray;
+  color: var(--color-zinc-500);
 }
 
 code > span[data-highlighted] {
-  /* https://github.com/shikijs/shiki/blob/f8bd1fbd91e0890743e1ed815993f85cc7115343/packages/shiki/themes/nord.json#L64 */
-  background: rgba(255, 255, 255, 0.075);
+  background: rgb(59 130 246 / 0.12);
   width: 100%;
 }
 
 code > span[data-highlighted] + span[data-highlighted] {
-  border-top: 1px solid theme("colors.slate.800");
+  border-top: 1px solid rgb(59 130 246 / 0.18);
+}
+
+@media (prefers-color-scheme: dark) {
+  code[data-line-numbers] > span[data-line-number]::before {
+    color: var(--color-zinc-500);
+  }
+
+  code > span[data-highlighted] {
+    background: rgba(255, 255, 255, 0.075);
+  }
+
+  code > span[data-highlighted] + span[data-highlighted] {
+    border-top: 1px solid var(--color-slate-800);
+  }
+}
+
+docinfo,
+doc-info {
+  color: #53818e;
+  border-color: currentColor;
+  border-left-width: 2px;
+  border-radius: 0.5rem;
+  border-right-width: 2px;
+  display: block;
+  margin-bottom: 0.75rem;
+  margin-top: 0;
+  padding: 0.5rem 1rem;
+  position: relative;
+}
+
+docinfo::before,
+doc-info::before {
+  background-color: rgb(57 146 255 / 1);
+  bottom: 0;
+  content: "";
+  left: 0;
+  opacity: 0.1;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 /**
@@ -69,8 +124,8 @@ code > span[data-highlighted] + span[data-highlighted] {
  * [reference](https://remix.run/docs/en/v1/tutorials/blog#quickstart)
  */
 pre[data-code-title]:before {
-  color: rgb(255 255 255 1);
-  background: rgb(39 39 42);
+  color: var(--color-zinc-900);
+  background: var(--color-zinc-200);
   font-size: 0.8125rem;
   font-weight: 600;
   font-family:
@@ -95,7 +150,15 @@ pre[data-code-title]:before {
   padding-top: 0.75rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  border-bottom: solid 1px rgb(63 63 70);
+  border-bottom: solid 1px var(--color-zinc-300);
+}
+
+@media (prefers-color-scheme: dark) {
+  pre[data-code-title]:before {
+    color: var(--color-white);
+    background: var(--color-zinc-900);
+    border-bottom-color: var(--color-zinc-700);
+  }
 }
 
 .autolink {

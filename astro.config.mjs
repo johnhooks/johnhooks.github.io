@@ -1,0 +1,57 @@
+import cloudflare from "@astrojs/cloudflare";
+import { transformerMetaHighlight } from "@shikijs/transformers";
+import { defineConfig } from "astro/config";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
+
+function removeMarkdownScripts() {
+  return (tree) => {
+    tree.children = tree.children.filter(
+      (node) =>
+        !(node.type === "html" && node.value.trim().startsWith("<script")),
+    );
+  };
+}
+
+export default defineConfig({
+  adapter: cloudflare(),
+  output: "server",
+  publicDir: "./static",
+  markdown: {
+    syntaxHighlight: "shiki",
+    shikiConfig: {
+      theme: "css-variables",
+      transformers: [transformerMetaHighlight()],
+    },
+    remarkPlugins: [remarkGfm, removeMarkdownScripts],
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "append",
+          properties: {
+            ariaHidden: true,
+            tabIndex: -1,
+            className: [
+              "autolink",
+              "flex",
+              "flex-row",
+              "flex-wrap",
+              "content-center",
+            ],
+          },
+          content() {
+            return {
+              type: "element",
+              tagName: "span",
+              properties: { className: ["ml-2"] },
+              children: [{ type: "text", value: "#" }],
+            };
+          },
+        },
+      ],
+    ],
+  },
+});

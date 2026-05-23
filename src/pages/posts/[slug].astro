@@ -1,0 +1,27 @@
+---
+import { getPosts } from "../../lib/astro/content";
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return getPosts().map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { metadata: data, Content } = post;
+---
+
+<ArticleLayout
+  title={data.title}
+  seoTitle={data.seoTitle}
+  subtitle={data.abstract}
+  canonicalPath={`/posts/${post.slug}`}
+  cardFilename={data.cardFilename}
+  cardAlt={data.cardAlt}
+>
+  <Content />
+</ArticleLayout>
