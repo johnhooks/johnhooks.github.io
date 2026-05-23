@@ -1,0 +1,20 @@
+---
+import NavigationLink from "./NavigationLink.astro";
+
+type Props = {
+  pathname: string;
+};
+
+const { pathname } = Astro.props;
+---
+
+<div class="mx-auto max-w-7xl px-4 sm:px-6">
+  <header>
+    <nav class="flex justify-center pt-6">
+      <ul class="flex px-3 text-sm font-medium text-zinc-800 dark:text-zinc-200">
+        <NavigationLink to="/" {pathname}>johnhooks.io</NavigationLink>
+        <NavigationLink to="/about" {pathname}>about</NavigationLink>
+      </ul>
+    </nav>
+  </header>
+</div>

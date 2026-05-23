@@ -2,8 +2,10 @@
 node_modules
 
 .svelte-kit
+.astro
 .wrangler
 build
+dist
 
 .env
 .env.*

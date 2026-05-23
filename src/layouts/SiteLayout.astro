@@ -1,0 +1,53 @@
+---
+import "../app.css";
+import Footer from "../components/Footer.astro";
+import Navigation from "../components/Navigation.astro";
+import MetaCard from "../components/MetaCard.astro";
+
+import { getSiteUrl } from "../lib/astro/site";
+
+type Props = {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  ogType?: "website" | "article";
+  cardFilename?: string;
+  cardAlt?: string;
+};
+
+const {
+  title = "johnhooks.io",
+  description = "This is my website. I use it to learn new web tech and document my journey.",
+  canonicalPath = "/",
+  ogType = "website",
+  cardFilename,
+  cardAlt,
+} = Astro.props;
+
+const canonicalUrl = getSiteUrl(canonicalPath);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.png" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="johnhooks.io" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <MetaCard filename={cardFilename} alt={cardAlt} />
+    {ogType === "article" && <meta property="article:author" content="https://github.com/johnhooks" />}
+  </head>
+  <body class="bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100">
+    <Navigation pathname={Astro.url.pathname} />
+    <slot />
+    <Footer pathname={Astro.url.pathname} />
+  </body>
+</html>

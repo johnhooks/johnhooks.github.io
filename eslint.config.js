@@ -1,12 +1,10 @@
 import js from "@eslint/js";
-import ts from "typescript-eslint";
-import svelte from "eslint-plugin-svelte";
 import globals from "globals";
+import ts from "typescript-eslint";
 
 export default ts.config(
   js.configs.recommended,
   ...ts.configs.recommended,
-  ...svelte.configs["flat/recommended"],
   {
     languageOptions: {
       globals: {
@@ -16,25 +14,25 @@ export default ts.config(
     },
   },
   {
-    files: ["**/*.svelte"],
-    languageOptions: {
-      parserOptions: {
-        parser: ts.parser,
-      },
-    },
-    rules: {
-      // Disable strict navigation rules for now
-      "svelte/no-navigation-without-resolve": "off",
-      "svelte/require-each-key": "warn",
-    },
-  },
-  {
     files: ["**/*.cjs"],
     rules: {
       "@typescript-eslint/no-require-imports": "off",
     },
   },
   {
-    ignores: ["build/", ".svelte-kit/", "dist/", ".wrangler/", "node_modules/"],
+    files: ["**/*.d.ts"],
+    rules: {
+      "@typescript-eslint/triple-slash-reference": "off",
+    },
+  },
+  {
+    ignores: [
+      "build/",
+      ".astro/",
+      ".svelte-kit/",
+      "dist/",
+      ".wrangler/",
+      "node_modules/",
+    ],
   },
 );

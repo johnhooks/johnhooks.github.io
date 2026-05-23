@@ -1,0 +1,52 @@
+---
+import Image from "../components/Image.astro";
+import SiteLayout from "./SiteLayout.astro";
+
+type Props = {
+  title: string;
+  seoTitle?: string;
+  subtitle: string;
+  canonicalPath: string;
+  cardFilename?: string;
+  cardAlt?: string;
+  image?: {
+    filename?: string;
+    alt?: string;
+  };
+};
+
+const { title, seoTitle, subtitle, canonicalPath, cardFilename, cardAlt, image } = Astro.props;
+---
+
+<SiteLayout
+  title={`${seoTitle ?? title} / johnhooks.io`}
+  description={subtitle}
+  canonicalPath={canonicalPath}
+  ogType="article"
+  {cardFilename}
+  {cardAlt}
+>
+  <div class="text-zinc-900 dark:text-zinc-100">
+    <div
+      class="mx-auto max-w-3xl px-4 pb-16 pt-2 sm:px-6 sm:pb-12 sm:pt-6 lg:max-w-4xl lg:px-8 lg:pb-16 lg:pt-8"
+    >
+      <article>
+        <div class="space-y-10 sm:space-y-12 lg:space-y-20">
+          {image?.filename && <Image filename={image.filename} alt={image.alt} />}
+
+          <div class="prose mx-auto dark:prose-invert lg:prose-lg">
+            <h1>
+              <span
+                class="block text-center text-xl font-extrabold leading-8 tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-4xl"
+              >
+                {title}
+              </span>
+            </h1>
+            <p class="mt-8 text-center leading-8 text-zinc-500 dark:text-zinc-400">{subtitle}</p>
+            <slot />
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</SiteLayout>
