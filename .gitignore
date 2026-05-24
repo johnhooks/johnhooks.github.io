@@ -1,6 +1,9 @@
 .DS_Store
 node_modules
 
+.idea/
+.vscode/
+
 .svelte-kit
 .astro
 .wrangler
