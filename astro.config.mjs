@@ -15,7 +15,7 @@ function removeMarkdownScripts() {
 }
 
 export default defineConfig({
-  adapter: cloudflare(),
+  adapter: cloudflare({ prerenderEnvironment: "node" }),
   output: "server",
   publicDir: "./static",
   markdown: {

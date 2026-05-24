@@ -126,7 +126,7 @@ Dynamic routes:
 - Projects live in `src/projects/*.md`.
 - Published entries require `isPublished: true` in frontmatter.
 - Homepage ordering is by `publishedOn`, newest first.
-- Some older Markdown files contain former MDSveX component tags such as `DocInfo`; keep compatibility or migrate the content deliberately.
+- Some older Markdown files use a custom `<doc-info>` callout element styled in `src/app.css`.
 
 ## Future Work
 
