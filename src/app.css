@@ -1,15 +1,31 @@
-@import "tailwindcss";
-@config "../tailwind.config.cjs";
-
 :root {
   color-scheme: light;
 
   --font-body:
     ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  --measure: 42rem;
-  --gutter: 1rem;
-  --gutter-wide: 1.5rem;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    monospace;
+
+  --measure: clamp(34rem, 72vw, 42rem);
+  --gutter: clamp(1rem, 4vw, 1.5rem);
+
+  --space-2xs: clamp(0.25rem, 0.4vw, 0.375rem);
+  --space-xs: clamp(0.5rem, 0.8vw, 0.75rem);
+  --space-sm: clamp(0.75rem, 1vw, 1rem);
+  --space-md: clamp(1rem, 1.6vw, 1.5rem);
+  --space-lg: clamp(1.5rem, 3vw, 2.5rem);
+  --space-xl: clamp(2.5rem, 6vw, 4.5rem);
+
+  --text-sm: clamp(0.875rem, 0.14vw + 0.84rem, 0.95rem);
+  --text-base: clamp(1rem, 0.24vw + 0.94rem, 1.125rem);
+  --text-lg: clamp(1.125rem, 0.45vw + 1rem, 1.35rem);
+  --text-xl: clamp(1.35rem, 0.9vw + 1.1rem, 1.85rem);
+  --text-title: clamp(2rem, 3.2vw + 1.1rem, 3.4rem);
+
+  --leading-body: 1.65;
+  --leading-title: 1.05;
 
   --color-bg: #f7f7f2;
   --color-surface: #fcfbf5;
@@ -23,19 +39,20 @@
 
   --astro-code-background: #ecede5;
   --astro-code-foreground: var(--color-text);
-  --astro-code-token-constant: var(--color-emerald-700);
-  --astro-code-token-string: var(--color-emerald-700);
-  --astro-code-token-comment: var(--color-zinc-500);
-  --astro-code-token-keyword: var(--color-sky-700);
-  --astro-code-token-parameter: var(--color-pink-700);
-  --astro-code-token-function: var(--color-violet-700);
-  --astro-code-token-string-expression: var(--color-emerald-700);
-  --astro-code-token-punctuation: var(--color-zinc-700);
+  --astro-code-token-constant: #047857;
+  --astro-code-token-string: #047857;
+  --astro-code-token-comment: #71717a;
+  --astro-code-token-keyword: #0369a1;
+  --astro-code-token-parameter: #be185d;
+  --astro-code-token-function: #6d28d9;
+  --astro-code-token-string-expression: #047857;
+  --astro-code-token-punctuation: #3f3f46;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
+
     --color-bg: #111312;
     --color-surface: #171918;
     --color-text: #eceee8;
@@ -48,27 +65,45 @@
 
     --astro-code-background: #20221f;
     --astro-code-foreground: var(--color-text);
-    --astro-code-token-constant: var(--color-emerald-300);
-    --astro-code-token-string: var(--color-emerald-300);
-    --astro-code-token-comment: var(--color-zinc-500);
-    --astro-code-token-keyword: var(--color-sky-300);
-    --astro-code-token-parameter: var(--color-pink-300);
-    --astro-code-token-function: var(--color-violet-300);
-    --astro-code-token-string-expression: var(--color-emerald-300);
-    --astro-code-token-punctuation: var(--color-zinc-200);
+    --astro-code-token-constant: #6ee7b7;
+    --astro-code-token-string: #6ee7b7;
+    --astro-code-token-comment: #71717a;
+    --astro-code-token-keyword: #7dd3fc;
+    --astro-code-token-parameter: #f9a8d4;
+    --astro-code-token-function: #c4b5fd;
+    --astro-code-token-string-expression: #6ee7b7;
+    --astro-code-token-punctuation: #e4e4e7;
   }
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html {
   background: var(--color-bg);
   font-family: var(--font-body);
+  text-size-adjust: 100%;
 }
 
 body {
   min-height: 100vh;
+  margin: 0;
   color: var(--color-text);
   background: var(--color-bg);
   font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+}
+
+img,
+svg {
+  display: block;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 ::selection {
@@ -81,183 +116,350 @@ body {
   outline-offset: 0.2rem;
 }
 
+a {
+  color: var(--color-link);
+  text-underline-offset: 0.22em;
+}
+
+a:hover {
+  text-decoration-line: underline;
+}
+
+.site-shell {
+  width: min(100%, var(--measure));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.site-nav {
+  padding-block-start: var(--space-md);
+}
+
+.site-nav__list {
+  display: flex;
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  color: var(--color-muted);
+  font-size: var(--text-base);
+  list-style: none;
+}
+
+.site-nav__link {
+  color: var(--color-link);
+}
+
+.site-nav__link--active {
+  color: var(--color-text);
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-link);
+  text-underline-offset: 0.22em;
+}
+
+.site-footer {
+  padding-block: var(--space-lg) var(--space-xl);
+}
+
+.site-footer__copyright {
+  margin: var(--space-md) 0 0;
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+}
+
+.page {
+  padding-block-end: var(--space-xl);
+}
+
+.page-header {
+  margin-block-start: var(--space-sm);
+}
+
+.page-header__title {
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--text-title);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: var(--leading-title);
+}
+
+.page-header__subtitle {
+  margin: var(--space-sm) 0 0;
+  color: var(--color-muted);
+  font-size: var(--text-lg);
+  line-height: 1.55;
+}
+
+.page-header__links {
+  margin: var(--space-sm) 0 0;
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+}
+
+.page-header__separator {
+  margin-inline: var(--space-xs);
+}
+
+.media-image {
+  margin-block: var(--space-md);
+}
+
+.media-image__image {
+  width: clamp(6rem, 18vw, 8rem);
+  height: clamp(6rem, 18vw, 8rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  .media-image__image--light-bg {
+    background: #fff;
+  }
+}
+
+.home-section {
+  margin-block-start: var(--space-xl);
+}
+
+.home-section__title {
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.content-list {
+  display: grid;
+  gap: var(--space-lg);
+  margin: var(--space-md) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.content-list__title {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.content-list__summary {
+  margin: var(--space-2xs) 0 0;
+  color: var(--color-muted);
+}
+
+.source-note {
+  margin-block-start: var(--space-xl);
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+}
+
+.timeline-date {
+  margin-inline-end: 0.5rem;
+  color: var(--color-muted);
+}
+
+.link-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-block: var(--space-md);
+}
+
 .prose {
-  --tw-prose-body: var(--color-text);
-  --tw-prose-headings: var(--color-text);
-  --tw-prose-lead: var(--color-muted);
-  --tw-prose-links: var(--color-link);
-  --tw-prose-bold: var(--color-text);
-  --tw-prose-counters: var(--color-muted);
-  --tw-prose-bullets: var(--color-link);
-  --tw-prose-hr: var(--color-rule);
-  --tw-prose-quotes: var(--color-text);
-  --tw-prose-quote-borders: var(--color-callout);
-  --tw-prose-captions: var(--color-muted);
-  --tw-prose-code: var(--color-text);
-  --tw-prose-pre-code: var(--astro-code-foreground);
-  --tw-prose-pre-bg: var(--astro-code-background);
+  margin-block-start: var(--space-lg);
+  color: var(--color-text);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+}
+
+.prose > *:first-child {
+  margin-block-start: 0;
+}
+
+.prose > *:last-child {
+  margin-block-end: 0;
+}
+
+.prose p,
+.prose ul,
+.prose ol,
+.prose blockquote,
+.prose pre,
+.prose table,
+.prose doc-info,
+.prose .link-badges {
+  margin-block: var(--space-md);
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  margin-block: var(--space-lg) var(--space-sm);
+  color: var(--color-text);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.prose h1 {
+  font-size: var(--text-title);
+}
+
+.prose h2 {
+  font-size: var(--text-xl);
+}
+
+.prose h3 {
+  font-size: var(--text-lg);
+}
+
+.prose h4,
+.prose h5,
+.prose h6 {
+  font-size: var(--text-base);
 }
 
 .prose a {
   text-decoration-color: color-mix(in srgb, var(--color-link), transparent 35%);
   text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.18em;
+}
+
+.prose strong {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.prose ul,
+.prose ol {
+  padding-inline-start: 1.4em;
+}
+
+.prose li + li {
+  margin-block-start: var(--space-xs);
+}
+
+.prose li > ul,
+.prose li > ol {
+  margin-block: var(--space-xs) 0;
 }
 
 .prose hr {
-  border-color: var(--color-rule);
-  margin-bottom: 2em;
-  margin-top: 3em;
+  margin-block: var(--space-xl) var(--space-lg);
+  border: 0;
+  border-block-start: 1px solid var(--color-rule);
 }
 
 .prose hr + * {
-  margin-top: 0;
+  margin-block-start: 0;
 }
 
-.prose code[data-line-numbers] {
-  padding-left: 0;
-  padding-right: 0;
+.prose blockquote {
+  margin-inline: 0;
+  padding-inline-start: var(--space-md);
+  border-inline-start: 0.2rem solid var(--color-callout);
+  color: var(--color-muted);
 }
 
-.prose ul {
-  padding-left: 0.75em;
+.prose code:not(pre code) {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
 }
 
-pre > code {
-  word-wrap: normal;
-  background-color: initial;
-  border: 0;
-  border-radius: 0;
+.prose pre {
+  overflow-x: auto;
+  background: var(--astro-code-background);
+  color: var(--astro-code-foreground);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.prose pre > code {
   display: flex;
   flex-direction: column;
-  line-height: inherit;
-  margin: 0;
-  width: max-content;
   min-width: 100%;
-  max-width: auto;
+  width: max-content;
+  margin: 0;
+  padding-block: var(--space-sm);
+  background: initial;
+  border: 0;
+  color: inherit;
+  font: inherit;
   overflow: visible;
 }
 
-code[data-line-numbers] > span[data-line-number] {
-  padding-left: 0;
+.prose pre > code > .line {
+  display: block;
+  padding-inline: var(--space-md);
 }
 
-code[data-line-numbers] > span[data-line-number]::before {
+.prose code[data-line-numbers] {
+  padding-inline: 0;
+}
+
+.prose code[data-line-numbers] > span[data-line-number] {
+  padding-inline-start: 0;
+}
+
+.prose code[data-line-numbers] > span[data-line-number]::before {
   content: attr(data-line-number);
   display: inline-block;
   width: 1rem;
-  margin-right: 1rem;
-  margin-left: 1rem;
-  text-align: right;
-  color: var(--color-zinc-500);
-}
-
-code > span[data-highlighted] {
-  background: var(--color-link-soft);
-  width: 100%;
-}
-
-code > span[data-highlighted] + span[data-highlighted] {
-  border-top: 1px solid var(--color-rule);
-}
-
-@media (prefers-color-scheme: dark) {
-  code[data-line-numbers] > span[data-line-number]::before {
-    color: var(--color-zinc-500);
-  }
-
-  code > span[data-highlighted] {
-    background: var(--color-link-soft);
-  }
-
-  code > span[data-highlighted] + span[data-highlighted] {
-    border-top: 1px solid var(--color-rule);
-  }
-}
-
-doc-info {
-  background: var(--color-surface);
-  border-left: 0.2rem solid var(--color-callout);
+  margin-inline: var(--space-sm);
   color: var(--color-muted);
-  display: block;
-  font-size: 0.95em;
-  line-height: 1.65;
-  margin: 1.75em 0;
-  padding: 0.8rem 1rem;
+  text-align: right;
 }
 
-/**
- * TODO: figure out how to add the data-code-title
- * [reference](https://remix.run/docs/en/v1/tutorials/blog#quickstart)
- */
-pre[data-code-title]:before {
-  color: var(--color-text);
+.prose code > span[data-highlighted] {
+  width: 100%;
+  background: var(--color-link-soft);
+}
+
+.prose code > span[data-highlighted] + span[data-highlighted] {
+  border-block-start: 1px solid var(--color-rule);
+}
+
+.prose doc-info,
+doc-info {
+  display: block;
+  padding: var(--space-sm) var(--space-md);
   background: var(--color-surface);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  font-family:
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    "Noto Sans",
-    sans-serif,
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol",
-    "Noto Color Emoji";
-  line-height: 1.5rem;
-  min-height: calc(3rem + 1px);
+  border-inline-start: 0.2rem solid var(--color-callout);
+  color: var(--color-muted);
+  font-size: 0.95em;
+}
+
+.prose pre[data-code-title]::before {
   content: attr(data-code-title);
   display: block;
-  padding-top: 0.75rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  border-bottom: solid 1px var(--color-rule);
-}
-
-@media (prefers-color-scheme: dark) {
-  pre[data-code-title]:before {
-    color: var(--color-text);
-    background: var(--color-surface);
-    border-bottom-color: var(--color-rule);
-  }
+  min-height: calc(3rem + 1px);
+  padding: 0.75rem 1rem 0;
+  background: var(--color-surface);
+  border-block-end: 1px solid var(--color-rule);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.5rem;
 }
 
 .autolink {
   display: inline-block;
+  margin-inline-start: 0.3em;
   font-size: 0.85em;
   line-height: 1;
-  margin-left: 0.3em;
   text-decoration: none;
   visibility: hidden;
   vertical-align: baseline;
 }
 
-.prose h1:hover .autolink {
-  visibility: visible;
-}
-
-.prose h2:hover .autolink {
-  visibility: visible;
-}
-
-.prose h3:hover .autolink {
-  visibility: visible;
-}
-
-.prose h4:hover .autolink {
-  visibility: visible;
-}
-
-.prose h5:hover .autolink {
-  visibility: visible;
-}
-
+.prose h1:hover .autolink,
+.prose h2:hover .autolink,
+.prose h3:hover .autolink,
+.prose h4:hover .autolink,
+.prose h5:hover .autolink,
 .prose h6:hover .autolink {
   visibility: visible;
 }

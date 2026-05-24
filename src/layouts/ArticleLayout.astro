@@ -34,30 +34,18 @@ const {
   {cardFilename}
   {cardAlt}
 >
-  <div class="text-[var(--color-text)]">
-    <div
-      class="mx-auto max-w-[var(--measure)] px-[var(--gutter)] pb-16 sm:px-[var(--gutter-wide)] sm:pb-12 lg:pb-16"
-    >
-      <article>
-        {image?.filename && <Image filename={image.filename} alt={image.alt} />}
+  <main class="site-shell page">
+    <article>
+      {image?.filename && <Image filename={image.filename} alt={image.alt} />}
 
-        <header class="mt-2 sm:mt-4">
-          <h1
-            class="text-3xl font-bold tracking-tight text-[var(--color-text)] sm:text-4xl"
-          >
-            {title}
-          </h1>
-          <p
-            class="mt-4 text-base leading-7 text-[var(--color-muted)] sm:text-lg"
-          >
-            {subtitle}
-          </p>
-        </header>
+      <header class="page-header">
+        <h1 class="page-header__title">{title}</h1>
+        <p class="page-header__subtitle">{subtitle}</p>
+      </header>
 
-        <div class="prose mt-10 lg:prose-lg">
-          <slot />
-        </div>
-      </article>
-    </div>
-  </div>
+      <div class="prose">
+        <slot />
+      </div>
+    </article>
+  </main>
 </SiteLayout>

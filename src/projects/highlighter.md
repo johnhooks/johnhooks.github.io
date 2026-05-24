@@ -10,7 +10,7 @@ isPublished: true
 publishedOn: 2023-01-06
 ---
 
-<div class="flex justify-center gap-4 not-prose">
+<div class="link-badges">
   <a href="https://www.npmjs.com/package/@bitmachina/highlighter">
     <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/johnhooks/highlighter?style=flat-square">
   </a>
