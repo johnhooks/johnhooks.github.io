@@ -1,0 +1,35 @@
+---
+import ElsewhereLayout from "../shared/ElsewhereLayout.astro";
+import ElsewherePageShell from "../shared/ElsewherePageShell.astro";
+import "./quotes.css";
+import { createEntryHref } from "./journey";
+import { getQuotes } from "./quote-loader";
+
+const quotes = getQuotes();
+const entryQuote = quotes[0];
+const entryHref = createEntryHref(entryQuote);
+---
+
+<ElsewhereLayout
+  title="Elsewhere quotes | johnhooks.io"
+  description="A procedural journey through programming quotes."
+  canonicalPath="/elsewhere/quotes"
+>
+  <ElsewherePageShell
+    class="quote-index"
+    labelledBy="quote-index-title"
+    breadcrumb={[
+      { label: "johnhooks.io", href: "/" },
+      { label: "elsewhere", href: "/elsewhere" },
+      { label: "quote wire" },
+    ]}
+  >
+    <div class="quote-index__inner">
+      <h1 id="quote-index-title">quote wire</h1>
+      <p>two links continue. the URL keeps the seed.</p>
+      <ul>
+        <li><a href={entryHref}>start</a></li>
+      </ul>
+    </div>
+  </ElsewherePageShell>
+</ElsewhereLayout>

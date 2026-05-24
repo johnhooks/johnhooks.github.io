@@ -1,0 +1,35 @@
+---
+import "../../app.css";
+
+import { getSiteUrl } from "../../lib/astro/site";
+
+type Props = {
+  title: string;
+  description: string;
+  canonicalPath: string;
+};
+
+const { title, description, canonicalPath } = Astro.props;
+const canonicalUrl = getSiteUrl(canonicalPath);
+---
+
+<!doctype html>
+<html lang="en" class="elsewhere-document">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.png" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="johnhooks.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+  </head>
+  <body class="elsewhere-body">
+    <slot />
+  </body>
+</html>

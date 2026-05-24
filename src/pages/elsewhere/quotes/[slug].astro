@@ -1,0 +1,20 @@
+---
+import QuotePage from "../../../elsewhere/quotes/QuotePage.astro";
+import { getQuoteBySlug } from "../../../elsewhere/quotes/quote-loader";
+
+export const prerender = false;
+
+const slug = Astro.params.slug;
+
+if (!slug) {
+  return Astro.redirect("/elsewhere/quotes");
+}
+
+const quote = getQuoteBySlug(slug);
+
+if (!quote) {
+  return Astro.redirect("/elsewhere/quotes");
+}
+---
+
+<QuotePage quote={quote} />

@@ -1,0 +1,25 @@
+---
+import ElsewhereLayout from "../shared/ElsewhereLayout.astro";
+import ElsewherePageShell from "../shared/ElsewherePageShell.astro";
+import "../quotes/quotes.css";
+---
+
+<ElsewhereLayout
+  title="Elsewhere | johnhooks.io"
+  description="The experimental layer beneath johnhooks.io."
+  canonicalPath="/elsewhere"
+>
+  <ElsewherePageShell
+    class="quote-index"
+    labelledBy="elsewhere-title"
+    breadcrumb={[{ label: "johnhooks.io", href: "/" }, { label: "elsewhere" }]}
+  >
+    <div class="quote-index__inner">
+      <h1 id="elsewhere-title">elsewhere</h1>
+      <p>small experiments for getting lost between pages.</p>
+      <ul>
+        <li><a href="/elsewhere/quotes">quote wire</a></li>
+      </ul>
+    </div>
+  </ElsewherePageShell>
+</ElsewhereLayout>

@@ -1,0 +1,26 @@
+---
+import ElsewhereBreadcrumb from "./ElsewhereBreadcrumb.astro";
+
+type BreadcrumbItem = {
+  label: string;
+  href?: string;
+};
+
+type Props = {
+  breadcrumb: BreadcrumbItem[];
+  class?: string;
+  labelledBy: string;
+  [attribute: string]: unknown;
+};
+
+const { breadcrumb, class: className, labelledBy, ...attributes } = Astro.props;
+---
+
+<main
+  class:list={["elsewhere-shell", className]}
+  aria-labelledby={labelledBy}
+  {...attributes}
+>
+  <ElsewhereBreadcrumb items={breadcrumb} />
+  <slot />
+</main>
