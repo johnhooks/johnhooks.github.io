@@ -96,6 +96,80 @@ body {
   line-height: var(--leading-body);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-group(*) {
+    animation-duration: 160ms;
+    animation-timing-function: ease-out;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 160ms;
+    animation-timing-function: ease-out;
+  }
+
+  ::view-transition-old(root) {
+    animation-name: page-fade-out;
+  }
+
+  ::view-transition-new(root) {
+    animation-name: root-fade-in;
+  }
+
+  ::view-transition-old(page-image),
+  ::view-transition-new(page-image) {
+    animation-duration: 220ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  ::view-transition-group(page-image) {
+    animation-duration: 220ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .page-header__title--fade {
+    animation: title-fade-in 180ms ease-out both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 1ms;
+  }
+}
+
+@keyframes page-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes root-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes title-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 img,
 svg {
   display: block;
@@ -146,14 +220,33 @@ a:hover {
 }
 
 .site-nav__link {
+  position: relative;
   color: var(--color-link);
+}
+
+.site-nav__link::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: -0.08em;
+  height: 0.08em;
+  background: var(--color-link);
+  opacity: 0;
+  transform: scaleX(0.72);
+  transform-origin: center;
+  transition:
+    opacity 140ms ease-out,
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .site-nav__link--active {
   color: var(--color-text);
-  text-decoration-line: underline;
-  text-decoration-color: var(--color-link);
-  text-underline-offset: 0.22em;
+  text-decoration-line: none;
+}
+
+.site-nav__link--active::after {
+  opacity: 1;
+  transform: scaleX(1);
 }
 
 .site-footer {
@@ -205,6 +298,7 @@ a:hover {
 }
 
 .media-image__image {
+  view-transition-name: page-image;
   width: clamp(6rem, 18vw, 8rem);
   height: clamp(6rem, 18vw, 8rem);
 }

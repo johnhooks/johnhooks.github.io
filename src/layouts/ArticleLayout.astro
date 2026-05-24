@@ -1,5 +1,6 @@
 ---
 import Image from "../components/Image.astro";
+import { titleTransitionAnimation } from "../lib/astro/viewTransitions";
 import SiteLayout from "./SiteLayout.astro";
 
 type Props = {
@@ -9,6 +10,7 @@ type Props = {
   canonicalPath: string;
   cardFilename?: string;
   cardAlt?: string;
+  titleTransitionName?: string;
   image?: {
     filename?: string;
     alt?: string;
@@ -22,8 +24,13 @@ const {
   canonicalPath,
   cardFilename,
   cardAlt,
+  titleTransitionName,
   image,
 } = Astro.props;
+
+const titleClassName = titleTransitionName
+  ? "page-header__title"
+  : "page-header__title page-header__title--fade";
 ---
 
 <SiteLayout
@@ -39,7 +46,20 @@ const {
       {image?.filename && <Image filename={image.filename} alt={image.alt} />}
 
       <header class="page-header">
-        <h1 class="page-header__title">{title}</h1>
+        {
+          titleTransitionName ? (
+            <h1
+              class={titleClassName}
+              transition:name={titleTransitionName}
+              transition:animate={titleTransitionAnimation}
+              data-title-transition-item
+            >
+              {title}
+            </h1>
+          ) : (
+            <h1 class={titleClassName}>{title}</h1>
+          )
+        }
         <p class="page-header__subtitle">{subtitle}</p>
       </header>
 

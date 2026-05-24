@@ -1,6 +1,7 @@
 ---
 import Image from "../components/Image.astro";
 import { getPosts, getProjects } from "../lib/astro/content";
+import { titleTransitionAnimation } from "../lib/astro/viewTransitions";
 import SiteLayout from "../layouts/SiteLayout.astro";
 
 export const prerender = true;
@@ -18,7 +19,7 @@ const projects = getProjects();
     />
 
     <header class="page-header">
-      <h1 class="page-header__title">johnhooks.io</h1>
+      <h1 class="page-header__title page-header__title--fade">johnhooks.io</h1>
       <p class="page-header__subtitle">just a guy learning web dev</p>
 
       <p class="page-header__links">
@@ -36,7 +37,15 @@ const projects = getProjects();
           posts.map((post) => (
             <li class="content-list__item">
               <h3 class="content-list__title">
-                <a href={`/posts/${post.slug}`}>{post.metadata.title}</a>
+                <a
+                  href={`/posts/${post.slug}`}
+                  transition:name={`post-title-${post.slug}`}
+                  transition:animate={titleTransitionAnimation}
+                  data-title-transition-link
+                  data-title-transition-item
+                >
+                  {post.metadata.title}
+                </a>
               </h3>
               <p class="content-list__summary">{post.metadata.abstract}</p>
             </li>
@@ -53,7 +62,13 @@ const projects = getProjects();
           projects.map((project) => (
             <li class="content-list__item">
               <h3 class="content-list__title">
-                <a href={`/projects/${project.slug}`}>
+                <a
+                  href={`/projects/${project.slug}`}
+                  transition:name={`project-title-${project.slug}`}
+                  transition:animate={titleTransitionAnimation}
+                  data-title-transition-link
+                  data-title-transition-item
+                >
                   {project.metadata.title}
                 </a>
               </h3>
