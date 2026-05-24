@@ -22,6 +22,7 @@ const { metadata: data, Content } = project;
   canonicalPath={`/projects/${project.slug}`}
   cardFilename={data.cardFilename}
   cardAlt={data.cardAlt}
+  titleTransitionName={`project-title-${project.slug}`}
   image={{ filename: data.imageFilename, alt: data.cardAlt ?? data.imageAlt }}
 >
   <Content />

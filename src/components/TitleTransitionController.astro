@@ -1,0 +1,37 @@
+<script>
+  type AstroBeforePreparationEvent = Event & {
+    sourceElement?: Element;
+    signal?: AbortSignal;
+  };
+
+  const titleTransitionItemSelector = "[data-title-transition-item]";
+  const titleTransitionLinkSelector = "[data-title-transition-link]";
+
+  function setTitleTransitionsEnabled(isEnabled: boolean) {
+    for (const element of document.querySelectorAll<HTMLElement>(
+      titleTransitionItemSelector,
+    )) {
+      element.style.viewTransitionName = isEnabled ? "" : "none";
+    }
+  }
+
+  document.addEventListener("astro:before-preparation", (event) => {
+    const { sourceElement, signal } = event as AstroBeforePreparationEvent;
+    const keepsTitleTransition = sourceElement?.closest(
+      titleTransitionLinkSelector,
+    );
+
+    if (keepsTitleTransition) {
+      return;
+    }
+
+    setTitleTransitionsEnabled(false);
+    signal?.addEventListener(
+      "abort",
+      () => {
+        setTitleTransitionsEnabled(true);
+      },
+      { once: true },
+    );
+  });
+</script>

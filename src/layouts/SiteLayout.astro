@@ -1,8 +1,10 @@
 ---
 import "../app.css";
+import { ClientRouter } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navigation.astro";
 import MetaCard from "../components/MetaCard.astro";
+import TitleTransitionController from "../components/TitleTransitionController.astro";
 
 import { getSiteUrl } from "../lib/astro/site";
 
@@ -46,6 +48,7 @@ const canonicalUrl = getSiteUrl(canonicalPath);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <MetaCard filename={cardFilename} alt={cardAlt} />
+    <ClientRouter />
     {
       ogType === "article" && (
         <meta
@@ -56,6 +59,7 @@ const canonicalUrl = getSiteUrl(canonicalPath);
     }
   </head>
   <body>
+    <TitleTransitionController />
     <Navigation pathname={Astro.url.pathname} />
     <slot />
     <Footer pathname={Astro.url.pathname} />
