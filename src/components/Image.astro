@@ -7,14 +7,14 @@ type Props = {
 
 const { filename, alt, darkBackground = false } = Astro.props;
 const wrapperClassName = darkBackground
-  ? "my-4 flex justify-center [&>img]:rounded-sm dark:[&>img]:bg-white"
-  : "my-4 flex justify-center";
+  ? "my-6 flex justify-start dark:[&>img]:bg-white"
+  : "my-6 flex justify-start";
 ---
 
 {
   filename && (
     <div class={wrapperClassName}>
-      <img src={`/images/${filename}`} class="h-32 w-32 sm:h-64 sm:w-64" alt={alt} />
+      <img src={`/images/${filename}`} class="h-32 w-32" alt={alt} />
     </div>
   )
 }

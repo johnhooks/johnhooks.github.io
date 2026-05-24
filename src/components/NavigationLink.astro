@@ -7,8 +7,8 @@ type Props = {
 const { to, pathname } = Astro.props;
 const isActive = pathname === to;
 const className = isActive
-  ? "relative block px-3 py-2 text-indigo-600 transition dark:text-indigo-400"
-  : "relative block px-3 py-2 transition hover:text-indigo-600 dark:hover:text-indigo-400";
+  ? "text-[var(--color-text)] underline decoration-[var(--color-link)] underline-offset-4"
+  : "text-[var(--color-link)] hover:underline hover:underline-offset-4";
 ---
 
 <li>
