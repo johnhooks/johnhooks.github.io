@@ -20,22 +20,22 @@ export type Metadata = Omit<Frontmatter, "imageFilename"> & {
   imageFilename?: ImageAssetFilename;
 };
 
-export type MarkdownEntry = {
+export type ContentEntry = {
   slug: string;
   metadata: Metadata;
   Content: AstroComponentFactory;
 };
 
-type MarkdownModule = {
+type ContentModule = {
   frontmatter: Frontmatter;
   default: AstroComponentFactory;
 };
 
 function slugFromPath(path: string) {
-  const match = /\/([\w-]+)\.md$/.exec(path);
+  const match = /\/([\w-]+)\.mdx?$/.exec(path);
 
   if (!match) {
-    throw new Error(`Unable to parse markdown slug from ${path}`);
+    throw new Error(`Unable to parse content slug from ${path}`);
   }
 
   return match[1];
@@ -55,7 +55,7 @@ function validateMetadata(metadata: Frontmatter, context: string): Metadata {
   return metadata as Metadata;
 }
 
-function normalizeEntries(modules: Record<string, MarkdownModule>) {
+function normalizeEntries(modules: Record<string, ContentModule>) {
   return Object.entries(modules).map(([path, module]) => ({
     slug: slugFromPath(path),
     metadata: validateMetadata(module.frontmatter, path),
@@ -63,7 +63,7 @@ function normalizeEntries(modules: Record<string, MarkdownModule>) {
   }));
 }
 
-function byPublishedDateDescending(a: MarkdownEntry, b: MarkdownEntry) {
+function byPublishedDateDescending(a: ContentEntry, b: ContentEntry) {
   return (
     new Date(b.metadata.publishedOn).getTime() -
     new Date(a.metadata.publishedOn).getTime()
@@ -71,7 +71,7 @@ function byPublishedDateDescending(a: MarkdownEntry, b: MarkdownEntry) {
 }
 
 export function getPosts() {
-  const modules = import.meta.glob<MarkdownModule>("../../posts/*.md", {
+  const modules = import.meta.glob<ContentModule>("../../posts/*.{md,mdx}", {
     eager: true,
   });
 
@@ -81,7 +81,7 @@ export function getPosts() {
 }
 
 export function getProjects() {
-  const modules = import.meta.glob<MarkdownModule>("../../projects/*.md", {
+  const modules = import.meta.glob<ContentModule>("../../projects/*.{md,mdx}", {
     eager: true,
   });
 

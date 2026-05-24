@@ -349,14 +349,33 @@ a:hover {
   font-size: var(--text-sm);
 }
 
+.prose ul:has(> li > .timeline-date) {
+  padding-inline-start: 0;
+  list-style: none;
+}
+
 .prose li:has(> .timeline-date) {
   display: grid;
-  grid-template-columns: 4.5rem minmax(0, 1fr);
-  column-gap: var(--space-sm);
+  grid-template-columns: 3.8rem minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: var(--space-xs);
+}
+
+.prose li:has(> .timeline-date) + li:has(> .timeline-date) {
+  margin-block-start: var(--space-xs);
+}
+
+.prose li:has(> .timeline-date) p {
+  margin-block: 0;
 }
 
 .timeline-date {
   color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
 }
 
 .link-badges {
@@ -534,6 +553,22 @@ doc-info {
   border-inline-start: 0.2rem solid var(--color-callout);
   color: var(--color-muted);
   font-size: 0.95em;
+}
+
+.prose doc-info > * {
+  margin-block: var(--space-xs);
+}
+
+.prose doc-info > *:first-child {
+  margin-block-start: 0;
+}
+
+.prose doc-info > *:last-child {
+  margin-block-end: 0;
+}
+
+.prose doc-info code:not(pre code) {
+  color: var(--color-text);
 }
 
 .prose pre[data-code-title]::before {
