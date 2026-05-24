@@ -13,6 +13,22 @@ export function getStaticPaths() {
 
 const { project } = Astro.props;
 const { metadata: data, Content } = project;
+let image;
+
+if (data.imageFilename) {
+  const imageAlt = data.cardAlt ?? data.imageAlt;
+
+  if (!imageAlt) {
+    throw new Error(
+      `Image asset for project ${project.slug} requires alt text.`,
+    );
+  }
+
+  image = {
+    filename: data.imageFilename,
+    alt: imageAlt,
+  };
+}
 ---
 
 <ArticleLayout
@@ -23,7 +39,7 @@ const { metadata: data, Content } = project;
   cardFilename={data.cardFilename}
   cardAlt={data.cardAlt}
   titleTransitionName={`project-title-${project.slug}`}
-  image={{ filename: data.imageFilename, alt: data.cardAlt ?? data.imageAlt }}
+  image={image}
 >
   <Content />
 </ArticleLayout>
