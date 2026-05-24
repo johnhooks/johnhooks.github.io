@@ -5,14 +5,24 @@ type Props = {
 };
 
 const { to, pathname } = Astro.props;
-const isActive = pathname === to;
+const normalizePath = (path: string) =>
+  path.length > 1 ? path.replace(/\/$/, "") : path;
+const isActive = normalizePath(pathname) === normalizePath(to);
 const className = isActive
   ? "site-nav__link site-nav__link--active"
   : "site-nav__link";
 ---
 
 <li>
-  <a href={to} class={className}>
-    <slot />
-  </a>
+  {
+    isActive ? (
+      <span class={className} aria-current="page">
+        <slot />
+      </span>
+    ) : (
+      <a href={to} class={className}>
+        <slot />
+      </a>
+    )
+  }
 </li>
