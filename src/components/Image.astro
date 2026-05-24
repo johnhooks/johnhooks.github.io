@@ -1,20 +1,33 @@
 ---
-type Props = {
-  filename?: string;
-  alt?: string;
-  darkBackground?: boolean;
-};
+import { Image as AstroImage } from "astro:assets";
+
+import { imageAssets } from "../lib/astro/images";
+import type { ImageAssetFilename } from "../lib/astro/images";
+
+type Props =
+  | {
+      filename: ImageAssetFilename;
+      alt: string;
+      darkBackground?: boolean;
+    }
+  | {
+      filename?: undefined;
+      alt?: undefined;
+      darkBackground?: boolean;
+    };
 
 const { filename, alt, darkBackground = false } = Astro.props;
+const image = filename ? imageAssets[filename] : undefined;
+const imageAlt = alt as string;
 const imageClassName = darkBackground
   ? "media-image__image media-image__image--light-bg"
   : "media-image__image";
 ---
 
 {
-  filename && (
+  image && (
     <div class="media-image">
-      <img src={`/images/${filename}`} class={imageClassName} alt={alt} />
+      <AstroImage src={image} class={imageClassName} alt={imageAlt} />
     </div>
   )
 }

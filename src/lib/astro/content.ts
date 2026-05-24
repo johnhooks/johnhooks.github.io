@@ -1,6 +1,9 @@
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 
-export type Metadata = {
+import { assertImageAssetFilename } from "./images";
+import type { ImageAssetFilename } from "./images";
+
+type Frontmatter = {
   title: string;
   seoTitle: string;
   abstract: string;
@@ -13,6 +16,10 @@ export type Metadata = {
   updatedOn?: string;
 };
 
+export type Metadata = Omit<Frontmatter, "imageFilename"> & {
+  imageFilename?: ImageAssetFilename;
+};
+
 export type MarkdownEntry = {
   slug: string;
   metadata: Metadata;
@@ -20,7 +27,7 @@ export type MarkdownEntry = {
 };
 
 type MarkdownModule = {
-  frontmatter: Metadata;
+  frontmatter: Frontmatter;
   default: AstroComponentFactory;
 };
 
@@ -34,10 +41,24 @@ function slugFromPath(path: string) {
   return match[1];
 }
 
+function validateMetadata(metadata: Frontmatter, context: string): Metadata {
+  if (metadata.imageFilename) {
+    assertImageAssetFilename(metadata.imageFilename, context);
+
+    if (!metadata.imageAlt && !metadata.cardAlt) {
+      throw new Error(
+        `Image asset in ${context} must define imageAlt or cardAlt: ${metadata.imageFilename}`,
+      );
+    }
+  }
+
+  return metadata as Metadata;
+}
+
 function normalizeEntries(modules: Record<string, MarkdownModule>) {
   return Object.entries(modules).map(([path, module]) => ({
     slug: slugFromPath(path),
-    metadata: module.frontmatter,
+    metadata: validateMetadata(module.frontmatter, path),
     Content: module.default,
   }));
 }

@@ -1,5 +1,6 @@
 ---
 import Image from "../components/Image.astro";
+import type { ImageAssetFilename } from "../lib/astro/images";
 import { titleTransitionAnimation } from "../lib/astro/viewTransitions";
 import SiteLayout from "./SiteLayout.astro";
 
@@ -12,8 +13,8 @@ type Props = {
   cardAlt?: string;
   titleTransitionName?: string;
   image?: {
-    filename?: string;
-    alt?: string;
+    filename: ImageAssetFilename;
+    alt: string;
   };
 };
 
