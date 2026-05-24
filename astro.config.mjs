@@ -34,19 +34,13 @@ export default defineConfig({
           properties: {
             ariaHidden: true,
             tabIndex: -1,
-            className: [
-              "autolink",
-              "flex",
-              "flex-row",
-              "flex-wrap",
-              "content-center",
-            ],
+            className: ["autolink"],
           },
           content() {
             return {
               type: "element",
               tagName: "span",
-              properties: { className: ["ml-2"] },
+              properties: {},
               children: [{ type: "text", value: "#" }],
             };
           },

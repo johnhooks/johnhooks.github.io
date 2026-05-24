@@ -3,7 +3,6 @@ const round = (num) =>
     .toFixed(7)
     .replace(/(\.[0-9]+?)0+$/, "$1")
     .replace(/\.0$/, "");
-const rem = (px) => `${round(px / 16)}rem`;
 const em = (px, base) => `${round(px / base)}em`;
 
 /** @type {import('tailwindcss').Config} */
@@ -11,7 +10,7 @@ module.exports = {
   content: ["./{src,scripts}/**/*.{astro,html,js,md,ts}", "./astro.config.mjs"],
   theme: {
     extend: {
-      typography: (theme) => ({
+      typography: () => ({
         DEFAULT: {
           css: {
             // https://github.com/tailwindlabs/tailwindcss-typography/issues/18#issuecomment-733045571
@@ -26,11 +25,11 @@ module.exports = {
               lineHeight: round(24 / 14),
               marginTop: em(24, 14),
               marginBottom: em(24, 14),
-              borderRadius: rem(6),
+              borderRadius: 0,
               display: "flex",
               flexDirection: "column",
               padding: 0,
-              boxShadow: theme("boxShadow.md"),
+              boxShadow: "none",
               "> code": {
                 paddingTop: em(12, 14),
                 paddingRight: em(0),
@@ -59,11 +58,11 @@ module.exports = {
               lineHeight: round(20 / 12),
               marginTop: em(20, 12),
               marginBottom: em(20, 12),
-              borderRadius: rem(4),
+              borderRadius: 0,
               display: "flex",
               flexDirection: "column",
               padding: 0,
-              boxShadow: theme("boxShadow.sm"),
+              boxShadow: "none",
               "> code": {
                 paddingTop: em(8, 12),
                 paddingRight: 0,
@@ -98,11 +97,11 @@ module.exports = {
               lineHeight: round(28 / 16),
               marginTop: em(32, 16),
               marginBottom: em(32, 16),
-              borderRadius: rem(6),
+              borderRadius: 0,
               display: "flex",
               flexDirection: "column",
               padding: 0,
-              boxShadow: theme("boxShadow.lg"),
+              boxShadow: "none",
               "> code": {
                 paddingTop: em(16, 16),
                 paddingRight: 0,
@@ -128,11 +127,11 @@ module.exports = {
             lineHeight: round(32 / 18),
             marginTop: em(36, 18),
             marginBottom: em(36, 18),
-            borderRadius: rem(8),
+            borderRadius: 0,
             display: "flex",
             flexDirection: "column",
             padding: 0,
-            boxShadow: theme("boxShadow.md"),
+            boxShadow: "none",
             "> code": {
               paddingTop: em(20, 18),
               paddingRight: 0,
@@ -159,12 +158,12 @@ module.exports = {
               display: "flex",
               flexDirection: "column",
               padding: 0,
-              boxShadow: theme("boxShadow.md"),
+              boxShadow: "none",
               fontSize: em(20, 24),
               lineHeight: round(36 / 20),
               marginTop: em(40, 20),
               marginBottom: em(40, 20),
-              borderRadius: rem(8),
+              borderRadius: 0,
               "> code ": {
                 paddingTop: em(24, 20),
                 paddingRight: 0,

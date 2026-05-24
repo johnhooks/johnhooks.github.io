@@ -28,7 +28,10 @@ const canonicalUrl = getSiteUrl(canonicalPath);
 ---
 
 <!doctype html>
-<html lang="en">
+<html
+  lang="en"
+  style="font-family: var(--font-body, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);"
+>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -43,9 +46,16 @@ const canonicalUrl = getSiteUrl(canonicalPath);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <MetaCard filename={cardFilename} alt={cardAlt} />
-    {ogType === "article" && <meta property="article:author" content="https://github.com/johnhooks" />}
+    {
+      ogType === "article" && (
+        <meta
+          property="article:author"
+          content="https://github.com/johnhooks"
+        />
+      )
+    }
   </head>
-  <body class="bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100">
+  <body class="antialiased">
     <Navigation pathname={Astro.url.pathname} />
     <slot />
     <Footer pathname={Astro.url.pathname} />

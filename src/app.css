@@ -3,8 +3,26 @@
 
 :root {
   color-scheme: light;
-  --astro-code-background: var(--color-zinc-100);
-  --astro-code-foreground: var(--color-zinc-900);
+
+  --font-body:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --measure: 42rem;
+  --gutter: 1rem;
+  --gutter-wide: 1.5rem;
+
+  --color-bg: #f7f7f2;
+  --color-surface: #fcfbf5;
+  --color-text: #20211e;
+  --color-muted: #63655f;
+  --color-rule: #dadbd2;
+  --color-link: #00706b;
+  --color-link-soft: rgb(0 112 107 / 0.12);
+  --color-focus: var(--color-link);
+  --color-callout: var(--color-link);
+
+  --astro-code-background: #ecede5;
+  --astro-code-foreground: var(--color-text);
   --astro-code-token-constant: var(--color-emerald-700);
   --astro-code-token-string: var(--color-emerald-700);
   --astro-code-token-comment: var(--color-zinc-500);
@@ -18,8 +36,18 @@
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --astro-code-background: var(--color-zinc-800);
-    --astro-code-foreground: var(--color-white);
+    --color-bg: #111312;
+    --color-surface: #171918;
+    --color-text: #eceee8;
+    --color-muted: #a7aaa2;
+    --color-rule: #30332f;
+    --color-link: #5eead4;
+    --color-link-soft: rgb(94 234 212 / 0.12);
+    --color-focus: var(--color-link);
+    --color-callout: var(--color-link);
+
+    --astro-code-background: #20221f;
+    --astro-code-foreground: var(--color-text);
     --astro-code-token-constant: var(--color-emerald-300);
     --astro-code-token-string: var(--color-emerald-300);
     --astro-code-token-comment: var(--color-zinc-500);
@@ -29,6 +57,61 @@
     --astro-code-token-string-expression: var(--color-emerald-300);
     --astro-code-token-punctuation: var(--color-zinc-200);
   }
+}
+
+html {
+  background: var(--color-bg);
+  font-family: var(--font-body);
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-family: var(--font-body);
+}
+
+::selection {
+  background: var(--color-link-soft);
+  color: var(--color-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 0.2rem;
+}
+
+.prose {
+  --tw-prose-body: var(--color-text);
+  --tw-prose-headings: var(--color-text);
+  --tw-prose-lead: var(--color-muted);
+  --tw-prose-links: var(--color-link);
+  --tw-prose-bold: var(--color-text);
+  --tw-prose-counters: var(--color-muted);
+  --tw-prose-bullets: var(--color-link);
+  --tw-prose-hr: var(--color-rule);
+  --tw-prose-quotes: var(--color-text);
+  --tw-prose-quote-borders: var(--color-callout);
+  --tw-prose-captions: var(--color-muted);
+  --tw-prose-code: var(--color-text);
+  --tw-prose-pre-code: var(--astro-code-foreground);
+  --tw-prose-pre-bg: var(--astro-code-background);
+}
+
+.prose a {
+  text-decoration-color: color-mix(in srgb, var(--color-link), transparent 35%);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+.prose hr {
+  border-color: var(--color-rule);
+  margin-bottom: 2em;
+  margin-top: 3em;
+}
+
+.prose hr + * {
+  margin-top: 0;
 }
 
 .prose code[data-line-numbers] {
@@ -44,7 +127,7 @@ pre > code {
   word-wrap: normal;
   background-color: initial;
   border: 0;
-  border-radius: initial;
+  border-radius: 0;
   display: flex;
   flex-direction: column;
   line-height: inherit;
@@ -70,12 +153,12 @@ code[data-line-numbers] > span[data-line-number]::before {
 }
 
 code > span[data-highlighted] {
-  background: rgb(59 130 246 / 0.12);
+  background: var(--color-link-soft);
   width: 100%;
 }
 
 code > span[data-highlighted] + span[data-highlighted] {
-  border-top: 1px solid rgb(59 130 246 / 0.18);
+  border-top: 1px solid var(--color-rule);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -84,37 +167,23 @@ code > span[data-highlighted] + span[data-highlighted] {
   }
 
   code > span[data-highlighted] {
-    background: rgba(255, 255, 255, 0.075);
+    background: var(--color-link-soft);
   }
 
   code > span[data-highlighted] + span[data-highlighted] {
-    border-top: 1px solid var(--color-slate-800);
+    border-top: 1px solid var(--color-rule);
   }
 }
 
 doc-info {
-  color: #53818e;
-  border-color: currentColor;
-  border-left-width: 2px;
-  border-radius: 0.5rem;
-  border-right-width: 2px;
+  background: var(--color-surface);
+  border-left: 0.2rem solid var(--color-callout);
+  color: var(--color-muted);
   display: block;
-  margin-bottom: 0.75rem;
-  margin-top: 0;
-  padding: 0.5rem 1rem;
-  position: relative;
-}
-
-doc-info::before {
-  background-color: rgb(57 146 255 / 1);
-  bottom: 0;
-  content: "";
-  left: 0;
-  opacity: 0.1;
-  pointer-events: none;
-  position: absolute;
-  right: 0;
-  top: 0;
+  font-size: 0.95em;
+  line-height: 1.65;
+  margin: 1.75em 0;
+  padding: 0.8rem 1rem;
 }
 
 /**
@@ -122,8 +191,8 @@ doc-info::before {
  * [reference](https://remix.run/docs/en/v1/tutorials/blog#quickstart)
  */
 pre[data-code-title]:before {
-  color: var(--color-zinc-900);
-  background: var(--color-zinc-200);
+  color: var(--color-text);
+  background: var(--color-surface);
   font-size: 0.8125rem;
   font-weight: 600;
   font-family:
@@ -148,19 +217,25 @@ pre[data-code-title]:before {
   padding-top: 0.75rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  border-bottom: solid 1px var(--color-zinc-300);
+  border-bottom: solid 1px var(--color-rule);
 }
 
 @media (prefers-color-scheme: dark) {
   pre[data-code-title]:before {
-    color: var(--color-white);
-    background: var(--color-zinc-900);
-    border-bottom-color: var(--color-zinc-700);
+    color: var(--color-text);
+    background: var(--color-surface);
+    border-bottom-color: var(--color-rule);
   }
 }
 
 .autolink {
+  display: inline-block;
+  font-size: 0.85em;
+  line-height: 1;
+  margin-left: 0.3em;
+  text-decoration: none;
   visibility: hidden;
+  vertical-align: baseline;
 }
 
 .prose h1:hover .autolink {

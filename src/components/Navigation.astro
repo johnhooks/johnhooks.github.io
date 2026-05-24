@@ -8,10 +8,12 @@ type Props = {
 const { pathname } = Astro.props;
 ---
 
-<div class="mx-auto max-w-7xl px-4 sm:px-6">
+<div
+  class="mx-auto max-w-[var(--measure)] px-[var(--gutter)] sm:px-[var(--gutter-wide)]"
+>
   <header>
-    <nav class="flex justify-center pt-6">
-      <ul class="flex px-3 text-sm font-medium text-zinc-800 dark:text-zinc-200">
+    <nav class="pt-6">
+      <ul class="flex gap-5 text-base text-[var(--color-muted)]">
         <NavigationLink to="/" {pathname}>johnhooks.io</NavigationLink>
         <NavigationLink to="/about" {pathname}>about</NavigationLink>
       </ul>
