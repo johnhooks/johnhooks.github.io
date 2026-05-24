@@ -253,8 +253,13 @@ a:hover {
   font-size: var(--text-sm);
 }
 
+.prose li:has(> .timeline-date) {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  column-gap: var(--space-sm);
+}
+
 .timeline-date {
-  margin-inline-end: 0.5rem;
   color: var(--color-muted);
 }
 
