@@ -23,7 +23,8 @@ function toDecimal<TOutput>(
 The intent was for `TOutput` to be inferred by the transform function return type. The default argument to `transformer` is a function that returns a string representation of a decimal.
 
 <doc-info>
-  There is no explicit return type. Type inference in the function definition was relied on to provide the return type.
+  There is no explicit return type. Type inference in the function definition
+  was relied on to provide the return type.
 </doc-info>
 
 ```ts title="Simplified example of the original function definition" showLineNumbers {1}
@@ -34,7 +35,8 @@ function toDecimal(dineroObject, transformer = (value) => value as TOutput) {
 ```
 
 <doc-info>
-  The return `value` has to be coerced to `TOutput`. Without using `as`, the compiler gave a very cryptic error.
+  The return `value` has to be coerced to `TOutput`. Without using `as`, the
+  compiler gave a very cryptic error.
 </doc-info>
 
 ```

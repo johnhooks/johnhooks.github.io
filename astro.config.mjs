@@ -1,4 +1,5 @@
 import cloudflare from "@astrojs/cloudflare";
+import mdx from "@astrojs/mdx";
 import { transformerMetaHighlight } from "@shikijs/transformers";
 import { defineConfig } from "astro/config";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
@@ -16,6 +17,7 @@ function removeMarkdownScripts() {
 
 export default defineConfig({
   adapter: cloudflare({ prerenderEnvironment: "node" }),
+  integrations: [mdx()],
   output: "server",
   publicDir: "./static",
   markdown: {
