@@ -10,10 +10,6 @@ isPublished: true
 publishedOn: 2023-01-06
 ---
 
-<script>
-  import DocInfo from '../lib/components/doc-info.svelte';
-</script>
-
 <div class="flex justify-center gap-4 not-prose">
   <a href="https://www.npmjs.com/package/@bitmachina/highlighter">
     <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/johnhooks/highlighter?style=flat-square">

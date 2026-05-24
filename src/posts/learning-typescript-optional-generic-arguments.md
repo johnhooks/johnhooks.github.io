@@ -7,10 +7,6 @@ isPublished: true
 publishedOn: 2022-11-30
 ---
 
-<script>
-  import DocInfo from '../lib/components/doc-info.svelte';
-</script>
-
 While performing a code review for [Dinero.js](https://github.com/dinerojs/dinero.js), an awesome JavaScript money library maintained by [Sarah Dayan](https://github.com/sarahdayan), I noticed something odd. A newly added format function's return type was `unknown`, when it was expected to be a generic.
 
 An optional `transformer` parameter had recently been added to the function. If provided, the transformer should convert a money object to another type.
@@ -26,9 +22,9 @@ function toDecimal<TOutput>(
 
 The intent was for `TOutput` to be inferred by the transform function return type. The default argument to `transformer` is a function that returns a string representation of a decimal.
 
-<DocInfo>
+<doc-info>
   There is no explicit return type. Type inference in the function definition was relied on to provide the return type.
-</DocInfo>
+</doc-info>
 
 ```ts title="Simplified example of the original function definition" showLineNumbers {1}
 function toDecimal(dineroObject, transformer = (value) => value as TOutput) {
@@ -37,9 +33,9 @@ function toDecimal(dineroObject, transformer = (value) => value as TOutput) {
 }
 ```
 
-<DocInfo>
+<doc-info>
   The return `value` has to be coerced to `TOutput`. Without using `as`, the compiler gave a very cryptic error.
-</DocInfo>
+</doc-info>
 
 ```
 Type 'string' is not assignable to type 'TOutput'.

@@ -26,13 +26,6 @@ export default ts.config(
     },
   },
   {
-    ignores: [
-      "build/",
-      ".astro/",
-      ".svelte-kit/",
-      "dist/",
-      ".wrangler/",
-      "node_modules/",
-    ],
+    ignores: ["build/", ".astro/", "dist/", ".wrangler/", "node_modules/"],
   },
 );

@@ -2,7 +2,7 @@
 
 [johnhooks.io](https://johnhooks.io)
 
-Personal website built with [SvelteKit](https://kit.svelte.dev) and deployed to Cloudflare Workers.
+Personal website built with [Astro](https://astro.build) and deployed to Cloudflare Workers.
 
 ## Developing
 
@@ -24,9 +24,9 @@ pnpm preview
 pnpm deploy
 ```
 
-Or test locally with wrangler:
+Or test locally with Wrangler after building:
 
 ```bash
 pnpm build
-wrangler dev .svelte-kit/cloudflare
+pnpm wrangler dev --env staging
 ```

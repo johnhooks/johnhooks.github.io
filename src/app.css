@@ -92,7 +92,6 @@ code > span[data-highlighted] + span[data-highlighted] {
   }
 }
 
-docinfo,
 doc-info {
   color: #53818e;
   border-color: currentColor;
@@ -106,7 +105,6 @@ doc-info {
   position: relative;
 }
 
-docinfo::before,
 doc-info::before {
   background-color: rgb(57 146 255 / 1);
   bottom: 0;
