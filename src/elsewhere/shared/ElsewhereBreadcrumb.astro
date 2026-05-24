@@ -1,0 +1,27 @@
+---
+type BreadcrumbItem = {
+  label: string;
+  href?: string;
+};
+
+type Props = {
+  items: BreadcrumbItem[];
+};
+
+const { items } = Astro.props;
+---
+
+<nav class="elsewhere-breadcrumb" aria-label="Elsewhere breadcrumb">
+  {
+    items.map((item, index) => (
+      <>
+        {index > 0 && <span aria-hidden="true"> / </span>}
+        {item.href ? (
+          <a href={item.href}>{item.label}</a>
+        ) : (
+          <span>{item.label}</span>
+        )}
+      </>
+    ))
+  }
+</nav>

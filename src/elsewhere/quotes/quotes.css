@@ -1,0 +1,411 @@
+.elsewhere-document {
+  color-scheme: light dark;
+  background: light-dark(#fff, #000);
+}
+
+.elsewhere-body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--quote-bg, #fff);
+  color: var(--quote-fg, #000);
+}
+
+.elsewhere-shell {
+  --elsewhere-shell-pad: 1rem;
+  position: relative;
+}
+
+.elsewhere-shell > .elsewhere-breadcrumb {
+  position: absolute;
+  inset-block-start: var(--elsewhere-shell-pad);
+  inset-inline-start: var(--elsewhere-shell-pad);
+  z-index: 1;
+}
+
+.quote-page {
+  --quote-bg: light-dark(#fff, #000);
+  --quote-fg: light-dark(#000, #fff);
+  --quote-muted: color-mix(in srgb, var(--quote-fg), transparent 48%);
+  --quote-primary: light-dark(#00e, #8fa2ff);
+  --quote-serif: Georgia, "Times New Roman", Times, serif;
+  --quote-mono: var(--font-mono);
+  --quote-ease: cubic-bezier(0.76, 0, 0.24, 1);
+  --elsewhere-breadcrumb-size: 0.9rem;
+
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-template-rows: auto repeat(5, minmax(0, 1fr)) auto;
+  gap: clamp(0.4rem, 1.4vmin, 0.9rem);
+  min-height: 100svh;
+  overflow-x: hidden;
+  padding: clamp(0.8rem, 3vmin, 1.5rem);
+  background: var(--quote-bg);
+  color: var(--quote-fg);
+}
+
+.quote-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: light-dark(#fff, #000);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .quote-page::before {
+    animation: quote-background-arrive 1200ms ease-out both;
+  }
+
+  .quote-text {
+    animation: quote-text-arrive 2400ms ease-out 420ms both;
+  }
+
+  .quote-paths {
+    animation: quote-paths-arrive 300ms ease-out 80ms both;
+  }
+}
+
+@keyframes quote-background-arrive {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes quote-text-arrive {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes quote-paths-arrive {
+  from {
+    opacity: 0;
+  }
+}
+
+.quote-page[data-signal="acid"],
+.quote-page[data-signal="hazard"] {
+  --quote-bg: light-dark(#fffbe0, #171300);
+  --quote-primary: light-dark(#00e, #ffe500);
+}
+
+.quote-page[data-signal="ultraviolet"] {
+  --quote-bg: light-dark(#f8f8ff, #07091c);
+  --quote-primary: light-dark(#00e, #9badff);
+}
+
+.quote-page[data-signal="terminal"] {
+  --quote-bg: light-dark(#f7f7f2, #050505);
+  --quote-primary: light-dark(#000, #ffe500);
+}
+
+.quote-page[data-layout="layout-0"] {
+  grid-template-areas:
+    "context context context context context context context context"
+    ". . paths paths paths . . ."
+    "quote quote quote quote quote . . ."
+    "quote quote quote quote quote . . ."
+    "quote quote quote quote quote . . ."
+    ". . . . . . . ."
+    "credit credit credit source source source source source";
+}
+
+.quote-page[data-layout="layout-1"] {
+  grid-template-areas:
+    "context context context context context context context context"
+    "paths paths . . . . . ."
+    ". . . quote quote quote quote quote"
+    ". . . quote quote quote quote quote"
+    ". . . quote quote quote quote quote"
+    ". . . . . . . ."
+    "source source source source credit credit credit credit";
+}
+
+.quote-page[data-layout="layout-2"] {
+  grid-template-areas:
+    "context context context context context context context context"
+    ". . . . . paths paths paths"
+    ". quote quote quote quote quote . ."
+    ". quote quote quote quote quote . ."
+    ". quote quote quote quote quote . ."
+    ". . . . . . . ."
+    "credit credit credit credit source source source source";
+}
+
+.quote-page[data-layout="layout-3"] {
+  grid-template-areas:
+    "context context context context context context context context"
+    ". . . . . . . ."
+    "quote quote quote quote . . . ."
+    "quote quote quote quote . . . ."
+    "quote quote quote quote . paths paths ."
+    ". . . . . paths paths ."
+    "source source source source source credit credit credit";
+}
+
+.quote-page[data-layout="layout-4"] {
+  grid-template-areas:
+    "context context context context context context context context"
+    "paths paths paths . . . . ."
+    ". . . . . . . ."
+    ". . quote quote quote quote quote ."
+    ". . quote quote quote quote quote ."
+    ". . quote quote quote quote quote ."
+    "credit credit credit source source source source source";
+}
+
+.quote-page[data-layout="layout-5"] {
+  grid-template-areas:
+    "context context context context context context context context"
+    ". . quote quote quote quote quote quote"
+    ". . quote quote quote quote quote quote"
+    ". . quote quote quote quote quote quote"
+    ". . . . . . . ."
+    ". . paths paths paths . . ."
+    "source source source source credit credit credit credit";
+}
+
+.quote-page[data-layout="layout-6"] {
+  grid-template-areas:
+    "context context context context context context context context"
+    ". . . . . . paths paths"
+    ". . . . . . paths paths"
+    "quote quote quote quote quote . . ."
+    "quote quote quote quote quote . . ."
+    "quote quote quote quote quote . . ."
+    "credit credit credit source source source source source";
+}
+
+.quote-page[data-layout="layout-7"] {
+  grid-template-areas:
+    "context context context context context context context context"
+    ". . . paths paths . . ."
+    ". . . . . . . ."
+    ". . . . quote quote quote quote"
+    ". . . . quote quote quote quote"
+    ". . . . quote quote quote quote"
+    "source source source source credit credit credit credit";
+}
+
+.quote-credit,
+.quote-attribution,
+.quote-paths {
+  margin: 0;
+  color: var(--quote-muted);
+  font-family: var(--quote-mono);
+  font-size: clamp(0.66rem, 1.45vmin, 0.88rem);
+  line-height: 1.35;
+}
+
+.elsewhere-breadcrumb {
+  margin: 0;
+  color: var(--quote-muted);
+  font-family: var(--quote-serif);
+  font-size: clamp(1rem, 3vmin, 1.4rem);
+  line-height: 1.25;
+}
+
+.quote-text {
+  grid-area: quote;
+  align-self: center;
+  max-width: min(32ch, 100%);
+  margin: 0;
+  color: var(--quote-fg);
+  font-family: var(--quote-serif);
+  font-size: clamp(1.45rem, 5.8vmin, 5.6rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.03;
+  text-wrap: balance;
+  justify-self: start;
+  text-align: left;
+}
+
+.quote-page[data-layout="layout-1"] .quote-text,
+.quote-page[data-layout="layout-2"] .quote-text,
+.quote-page[data-layout="layout-7"] .quote-text {
+  justify-self: end;
+  text-align: right;
+}
+
+.quote-page[data-layout="layout-4"] .quote-text,
+.quote-page[data-layout="layout-5"] .quote-text {
+  justify-self: center;
+  text-align: center;
+}
+
+.quote-text p {
+  margin: 0;
+}
+
+.quote-text p::before,
+.quote-text p::after {
+  color: var(--quote-primary);
+}
+
+.quote-text p::before {
+  content: "“";
+}
+
+.quote-text p::after {
+  content: "”";
+}
+
+.quote-credit {
+  grid-area: credit;
+  align-self: end;
+  color: var(--quote-muted);
+  font-family: var(--quote-serif);
+  font-size: clamp(1rem, 2.8vmin, 1.65rem);
+  font-style: italic;
+  line-height: 1.15;
+}
+
+.quote-paths {
+  grid-area: paths;
+  align-self: center;
+  display: flex;
+  gap: clamp(1rem, 3vmin, 2rem);
+}
+
+.quote-path {
+  padding: 0;
+  background: transparent;
+  color: var(--quote-primary);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
+  transition: opacity 180ms var(--quote-ease);
+}
+
+.quote-path:hover,
+.quote-path:focus,
+.quote-path:focus-visible {
+  opacity: 0.65;
+}
+
+.quote-path:focus {
+  outline: 0.12em solid currentColor;
+  outline-offset: 0.2em;
+}
+
+.quote-attribution {
+  grid-area: source;
+  align-self: end;
+  justify-self: end;
+  max-width: 42ch;
+  text-align: right;
+}
+
+.quote-context a,
+.quote-attribution a {
+  color: inherit;
+}
+
+.quote-index {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-height: 100svh;
+  overflow-x: hidden;
+  padding: 1rem;
+  background: light-dark(#fff, #000);
+  color: light-dark(#000, #fff);
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.quote-index__inner {
+  max-width: 42rem;
+  padding-block-start: 2.5rem;
+}
+
+.quote-index__inner > * {
+  margin-block: 0.75rem;
+}
+
+.quote-index h1 {
+  margin-block-start: 1rem;
+  font-size: clamp(2.5rem, 16vmin, 8rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.08em;
+  line-height: 0.9;
+}
+
+.quote-index p {
+  font-size: clamp(1rem, 3vmin, 1.4rem);
+  line-height: 1.25;
+}
+
+.quote-index ul {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.quote-index ul {
+  padding-inline-start: 1.25rem;
+}
+
+.quote-index li + li {
+  margin-block-start: 0.35rem;
+}
+
+.quote-index a {
+  color: light-dark(#00e, #9badff);
+}
+
+.quote-index a:visited {
+  color: light-dark(#551a8b, #c9a8ff);
+}
+
+@media (width < 42rem) {
+  .quote-page,
+  .quote-page[data-layout] {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto auto auto;
+    grid-template-areas:
+      "context"
+      "paths"
+      "quote"
+      "credit"
+      "source";
+  }
+
+  .quote-page[data-layout] .quote-text {
+    justify-self: start;
+    text-align: left;
+  }
+
+  .quote-text {
+    font-size: clamp(1.45rem, 7.2vmin, 3.4rem);
+  }
+
+  .quote-paths {
+    flex-wrap: wrap;
+  }
+
+  .quote-attribution {
+    justify-self: start;
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quote-page::before,
+  .quote-text,
+  .quote-paths {
+    animation: none;
+  }
+
+  .quote-page::before {
+    opacity: 0;
+  }
+
+  .quote-path {
+    transition: none;
+  }
+}

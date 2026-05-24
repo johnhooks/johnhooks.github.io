@@ -1,0 +1,98 @@
+---
+import ElsewhereLayout from "../shared/ElsewhereLayout.astro";
+import ElsewherePageShell from "../shared/ElsewherePageShell.astro";
+import { hashString } from "../shared/random";
+import "./quotes.css";
+import { createQuoteDoors, readJourneyState } from "./journey";
+import { getQuotes } from "./quote-loader";
+import type { QuoteEntry } from "./quote-loader";
+
+type Props = {
+  quote: QuoteEntry;
+};
+
+const { quote } = Astro.props;
+const quotes = getQuotes();
+const state = readJourneyState(Astro.url, quote.slug);
+const doors = createQuoteDoors(quote, quotes, state);
+const layout = `layout-${state.depth % 8}`;
+const canonicalPath = `/elsewhere/quotes/${quote.slug}`;
+
+function normalizedWords(text: string) {
+  return text
+    .split(/\s+/)
+    .map((word) => word.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, ""))
+    .filter((word) => word.length > 3);
+}
+
+function pickJourneyWord(
+  nextQuote: QuoteEntry,
+  nextDirection: "left" | "right",
+) {
+  const words = normalizedWords(nextQuote.bodyText);
+
+  if (words.length === 0) {
+    return nextDirection;
+  }
+
+  const index =
+    hashString(
+      `${state.seed}:${state.depth}:${nextQuote.slug}:${nextDirection}`,
+    ) % words.length;
+  return words[index];
+}
+
+const leftWord = pickJourneyWord(doors[0].quote, "left");
+const rightWord = pickJourneyWord(doors[1].quote, "right");
+const { Content } = quote;
+---
+
+<ElsewhereLayout
+  title={`${quote.metadata.title} | Elsewhere quotes`}
+  description={`A programming quote attributed to ${quote.metadata.author}.`}
+  canonicalPath={canonicalPath}
+>
+  <ElsewherePageShell
+    class="quote-page"
+    data-signal={state.signal}
+    data-layout={layout}
+    labelledBy="quote-title"
+    breadcrumb={[
+      { label: "johnhooks.io", href: "/" },
+      { label: "elsewhere", href: "/elsewhere" },
+      { label: "quote wire", href: "/elsewhere/quotes" },
+      { label: `depth ${state.depth}` },
+    ]}
+  >
+    <nav class="quote-paths" aria-label="Continue the journey">
+      <a
+        class="quote-path quote-path--0"
+        href={doors[0].href}
+        data-journey-focus>{leftWord}</a
+      >
+      <a class="quote-path quote-path--1" href={doors[1].href}>{rightWord}</a>
+    </nav>
+
+    <blockquote class="quote-text">
+      <Content />
+    </blockquote>
+
+    <p class="quote-credit" id="quote-title">
+      {quote.metadata.author}{
+        quote.metadata.work ? `, ${quote.metadata.work}` : ""
+      }
+    </p>
+
+    <p class="quote-attribution">
+      Source: <a href={quote.metadata.sourceUrl}>{quote.metadata.sourceName}</a
+      >.
+      {quote.metadata.license}. Retrieved {quote.metadata.retrievedOn}.
+    </p>
+
+    <script>
+      document
+        .querySelector<HTMLAnchorElement>("[data-journey-focus]")
+        ?.focus({ preventScroll: true });
+    </script>
+  </ElsewherePageShell>
+</ElsewhereLayout>
