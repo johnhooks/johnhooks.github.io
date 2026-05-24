@@ -10,91 +10,63 @@ const projects = getProjects();
 ---
 
 <SiteLayout title="johnhooks.io" canonicalPath="/">
-  <main
-    class="mx-auto max-w-[var(--measure)] px-[var(--gutter)] pb-16 sm:px-[var(--gutter-wide)]"
-  >
+  <main class="site-shell page">
     <Image
       filename="computer_512.png"
       alt="Hand drawn crazy-eyed computer looking at me"
       darkBackground
     />
 
-    <header class="mt-2 sm:mt-4">
-      <h1
-        class="text-3xl font-bold tracking-tight text-[var(--color-text)] sm:text-4xl"
-      >
-        johnhooks.io
-      </h1>
-      <p class="mt-4 text-base leading-7 text-[var(--color-muted)] sm:text-lg">
-        just a guy learning web dev
-      </p>
+    <header class="page-header">
+      <h1 class="page-header__title">johnhooks.io</h1>
+      <p class="page-header__subtitle">just a guy learning web dev</p>
 
-      <p class="mt-4 text-sm">
-        <a
-          class="text-[var(--color-link)] hover:underline hover:underline-offset-4"
-          href="https://twitter.com/_johnhooks">Twitter</a
-        >
-        <span class="mx-2 text-[var(--color-muted)]">/</span>
-        <a
-          class="text-[var(--color-link)] hover:underline hover:underline-offset-4"
-          href="https://github.com/johnhooks">GitHub</a
-        >
+      <p class="page-header__links">
+        <a href="https://twitter.com/_johnhooks">Twitter</a>
+        <span class="page-header__separator">/</span>
+        <a href="https://github.com/johnhooks">GitHub</a>
       </p>
     </header>
 
-    <section class="mt-12">
-      <h2 class="text-xl font-bold text-[var(--color-text)]">Posts</h2>
+    <section class="home-section">
+      <h2 class="home-section__title">Posts</h2>
 
-      <ol class="mt-5 space-y-6">
+      <ol class="content-list">
         {
           posts.map((post) => (
-            <li>
-              <h3 class="text-lg font-semibold">
-                <a
-                  class="text-[var(--color-link)] hover:underline hover:underline-offset-4"
-                  href={`/posts/${post.slug}`}
-                >
-                  {post.metadata.title}
-                </a>
+            <li class="content-list__item">
+              <h3 class="content-list__title">
+                <a href={`/posts/${post.slug}`}>{post.metadata.title}</a>
               </h3>
-              <p class="mt-1 text-base leading-7 text-[var(--color-muted)]">
-                {post.metadata.abstract}
-              </p>
+              <p class="content-list__summary">{post.metadata.abstract}</p>
             </li>
           ))
         }
       </ol>
     </section>
 
-    <section class="mt-12">
-      <h2 class="text-xl font-bold text-[var(--color-text)]">Projects</h2>
+    <section class="home-section">
+      <h2 class="home-section__title">Projects</h2>
 
-      <ol class="mt-5 space-y-6">
+      <ol class="content-list">
         {
           projects.map((project) => (
-            <li>
-              <h3 class="text-lg font-semibold">
-                <a
-                  class="text-[var(--color-link)] hover:underline hover:underline-offset-4"
-                  href={`/projects/${project.slug}`}
-                >
+            <li class="content-list__item">
+              <h3 class="content-list__title">
+                <a href={`/projects/${project.slug}`}>
                   {project.metadata.title}
                 </a>
               </h3>
-              <p class="mt-1 text-base leading-7 text-[var(--color-muted)]">
-                {project.metadata.abstract}
-              </p>
+              <p class="content-list__summary">{project.metadata.abstract}</p>
             </li>
           ))
         }
       </ol>
     </section>
 
-    <p class="mt-12 text-sm text-[var(--color-muted)]">
-      Source on
-      <a
-        class="text-[var(--color-link)] hover:underline hover:underline-offset-4"
-        href="https://github.com/johnhooks/johnhooks.github.io">GitHub</a
+    <p class="source-note">
+      Source on <a href="https://github.com/johnhooks/johnhooks.github.io"
+        >GitHub</a
       >.
     </p>
   </main>

@@ -32,7 +32,7 @@ The palette should use:
 - quiet rules for separation
 - one vibrant-but-subtle accent color for links, focus, and selected callouts
 
-The accent color should be easy to change. Avoid raw Tailwind colors in templates for site identity. Prefer custom properties such as:
+The accent color should be easy to change. Templates should use semantic classes while site identity lives in custom properties such as:
 
 ```css
 --color-bg
@@ -46,7 +46,7 @@ The accent color should be easy to change. Avoid raw Tailwind colors in template
 --color-callout
 ```
 
-Use Tailwind for structure and spacing when useful, but use CSS custom properties for the visual identity.
+Use authored CSS for structure, spacing, and identity. Core templates should stay semantic so the theme remains visible in one place.
 
 ## Layout
 
@@ -55,7 +55,6 @@ The default layout is a single text column using the shared measure and gutters:
 ```css
 --measure
 --gutter
---gutter-wide
 ```
 
 Avoid filling the full viewport just because space exists. The site should feel like a document with a comfortable reading measure.

@@ -22,7 +22,7 @@ Personal website built with Astro, deployed to Cloudflare Workers.
 ## Tech Stack
 
 - **Framework**: Astro
-- **Styling**: Tailwind CSS
+- **Styling**: Authored CSS with custom properties and intrinsic design tokens
 - **Content**: Markdown pages rendered by Astro
 - **Syntax Highlighting**: Astro's Shiki integration with `@shikijs/transformers`
 - **Deployment**: Cloudflare Workers via Wrangler

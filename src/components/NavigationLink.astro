@@ -7,8 +7,8 @@ type Props = {
 const { to, pathname } = Astro.props;
 const isActive = pathname === to;
 const className = isActive
-  ? "text-[var(--color-text)] underline decoration-[var(--color-link)] underline-offset-4"
-  : "text-[var(--color-link)] hover:underline hover:underline-offset-4";
+  ? "site-nav__link site-nav__link--active"
+  : "site-nav__link";
 ---
 
 <li>
