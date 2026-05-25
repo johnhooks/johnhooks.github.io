@@ -12,8 +12,11 @@ type Frontmatter = {
   imageFilename?: string;
   imageAlt?: string;
   isPublished: boolean;
+  isListed?: boolean;
   publishedOn: string;
   updatedOn?: string;
+  sourceUrl?: string;
+  sourceLabel?: string;
 };
 
 export type Metadata = Omit<Frontmatter, "imageFilename"> & {
@@ -28,6 +31,10 @@ export type ContentEntry = {
 
 type ContentModule = {
   frontmatter: Frontmatter;
+  default: AstroComponentFactory;
+};
+
+type MarkdownModule = {
   default: AstroComponentFactory;
 };
 
@@ -88,4 +95,21 @@ export function getProjects() {
   return normalizeEntries(modules)
     .filter((entry) => entry.metadata.isPublished)
     .sort(byPublishedDateDescending);
+}
+
+export function getListedProjects() {
+  return getProjects().filter((entry) => entry.metadata.isListed !== false);
+}
+
+export function getHomeCurrent() {
+  const modules = import.meta.glob<MarkdownModule>("../../home/current.md", {
+    eager: true,
+  });
+  const module = modules["../../home/current.md"];
+
+  if (!module) {
+    throw new Error("Missing home current note at src/home/current.md");
+  }
+
+  return module.default;
 }

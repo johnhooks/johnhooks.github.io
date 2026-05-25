@@ -1,16 +1,24 @@
 ---
 import Image from "../components/Image.astro";
-import { getPosts, getProjects } from "../lib/astro/content";
-import { titleTransitionAnimation } from "../lib/astro/viewTransitions";
+import {
+  getHomeCurrent,
+  getListedProjects,
+  getPosts,
+} from "../lib/astro/content";
 import SiteLayout from "../layouts/SiteLayout.astro";
 
 export const prerender = true;
 
 const posts = getPosts();
-const projects = getProjects();
+const projects = getListedProjects();
+const Current = getHomeCurrent();
 ---
 
-<SiteLayout title="johnhooks.io" canonicalPath="/">
+<SiteLayout
+  title="johnhooks.io"
+  canonicalPath="/"
+  breadcrumb={[{ label: "johnhooks.io" }]}
+>
   <main class="site-shell page">
     <Image
       filename="computer_512.png"
@@ -18,16 +26,17 @@ const projects = getProjects();
       darkBackground
     />
 
-    <header class="page-header">
-      <h1 class="page-header__title page-header__title--fade">johnhooks.io</h1>
-      <p class="page-header__subtitle">just a guy learning web dev</p>
-
+    <header class="page-header page-header--home">
       <p class="page-header__links">
         <a href="https://twitter.com/_johnhooks">Twitter</a>
         <span class="page-header__separator">/</span>
         <a href="https://github.com/johnhooks">GitHub</a>
       </p>
     </header>
+
+    <section class="home-current prose" aria-label="Currently">
+      <Current />
+    </section>
 
     <section class="home-section">
       <h2 class="home-section__title">Posts</h2>
@@ -37,15 +46,7 @@ const projects = getProjects();
           posts.map((post) => (
             <li class="content-list__item">
               <h3 class="content-list__title">
-                <a
-                  href={`/posts/${post.slug}`}
-                  transition:name={`post-title-${post.slug}`}
-                  transition:animate={titleTransitionAnimation}
-                  data-title-transition-link
-                  data-title-transition-item
-                >
-                  {post.metadata.title}
-                </a>
+                <a href={`/posts/${post.slug}`}>{post.metadata.title}</a>
               </h3>
               <p class="content-list__summary">{post.metadata.abstract}</p>
             </li>
@@ -62,13 +63,7 @@ const projects = getProjects();
           projects.map((project) => (
             <li class="content-list__item">
               <h3 class="content-list__title">
-                <a
-                  href={`/projects/${project.slug}`}
-                  transition:name={`project-title-${project.slug}`}
-                  transition:animate={titleTransitionAnimation}
-                  data-title-transition-link
-                  data-title-transition-item
-                >
+                <a href={`/projects/${project.slug}`}>
                   {project.metadata.title}
                 </a>
               </h3>

@@ -1,0 +1,37 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { getPosts } from "../../lib/astro/content";
+
+export const prerender = true;
+
+const posts = getPosts();
+---
+
+<SiteLayout
+  title="Posts / johnhooks.io"
+  description="Posts by John Hooks."
+  canonicalPath="/posts"
+  breadcrumb={[{ label: "johnhooks.io", href: "/" }, { label: "posts" }]}
+>
+  <main class="site-shell page">
+    <header class="page-header">
+      <h1 class="page-header__title">posts</h1>
+      <p class="page-header__subtitle">
+        writing about web development and learning.
+      </p>
+    </header>
+
+    <ol class="content-list content-list--archive">
+      {
+        posts.map((post) => (
+          <li class="content-list__item">
+            <h2 class="content-list__title">
+              <a href={`/posts/${post.slug}`}>{post.metadata.title}</a>
+            </h2>
+            <p class="content-list__summary">{post.metadata.abstract}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </main>
+</SiteLayout>

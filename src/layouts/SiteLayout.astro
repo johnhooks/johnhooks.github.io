@@ -1,10 +1,9 @@
 ---
 import "../app.css";
-import { ClientRouter } from "astro:transitions";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import type { BreadcrumbItem } from "../components/Breadcrumb.astro";
 import Footer from "../components/Footer.astro";
-import Navigation from "../components/Navigation.astro";
 import MetaCard from "../components/MetaCard.astro";
-import TitleTransitionController from "../components/TitleTransitionController.astro";
 
 import { getSiteUrl } from "../lib/astro/site";
 
@@ -15,6 +14,7 @@ type Props = {
   ogType?: "website" | "article";
   cardFilename?: string;
   cardAlt?: string;
+  breadcrumb?: BreadcrumbItem[];
 };
 
 const {
@@ -24,6 +24,7 @@ const {
   ogType = "website",
   cardFilename,
   cardAlt,
+  breadcrumb = [{ label: "johnhooks.io" }],
 } = Astro.props;
 
 const canonicalUrl = getSiteUrl(canonicalPath);
@@ -48,7 +49,6 @@ const canonicalUrl = getSiteUrl(canonicalPath);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <MetaCard filename={cardFilename} alt={cardAlt} />
-    <ClientRouter />
     {
       ogType === "article" && (
         <meta
@@ -59,8 +59,7 @@ const canonicalUrl = getSiteUrl(canonicalPath);
     }
   </head>
   <body>
-    <TitleTransitionController />
-    <Navigation pathname={Astro.url.pathname} />
+    <Breadcrumb class="site-breadcrumb" items={breadcrumb} />
     <slot />
     <Footer pathname={Astro.url.pathname} />
   </body>

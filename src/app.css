@@ -27,17 +27,30 @@
   --leading-body: 1.65;
   --leading-title: 1.05;
 
-  --color-bg: #f7f7f2;
-  --color-surface: #fcfbf5;
-  --color-text: #20211e;
-  --color-muted: #63655f;
-  --color-rule: #dadbd2;
-  --color-link: #00706b;
-  --color-link-soft: rgb(0 112 107 / 0.12);
-  --color-focus: var(--color-link);
+  --palette-cream: #f7f7f2;
+  --palette-cream-light: #fcfbf5;
+  --palette-charcoal: #20211e;
+  --palette-stone: #63655f;
+  --palette-rule: #dadbd2;
+  --palette-teal: #00706b;
+  --palette-teal-bright: #008f88;
+  --palette-teal-soft: rgb(0 112 107 / 0.12);
+  --palette-purple: #7e22ce;
+  --palette-code-bg: #ecede5;
+
+  --color-bg: var(--palette-cream);
+  --color-surface: var(--palette-cream-light);
+  --color-text: var(--palette-charcoal);
+  --color-muted: var(--palette-stone);
+  --color-rule: var(--palette-rule);
+  --color-link: var(--palette-teal);
+  --color-link-focus: var(--palette-teal-bright);
+  --color-link-soft: var(--palette-teal-soft);
+  --color-elsewhere: var(--palette-purple);
+  --color-focus: var(--color-link-focus);
   --color-callout: var(--color-link);
 
-  --astro-code-background: #ecede5;
+  --astro-code-background: var(--palette-code-bg);
   --astro-code-foreground: var(--color-text);
   --astro-code-token-constant: #047857;
   --astro-code-token-string: #047857;
@@ -53,17 +66,30 @@
   :root {
     color-scheme: dark;
 
-    --color-bg: #111312;
-    --color-surface: #171918;
-    --color-text: #eceee8;
-    --color-muted: #a7aaa2;
-    --color-rule: #30332f;
-    --color-link: #5eead4;
-    --color-link-soft: rgb(94 234 212 / 0.12);
-    --color-focus: var(--color-link);
+    --palette-cream: #111312;
+    --palette-cream-light: #171918;
+    --palette-charcoal: #eceee8;
+    --palette-stone: #a7aaa2;
+    --palette-rule: #30332f;
+    --palette-teal: #5eead4;
+    --palette-teal-bright: #99f6e4;
+    --palette-teal-soft: rgb(94 234 212 / 0.12);
+    --palette-purple: #c084fc;
+    --palette-code-bg: #20221f;
+
+    --color-bg: var(--palette-cream);
+    --color-surface: var(--palette-cream-light);
+    --color-text: var(--palette-charcoal);
+    --color-muted: var(--palette-stone);
+    --color-rule: var(--palette-rule);
+    --color-link: var(--palette-teal);
+    --color-link-focus: var(--palette-teal-bright);
+    --color-link-soft: var(--palette-teal-soft);
+    --color-elsewhere: var(--palette-purple);
+    --color-focus: var(--color-link-focus);
     --color-callout: var(--color-link);
 
-    --astro-code-background: #20221f;
+    --astro-code-background: var(--palette-code-bg);
     --astro-code-foreground: var(--color-text);
     --astro-code-token-constant: #6ee7b7;
     --astro-code-token-string: #6ee7b7;
@@ -97,80 +123,6 @@ body {
   line-height: var(--leading-body);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  ::view-transition-group(*) {
-    animation-duration: 160ms;
-    animation-timing-function: ease-out;
-  }
-
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation-duration: 160ms;
-    animation-timing-function: ease-out;
-  }
-
-  ::view-transition-old(root) {
-    animation-name: page-fade-out;
-  }
-
-  ::view-transition-new(root) {
-    animation-name: root-fade-in;
-  }
-
-  ::view-transition-old(page-image),
-  ::view-transition-new(page-image) {
-    animation-duration: 220ms;
-    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  ::view-transition-group(page-image) {
-    animation-duration: 220ms;
-    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .page-header__title--fade {
-    animation: title-fade-in 180ms ease-out both;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(*),
-  ::view-transition-old(*),
-  ::view-transition-new(*) {
-    animation-duration: 1ms;
-  }
-}
-
-@keyframes page-fade-out {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes root-fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes title-fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
 img,
 svg {
   display: block;
@@ -196,7 +148,10 @@ a {
   text-underline-offset: 0.22em;
 }
 
-a:hover {
+a:hover,
+a:focus,
+a:focus-visible {
+  color: var(--color-link-focus);
   text-decoration-line: underline;
 }
 
@@ -207,12 +162,28 @@ a:hover {
   padding-inline: var(--gutter);
 }
 
-.site-nav {
-  padding-block-start: var(--space-md);
+.site-breadcrumb {
+  position: absolute;
+  inset-block-start: 1rem;
+  inset-inline-start: 1rem;
+  z-index: 1;
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.site-breadcrumb a {
+  color: var(--color-link);
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
 }
 
 .site-nav__list {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-md);
   margin: 0;
   padding: 0;
@@ -222,23 +193,10 @@ a:hover {
 }
 
 .site-nav__link {
-  position: relative;
   color: var(--color-link);
-}
-
-.site-nav__link::after {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  inset-block-end: -0.08em;
-  height: 0.08em;
-  background: var(--color-link);
-  opacity: 0;
-  transform: scaleX(0.72);
-  transform-origin: center;
-  transition:
-    opacity 140ms ease-out,
-    transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
 }
 
 .site-nav__link--active {
@@ -246,17 +204,8 @@ a:hover {
   text-decoration-line: none;
 }
 
-.site-nav__link--active::after {
-  opacity: 1;
-  transform: scaleX(1);
-}
-
 .site-nav__link--elsewhere {
-  color: #d946ef;
-}
-
-.site-nav__link--elsewhere::after {
-  background: #d946ef;
+  color: var(--color-elsewhere);
 }
 
 .site-footer {
@@ -270,6 +219,7 @@ a:hover {
 }
 
 .page {
+  padding-block-start: calc(1rem + 1.35rem + var(--space-lg));
   padding-block-end: var(--space-xl);
 }
 
@@ -308,7 +258,6 @@ a:hover {
 }
 
 .media-image__image {
-  view-transition-name: page-image;
   width: clamp(6rem, 18vw, 8rem);
   height: clamp(6rem, 18vw, 8rem);
 }

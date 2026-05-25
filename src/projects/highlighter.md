@@ -7,8 +7,13 @@ cardFilename: highlighter_640.jpg
 cardAlt: The triple backtick highlighter logo.
 imageFilename: highlighter_512.jpg
 isPublished: true
+isListed: false
 publishedOn: 2023-01-06
 ---
+
+<doc-info>
+  I’m not using Svelte anymore, and I’m not actively developing this project. It was a fun exploration of syntax highlighting and integrating Shiki into a specialized Markdown parser, but there are better options now. I’m keeping this page up because old links still point here.
+</doc-info>
 
 <div class="link-badges">
   <a href="https://www.npmjs.com/package/@bitmachina/highlighter">

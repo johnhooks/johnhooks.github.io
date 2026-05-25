@@ -1,7 +1,6 @@
 ---
 import Image from "../components/Image.astro";
 import type { ImageAssetFilename } from "../lib/astro/images";
-import { titleTransitionAnimation } from "../lib/astro/viewTransitions";
 import SiteLayout from "./SiteLayout.astro";
 
 type Props = {
@@ -11,11 +10,12 @@ type Props = {
   canonicalPath: string;
   cardFilename?: string;
   cardAlt?: string;
-  titleTransitionName?: string;
   image?: {
     filename: ImageAssetFilename;
     alt: string;
   };
+  sourceUrl?: string;
+  sourceLabel?: string;
 };
 
 const {
@@ -25,13 +25,20 @@ const {
   canonicalPath,
   cardFilename,
   cardAlt,
-  titleTransitionName,
   image,
+  sourceUrl,
+  sourceLabel,
 } = Astro.props;
-
-const titleClassName = titleTransitionName
-  ? "page-header__title"
-  : "page-header__title page-header__title--fade";
+const section = canonicalPath.startsWith("/posts/")
+  ? "posts"
+  : canonicalPath.startsWith("/projects/")
+    ? "projects"
+    : undefined;
+const breadcrumb = [
+  { label: "johnhooks.io", href: "/" },
+  ...(section ? [{ label: section, href: `/${section}` }] : []),
+  { label: title },
+];
 ---
 
 <SiteLayout
@@ -41,27 +48,22 @@ const titleClassName = titleTransitionName
   ogType="article"
   {cardFilename}
   {cardAlt}
+  {breadcrumb}
 >
   <main class="site-shell page">
     <article>
       {image?.filename && <Image filename={image.filename} alt={image.alt} />}
 
       <header class="page-header">
+        <h1 class="page-header__title">{title}</h1>
+        <p class="page-header__subtitle">{subtitle}</p>
         {
-          titleTransitionName ? (
-            <h1
-              class={titleClassName}
-              transition:name={titleTransitionName}
-              transition:animate={titleTransitionAnimation}
-              data-title-transition-item
-            >
-              {title}
-            </h1>
-          ) : (
-            <h1 class={titleClassName}>{title}</h1>
+          sourceUrl && (
+            <p class="page-header__links">
+              <a href={sourceUrl}>{sourceLabel ?? sourceUrl}</a>
+            </p>
           )
         }
-        <p class="page-header__subtitle">{subtitle}</p>
       </header>
 
       <div class="prose">
