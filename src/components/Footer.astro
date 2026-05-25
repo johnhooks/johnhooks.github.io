@@ -13,6 +13,9 @@ const { pathname } = Astro.props;
     <ul class="site-nav__list">
       <NavigationLink to="/" {pathname}>home</NavigationLink>
       <NavigationLink to="/about" {pathname}>about</NavigationLink>
+      <NavigationLink to="/elsewhere" {pathname} variant="elsewhere">
+        elsewhere
+      </NavigationLink>
     </ul>
   </nav>
   <p class="site-footer__copyright">

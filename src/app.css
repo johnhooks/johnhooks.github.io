@@ -251,6 +251,14 @@ a:hover {
   transform: scaleX(1);
 }
 
+.site-nav__link--elsewhere {
+  color: #d946ef;
+}
+
+.site-nav__link--elsewhere::after {
+  background: #d946ef;
+}
+
 .site-footer {
   padding-block: var(--space-lg) var(--space-xl);
 }

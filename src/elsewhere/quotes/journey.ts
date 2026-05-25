@@ -27,7 +27,17 @@ const biases = ["tag", "author", "signal", "swerve"] as const;
 
 function normalizeParameter(value: string | null, fallback: string) {
   const trimmed = value?.trim();
-  return trimmed ? trimmed : fallback;
+  return trimmed ? trimmed.slice(0, 64) : fallback;
+}
+
+function normalizeListedParameter<T extends readonly string[]>(
+  value: string | null,
+  allowed: T,
+  fallback: T[number],
+): T[number] {
+  const normalized = normalizeParameter(value, fallback);
+
+  return allowed.includes(normalized) ? normalized : fallback;
 }
 
 function normalizeDepth(value: string | null) {
@@ -49,13 +59,18 @@ export function readJourneyState(
   );
   const fallbackSignal =
     signals[hashString(`${seed}:${currentSlug}`) % signals.length];
-  const signal = normalizeParameter(
+  const signal = normalizeListedParameter(
     url.searchParams.get("signal"),
+    signals,
     fallbackSignal,
   );
   const fallbackBias =
     biases[hashString(`${currentSlug}:${seed}:bias`) % biases.length];
-  const bias = normalizeParameter(url.searchParams.get("bias"), fallbackBias);
+  const bias = normalizeListedParameter(
+    url.searchParams.get("bias"),
+    biases,
+    fallbackBias,
+  );
   const from = url.searchParams.get("from") ?? undefined;
 
   return {
