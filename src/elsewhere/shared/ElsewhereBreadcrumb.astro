@@ -1,8 +1,6 @@
 ---
-type BreadcrumbItem = {
-  label: string;
-  href?: string;
-};
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import type { BreadcrumbItem } from "../../components/Breadcrumb.astro";
 
 type Props = {
   items: BreadcrumbItem[];
@@ -11,17 +9,4 @@ type Props = {
 const { items } = Astro.props;
 ---
 
-<nav class="elsewhere-breadcrumb" aria-label="Elsewhere breadcrumb">
-  {
-    items.map((item, index) => (
-      <>
-        {index > 0 && <span aria-hidden="true"> / </span>}
-        {item.href ? (
-          <a href={item.href}>{item.label}</a>
-        ) : (
-          <span>{item.label}</span>
-        )}
-      </>
-    ))
-  }
-</nav>
+<Breadcrumb class="elsewhere-breadcrumb" {items} />

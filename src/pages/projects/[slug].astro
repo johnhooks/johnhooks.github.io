@@ -38,8 +38,9 @@ if (data.imageFilename) {
   canonicalPath={`/projects/${project.slug}`}
   cardFilename={data.cardFilename}
   cardAlt={data.cardAlt}
-  titleTransitionName={`project-title-${project.slug}`}
   image={image}
+  sourceUrl={data.sourceUrl}
+  sourceLabel={data.sourceLabel}
 >
   <Content />
 </ArticleLayout>
