@@ -14,6 +14,9 @@ const { pathname } = Astro.props;
       <ul class="site-nav__list">
         <NavigationLink to="/" {pathname}>johnhooks.io</NavigationLink>
         <NavigationLink to="/about" {pathname}>about</NavigationLink>
+        <NavigationLink to="/elsewhere" {pathname} variant="elsewhere">
+          elsewhere
+        </NavigationLink>
       </ul>
     </nav>
   </header>

@@ -1,13 +1,26 @@
 .elsewhere-document {
+  --elsewhere-color-canvas: light-dark(#fff, #000);
+  --elsewhere-color-text: light-dark(#000, #fff);
+  --elsewhere-color-purple: light-dark(#4c1d95, #a78bfa);
+  --elsewhere-color-purple-focus: light-dark(#7e22ce, #c084fc);
+
+  --elsewhere-color-link: var(--elsewhere-color-purple);
+  --elsewhere-color-link-focus: var(--elsewhere-color-purple-focus);
+  --color-focus: var(--elsewhere-color-link-focus);
+
   color-scheme: light dark;
-  background: light-dark(#fff, #000);
+  background: var(--elsewhere-color-canvas);
+}
+
+.elsewhere-document :focus-visible {
+  outline-color: var(--elsewhere-color-link-focus);
 }
 
 .elsewhere-body {
   min-height: 100vh;
   overflow-x: hidden;
-  background: var(--quote-bg, #fff);
-  color: var(--quote-fg, #000);
+  background: var(--elsewhere-color-canvas);
+  color: var(--elsewhere-color-text);
 }
 
 .elsewhere-shell {
@@ -23,54 +36,44 @@
 }
 
 .quote-page {
-  --quote-bg: light-dark(#fff, #000);
-  --quote-fg: light-dark(#000, #fff);
+  --quote-bg: var(--elsewhere-color-canvas);
+  --quote-fg: var(--elsewhere-color-text);
   --quote-muted: color-mix(in srgb, var(--quote-fg), transparent 48%);
-  --quote-primary: light-dark(#00e, #8fa2ff);
+  --quote-link: var(--elsewhere-color-link);
+  --quote-link-active: var(--elsewhere-color-link-focus);
+  --quote-link-visited: var(--elsewhere-color-link);
+  --quote-primary: var(--quote-link);
   --quote-serif: Georgia, "Times New Roman", Times, serif;
   --quote-mono: var(--font-mono);
   --quote-ease: cubic-bezier(0.76, 0, 0.24, 1);
+  --quote-gap: clamp(1rem, 3vmin, 2.5rem);
   --elsewhere-breadcrumb-size: 0.9rem;
 
   position: relative;
   isolation: isolate;
   display: grid;
   grid-template-columns: repeat(8, minmax(0, 1fr));
-  grid-template-rows: auto repeat(5, minmax(0, 1fr)) auto;
-  gap: clamp(0.4rem, 1.4vmin, 0.9rem);
+  grid-template-rows: auto auto minmax(0, 0.86fr) minmax(0, 0.14fr) auto;
+  grid-template-areas:
+    "context context context context context context context context"
+    ". . paths paths paths . . ."
+    ". . quote quote quote quote quote ."
+    ". . . . . . . ."
+    "credit credit credit source source source source source";
+  gap: var(--quote-gap);
   min-height: 100svh;
   overflow-x: hidden;
   padding: clamp(0.8rem, 3vmin, 1.5rem);
+  padding-block-start: calc(
+    var(--elsewhere-shell-pad) + 1.35rem + var(--quote-gap)
+  );
   background: var(--quote-bg);
   color: var(--quote-fg);
 }
 
-.quote-page::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: light-dark(#fff, #000);
-  pointer-events: none;
-}
-
 @media (prefers-reduced-motion: no-preference) {
-  .quote-page::before {
-    animation: quote-background-arrive 1200ms ease-out both;
-  }
-
   .quote-text {
     animation: quote-text-arrive 2400ms ease-out 420ms both;
-  }
-
-  .quote-paths {
-    animation: quote-paths-arrive 300ms ease-out 80ms both;
-  }
-}
-
-@keyframes quote-background-arrive {
-  to {
-    opacity: 0;
   }
 }
 
@@ -78,116 +81,6 @@
   from {
     opacity: 0;
   }
-}
-
-@keyframes quote-paths-arrive {
-  from {
-    opacity: 0;
-  }
-}
-
-.quote-page[data-signal="acid"],
-.quote-page[data-signal="hazard"] {
-  --quote-bg: light-dark(#fffbe0, #171300);
-  --quote-primary: light-dark(#00e, #ffe500);
-}
-
-.quote-page[data-signal="ultraviolet"] {
-  --quote-bg: light-dark(#f8f8ff, #07091c);
-  --quote-primary: light-dark(#00e, #9badff);
-}
-
-.quote-page[data-signal="terminal"] {
-  --quote-bg: light-dark(#f7f7f2, #050505);
-  --quote-primary: light-dark(#000, #ffe500);
-}
-
-.quote-page[data-layout="layout-0"] {
-  grid-template-areas:
-    "context context context context context context context context"
-    ". . paths paths paths . . ."
-    "quote quote quote quote quote . . ."
-    "quote quote quote quote quote . . ."
-    "quote quote quote quote quote . . ."
-    ". . . . . . . ."
-    "credit credit credit source source source source source";
-}
-
-.quote-page[data-layout="layout-1"] {
-  grid-template-areas:
-    "context context context context context context context context"
-    "paths paths . . . . . ."
-    ". . . quote quote quote quote quote"
-    ". . . quote quote quote quote quote"
-    ". . . quote quote quote quote quote"
-    ". . . . . . . ."
-    "source source source source credit credit credit credit";
-}
-
-.quote-page[data-layout="layout-2"] {
-  grid-template-areas:
-    "context context context context context context context context"
-    ". . . . . paths paths paths"
-    ". quote quote quote quote quote . ."
-    ". quote quote quote quote quote . ."
-    ". quote quote quote quote quote . ."
-    ". . . . . . . ."
-    "credit credit credit credit source source source source";
-}
-
-.quote-page[data-layout="layout-3"] {
-  grid-template-areas:
-    "context context context context context context context context"
-    ". . . . . . . ."
-    "quote quote quote quote . . . ."
-    "quote quote quote quote . . . ."
-    "quote quote quote quote . paths paths ."
-    ". . . . . paths paths ."
-    "source source source source source credit credit credit";
-}
-
-.quote-page[data-layout="layout-4"] {
-  grid-template-areas:
-    "context context context context context context context context"
-    "paths paths paths . . . . ."
-    ". . . . . . . ."
-    ". . quote quote quote quote quote ."
-    ". . quote quote quote quote quote ."
-    ". . quote quote quote quote quote ."
-    "credit credit credit source source source source source";
-}
-
-.quote-page[data-layout="layout-5"] {
-  grid-template-areas:
-    "context context context context context context context context"
-    ". . quote quote quote quote quote quote"
-    ". . quote quote quote quote quote quote"
-    ". . quote quote quote quote quote quote"
-    ". . . . . . . ."
-    ". . paths paths paths . . ."
-    "source source source source credit credit credit credit";
-}
-
-.quote-page[data-layout="layout-6"] {
-  grid-template-areas:
-    "context context context context context context context context"
-    ". . . . . . paths paths"
-    ". . . . . . paths paths"
-    "quote quote quote quote quote . . ."
-    "quote quote quote quote quote . . ."
-    "quote quote quote quote quote . . ."
-    "credit credit credit source source source source source";
-}
-
-.quote-page[data-layout="layout-7"] {
-  grid-template-areas:
-    "context context context context context context context context"
-    ". . . paths paths . . ."
-    ". . . . . . . ."
-    ". . . . quote quote quote quote"
-    ". . . . quote quote quote quote"
-    ". . . . quote quote quote quote"
-    "source source source source credit credit credit credit";
 }
 
 .quote-credit,
@@ -202,10 +95,28 @@
 
 .elsewhere-breadcrumb {
   margin: 0;
-  color: var(--quote-muted);
-  font-family: var(--quote-serif);
-  font-size: clamp(1rem, 3vmin, 1.4rem);
-  line-height: 1.25;
+  color: inherit;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.elsewhere-breadcrumb a {
+  color: var(--quote-link);
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
+  transition: color 180ms var(--quote-ease);
+}
+
+.elsewhere-breadcrumb a:visited {
+  color: var(--quote-link-visited);
+}
+
+.elsewhere-breadcrumb a:hover,
+.elsewhere-breadcrumb a:focus,
+.elsewhere-breadcrumb a:focus-visible {
+  color: var(--quote-link-active);
 }
 
 .quote-text {
@@ -224,33 +135,17 @@
   text-align: left;
 }
 
-.quote-page[data-layout="layout-1"] .quote-text,
-.quote-page[data-layout="layout-2"] .quote-text,
-.quote-page[data-layout="layout-7"] .quote-text {
-  justify-self: end;
-  text-align: right;
-}
-
-.quote-page[data-layout="layout-4"] .quote-text,
-.quote-page[data-layout="layout-5"] .quote-text {
-  justify-self: center;
-  text-align: center;
-}
-
 .quote-text p {
   margin: 0;
 }
 
-.quote-text p::before,
-.quote-text p::after {
-  color: var(--quote-primary);
-}
-
 .quote-text p::before {
+  color: var(--quote-link);
   content: "“";
 }
 
 .quote-text p::after {
+  color: var(--quote-link);
   content: "”";
 }
 
@@ -280,13 +175,13 @@
   text-decoration-line: underline;
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.2em;
-  transition: opacity 180ms var(--quote-ease);
+  transition: color 180ms var(--quote-ease);
 }
 
 .quote-path:hover,
 .quote-path:focus,
 .quote-path:focus-visible {
-  opacity: 0.65;
+  color: var(--quote-link-active);
 }
 
 .quote-path:focus {
@@ -304,7 +199,25 @@
 
 .quote-context a,
 .quote-attribution a {
-  color: inherit;
+  color: var(--quote-link);
+}
+
+.quote-context a:visited,
+.quote-attribution a:visited,
+.quote-path:visited {
+  color: var(--quote-link-visited);
+}
+
+.quote-context a:hover,
+.quote-context a:focus,
+.quote-context a:focus-visible,
+.quote-attribution a:hover,
+.quote-attribution a:focus,
+.quote-attribution a:focus-visible,
+.quote-path:visited:hover,
+.quote-path:visited:focus,
+.quote-path:visited:focus-visible {
+  color: var(--quote-link-active);
 }
 
 .quote-index {
@@ -313,8 +226,8 @@
   min-height: 100svh;
   overflow-x: hidden;
   padding: 1rem;
-  background: light-dark(#fff, #000);
-  color: light-dark(#000, #fff);
+  background: var(--elsewhere-color-canvas);
+  color: var(--elsewhere-color-text);
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
@@ -355,16 +268,21 @@
 }
 
 .quote-index a {
-  color: light-dark(#00e, #9badff);
+  color: var(--elsewhere-color-link);
 }
 
 .quote-index a:visited {
-  color: light-dark(#551a8b, #c9a8ff);
+  color: var(--elsewhere-color-link);
+}
+
+.quote-index a:hover,
+.quote-index a:focus,
+.quote-index a:focus-visible {
+  color: var(--elsewhere-color-link-focus);
 }
 
 @media (width < 42rem) {
-  .quote-page,
-  .quote-page[data-layout] {
+  .quote-page {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto auto auto auto auto;
     grid-template-areas:
@@ -375,7 +293,7 @@
       "source";
   }
 
-  .quote-page[data-layout] .quote-text {
+  .quote-page .quote-text {
     justify-self: start;
     text-align: left;
   }
@@ -395,14 +313,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .quote-page::before,
-  .quote-text,
-  .quote-paths {
+  .quote-text {
     animation: none;
-  }
-
-  .quote-page::before {
-    opacity: 0;
   }
 
   .quote-path {

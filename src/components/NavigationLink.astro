@@ -2,15 +2,20 @@
 type Props = {
   to: string;
   pathname: string;
+  variant?: "elsewhere";
 };
 
-const { to, pathname } = Astro.props;
+const { to, pathname, variant } = Astro.props;
 const normalizePath = (path: string) =>
   path.length > 1 ? path.replace(/\/$/, "") : path;
 const isActive = normalizePath(pathname) === normalizePath(to);
-const className = isActive
-  ? "site-nav__link site-nav__link--active"
-  : "site-nav__link";
+const className = [
+  "site-nav__link",
+  isActive ? "site-nav__link--active" : undefined,
+  variant === "elsewhere" ? "site-nav__link--elsewhere" : undefined,
+]
+  .filter(Boolean)
+  .join(" ");
 ---
 
 <li>

@@ -15,7 +15,6 @@ const { quote } = Astro.props;
 const quotes = getQuotes();
 const state = readJourneyState(Astro.url, quote.slug);
 const doors = createQuoteDoors(quote, quotes, state);
-const layout = `layout-${state.depth % 8}`;
 const canonicalPath = `/elsewhere/quotes/${quote.slug}`;
 
 function normalizedWords(text: string) {
@@ -55,7 +54,6 @@ const { Content } = quote;
   <ElsewherePageShell
     class="quote-page"
     data-signal={state.signal}
-    data-layout={layout}
     labelledBy="quote-title"
     breadcrumb={[
       { label: "johnhooks.io", href: "/" },
