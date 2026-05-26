@@ -1,4 +1,4 @@
-import { createRandom, hashString } from "../shared/random";
+import { createRandom, hashString, pickBySeed } from "../shared/random";
 import type { QuoteEntry } from "./quote-loader";
 
 export type QuoteJourneyState = {
@@ -46,7 +46,7 @@ function normalizeDepth(value: string | null) {
 }
 
 export function createInitialSeed() {
-  return hashString(new Date().toISOString().slice(0, 10)).toString(16);
+  return crypto.randomUUID().slice(0, 8);
 }
 
 export function readJourneyState(
@@ -196,9 +196,11 @@ export function createQuoteDoors(
   });
 }
 
-export function createEntryHref(quote: QuoteEntry) {
+export function createEntryHref(quotes: QuoteEntry[]) {
+  const seed = createInitialSeed();
+  const quote = pickBySeed(quotes, seed);
   const state = {
-    seed: createInitialSeed(),
+    seed,
     signal: quote.metadata.signal.color,
     depth: 0,
     bias: "tag",

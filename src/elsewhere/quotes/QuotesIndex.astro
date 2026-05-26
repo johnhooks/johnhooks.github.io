@@ -6,8 +6,7 @@ import { createEntryHref } from "./journey";
 import { getQuotes } from "./quote-loader";
 
 const quotes = getQuotes();
-const entryQuote = quotes[0];
-const entryHref = createEntryHref(entryQuote);
+const entryHref = createEntryHref(quotes);
 ---
 
 <ElsewhereLayout
