@@ -4,7 +4,7 @@ import { getListedPosts } from "../../lib/astro/content";
 
 export const prerender = true;
 
-const posts = getListedPosts();
+const posts = await getListedPosts();
 ---
 
 <SiteLayout

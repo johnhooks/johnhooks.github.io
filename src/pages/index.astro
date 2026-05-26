@@ -9,8 +9,8 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 
 export const prerender = true;
 
-const posts = getListedPosts();
-const projects = getListedProjects();
+const posts = await getListedPosts();
+const projects = await getListedProjects();
 const Current = getHomeCurrent();
 ---
 

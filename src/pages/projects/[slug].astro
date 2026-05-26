@@ -4,8 +4,10 @@ import ArticleLayout from "../../layouts/ArticleLayout.astro";
 
 export const prerender = true;
 
-export function getStaticPaths() {
-  return getProjects().map((project) => ({
+export async function getStaticPaths() {
+  const projects = await getProjects();
+
+  return projects.map((project) => ({
     params: { slug: project.slug },
     props: { project },
   }));
