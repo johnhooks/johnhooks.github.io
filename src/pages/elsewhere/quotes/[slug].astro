@@ -1,20 +1,22 @@
 ---
+import QuoteNotFound from "../../../elsewhere/quotes/QuoteNotFound.astro";
 import QuotePage from "../../../elsewhere/quotes/QuotePage.astro";
-import { getQuoteBySlug } from "../../../elsewhere/quotes/quote-loader";
+import { getQuotes } from "../../../elsewhere/quotes/quote-loader";
 
 export const prerender = false;
 
 const slug = Astro.params.slug;
 
 if (!slug) {
-  return Astro.redirect("/elsewhere/quotes");
+  Astro.response.status = 404;
 }
 
-const quote = getQuoteBySlug(slug);
+const quotes = await getQuotes();
+const quote = quotes.find((entry) => entry.slug === slug);
 
 if (!quote) {
-  return Astro.redirect("/elsewhere/quotes");
+  Astro.response.status = 404;
 }
 ---
 
-<QuotePage quote={quote} />
+{quote ? <QuotePage quote={quote} quotes={quotes} /> : <QuoteNotFound />}

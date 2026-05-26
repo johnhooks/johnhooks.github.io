@@ -2,32 +2,28 @@
 import ElsewhereLayout from "../shared/ElsewhereLayout.astro";
 import ElsewherePageShell from "../shared/ElsewherePageShell.astro";
 import "./quotes.css";
-import { createEntryHref } from "./journey";
-import { getQuotes } from "./quote-loader";
-
-const quotes = await getQuotes();
-const entryHref = createEntryHref(quotes);
 ---
 
 <ElsewhereLayout
-  title="Elsewhere quotes | johnhooks.io"
-  description="A procedural journey through programming quotes."
+  title="Quote signal lost | Elsewhere quotes"
+  description="The requested quote signal could not be found."
   canonicalPath="/elsewhere/quotes"
 >
   <ElsewherePageShell
     class="quote-index"
-    labelledBy="quote-index-title"
+    labelledBy="quote-not-found-title"
     breadcrumb={[
       { label: "johnhooks.io", href: "/" },
       { label: "elsewhere", href: "/elsewhere" },
-      { label: "quote wire" },
+      { label: "quote wire", href: "/elsewhere/quotes" },
+      { label: "signal lost" },
     ]}
   >
     <div class="quote-index__inner">
-      <h1 id="quote-index-title">quote wire</h1>
-      <p>two links continue. the URL keeps the seed.</p>
+      <h1 id="quote-not-found-title">signal lost</h1>
+      <p>that quote is not on the wire anymore.</p>
       <ul>
-        <li><a href={entryHref}>start</a></li>
+        <li><a href="/elsewhere/quotes">retune</a></li>
       </ul>
     </div>
   </ElsewherePageShell>

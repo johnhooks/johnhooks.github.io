@@ -24,6 +24,8 @@ const signals = [
   "hazard",
 ] as const;
 const biases = ["tag", "author", "signal", "swerve"] as const;
+const maxDepth = 999;
+const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 function normalizeParameter(value: string | null, fallback: string) {
   const trimmed = value?.trim();
@@ -42,7 +44,18 @@ function normalizeListedParameter<T extends readonly string[]>(
 
 function normalizeDepth(value: string | null) {
   const parsed = Number.parseInt(value ?? "0", 10);
-  return Number.isFinite(parsed) && parsed >= 0 ? parsed : 0;
+
+  if (!Number.isFinite(parsed) || parsed < 0) {
+    return 0;
+  }
+
+  return Math.min(parsed, maxDepth);
+}
+
+function normalizeOptionalSlug(value: string | null) {
+  const normalized = normalizeParameter(value, "");
+
+  return slugPattern.test(normalized) ? normalized : undefined;
 }
 
 export function createInitialSeed() {
@@ -71,7 +84,7 @@ export function readJourneyState(
     biases,
     fallbackBias,
   );
-  const from = url.searchParams.get("from") ?? undefined;
+  const from = normalizeOptionalSlug(url.searchParams.get("from"));
 
   return {
     seed,

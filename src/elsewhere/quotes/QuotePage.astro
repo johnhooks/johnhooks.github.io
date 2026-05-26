@@ -4,15 +4,14 @@ import ElsewherePageShell from "../shared/ElsewherePageShell.astro";
 import { hashString } from "../shared/random";
 import "./quotes.css";
 import { createQuoteDoors, readJourneyState } from "./journey";
-import { getQuotes } from "./quote-loader";
 import type { QuoteEntry } from "./quote-loader";
 
 type Props = {
   quote: QuoteEntry;
+  quotes: QuoteEntry[];
 };
 
-const { quote } = Astro.props;
-const quotes = getQuotes();
+const { quote, quotes } = Astro.props;
 const state = readJourneyState(Astro.url, quote.slug);
 const doors = createQuoteDoors(quote, quotes, state);
 const canonicalPath = `/elsewhere/quotes/${quote.slug}`;

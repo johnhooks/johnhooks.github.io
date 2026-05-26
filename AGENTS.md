@@ -122,9 +122,10 @@ Dynamic routes:
 
 ## Content Notes
 
-- Posts live in `src/posts/*.md`.
-- Projects live in `src/projects/*.md`.
-- Published entries require `isPublished: true` in frontmatter.
+- Posts live in `src/content/posts/*.{md,mdx}`.
+- Projects live in `src/content/projects/*.{md,mdx}`.
+- Quotes live in `src/content/quotes/*.{md,mdx}`.
+- Published post and project entries require `isPublished: true` in frontmatter.
 - Homepage ordering is by `publishedOn`, newest first.
 - Some older Markdown files use a custom `<doc-info>` callout element styled in `src/app.css`.
 

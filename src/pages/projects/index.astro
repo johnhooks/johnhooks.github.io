@@ -4,7 +4,7 @@ import { getListedProjects } from "../../lib/astro/content";
 
 export const prerender = true;
 
-const projects = getListedProjects();
+const projects = await getListedProjects();
 ---
 
 <SiteLayout

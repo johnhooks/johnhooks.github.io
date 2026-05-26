@@ -6,15 +6,6 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 
-function removeMarkdownScripts() {
-  return (tree) => {
-    tree.children = tree.children.filter(
-      (node) =>
-        !(node.type === "html" && node.value.trim().startsWith("<script")),
-    );
-  };
-}
-
 export default defineConfig({
   adapter: cloudflare({ prerenderEnvironment: "node" }),
   integrations: [mdx()],
@@ -26,7 +17,7 @@ export default defineConfig({
       theme: "css-variables",
       transformers: [transformerMetaHighlight()],
     },
-    remarkPlugins: [remarkGfm, removeMarkdownScripts],
+    remarkPlugins: [remarkGfm],
     rehypePlugins: [
       rehypeSlug,
       [

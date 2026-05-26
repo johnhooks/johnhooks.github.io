@@ -1,108 +1,99 @@
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 
-import { assertImageAssetFilename } from "./images";
 import type { ImageAssetFilename } from "./images";
 
-type Frontmatter = {
-  title: string;
-  seoTitle: string;
-  abstract: string;
-  cardFilename?: string;
-  cardAlt?: string;
-  imageFilename?: string;
-  imageAlt?: string;
-  isPublished: boolean;
-  isListed?: boolean;
-  publishedOn: string;
-  updatedOn?: string;
-  sourceUrl?: string;
-  sourceLabel?: string;
-};
+type DatedCollectionKey = "posts" | "projects";
+type DatedContentCollectionEntry =
+  | CollectionEntry<"posts">
+  | CollectionEntry<"projects">;
 
-export type Metadata = Omit<Frontmatter, "imageFilename"> & {
+export type Metadata = DatedContentCollectionEntry["data"] & {
   imageFilename?: ImageAssetFilename;
 };
 
-export type ContentEntry = {
+export type ContentSummary = {
   slug: string;
   metadata: Metadata;
-  Content: AstroComponentFactory;
 };
 
-type ContentModule = {
-  frontmatter: Frontmatter;
-  default: AstroComponentFactory;
+export type ContentEntry = ContentSummary & {
+  Content: AstroComponentFactory;
 };
 
 type MarkdownModule = {
   default: AstroComponentFactory;
 };
 
-function slugFromPath(path: string) {
-  const match = /\/([\w-]+)\.mdx?$/.exec(path);
-
-  if (!match) {
-    throw new Error(`Unable to parse content slug from ${path}`);
+function validateMetadata(
+  metadata: DatedContentCollectionEntry["data"],
+  context: string,
+): Metadata {
+  if (metadata.imageFilename && !metadata.imageAlt && !metadata.cardAlt) {
+    throw new Error(
+      `Image asset in ${context} must define imageAlt or cardAlt: ${metadata.imageFilename}`,
+    );
   }
 
-  return match[1];
+  return metadata;
 }
 
-function validateMetadata(metadata: Frontmatter, context: string): Metadata {
-  if (metadata.imageFilename) {
-    assertImageAssetFilename(metadata.imageFilename, context);
-
-    if (!metadata.imageAlt && !metadata.cardAlt) {
-      throw new Error(
-        `Image asset in ${context} must define imageAlt or cardAlt: ${metadata.imageFilename}`,
-      );
-    }
-  }
-
-  return metadata as Metadata;
+function normalizeSummary(entry: DatedContentCollectionEntry) {
+  return {
+    slug: entry.id,
+    metadata: validateMetadata(entry.data, entry.id),
+  } satisfies ContentSummary;
 }
 
-function normalizeEntries(modules: Record<string, ContentModule>) {
-  return Object.entries(modules).map(([path, module]) => ({
-    slug: slugFromPath(path),
-    metadata: validateMetadata(module.frontmatter, path),
-    Content: module.default,
-  }));
+async function normalizeEntry(entry: DatedContentCollectionEntry) {
+  const { Content } = await render(entry);
+
+  return {
+    ...normalizeSummary(entry),
+    Content,
+  } satisfies ContentEntry;
 }
 
-function byPublishedDateDescending(a: ContentEntry, b: ContentEntry) {
-  return (
-    new Date(b.metadata.publishedOn).getTime() -
-    new Date(a.metadata.publishedOn).getTime()
-  );
+function byPublishedDateDescending(a: ContentSummary, b: ContentSummary) {
+  return b.metadata.publishedOn.getTime() - a.metadata.publishedOn.getTime();
+}
+
+async function getPublishedEntries(collection: DatedCollectionKey) {
+  return getCollection(collection, (entry) => entry.data.isPublished);
+}
+
+async function getDatedContent(collection: DatedCollectionKey) {
+  const entries = await getPublishedEntries(collection);
+  const normalizedEntries = await Promise.all(entries.map(normalizeEntry));
+
+  return normalizedEntries.sort(byPublishedDateDescending);
+}
+
+async function getDatedContentSummaries(collection: DatedCollectionKey) {
+  const entries = await getPublishedEntries(collection);
+
+  return entries.map(normalizeSummary).sort(byPublishedDateDescending);
 }
 
 export function getPosts() {
-  const modules = import.meta.glob<ContentModule>("../../posts/*.{md,mdx}", {
-    eager: true,
-  });
-
-  return normalizeEntries(modules)
-    .filter((entry) => entry.metadata.isPublished)
-    .sort(byPublishedDateDescending);
+  return getDatedContent("posts");
 }
 
-export function getListedPosts() {
-  return getPosts().filter((entry) => entry.metadata.isListed !== false);
+export async function getListedPosts() {
+  return (await getDatedContentSummaries("posts")).filter(
+    (entry) => entry.metadata.isListed !== false,
+  );
 }
 
 export function getProjects() {
-  const modules = import.meta.glob<ContentModule>("../../projects/*.{md,mdx}", {
-    eager: true,
-  });
-
-  return normalizeEntries(modules)
-    .filter((entry) => entry.metadata.isPublished)
-    .sort(byPublishedDateDescending);
+  return getDatedContent("projects");
 }
 
-export function getListedProjects() {
-  return getProjects().filter((entry) => entry.metadata.isListed !== false);
+export async function getListedProjects() {
+  return (await getDatedContentSummaries("projects")).filter(
+    (entry) => entry.metadata.isListed !== false,
+  );
 }
 
 export function getHomeCurrent() {
