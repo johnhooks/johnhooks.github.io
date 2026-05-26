@@ -3,9 +3,9 @@ import ElsewhereLayout from "../shared/ElsewhereLayout.astro";
 import ElsewherePageShell from "../shared/ElsewherePageShell.astro";
 import "./quotes.css";
 import { createEntryHref } from "./journey";
-import { getQuotes } from "./quote-loader";
+import { getQuoteSummaries } from "./quote-loader";
 
-const quotes = await getQuotes();
+const quotes = await getQuoteSummaries();
 const entryHref = createEntryHref(quotes);
 ---
 

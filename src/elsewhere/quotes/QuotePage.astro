@@ -4,11 +4,11 @@ import ElsewherePageShell from "../shared/ElsewherePageShell.astro";
 import { hashString } from "../shared/random";
 import "./quotes.css";
 import { createQuoteDoors, readJourneyState } from "./journey";
-import type { QuoteEntry } from "./quote-loader";
+import type { QuoteEntry, QuoteSummary } from "./quote-loader";
 
 type Props = {
   quote: QuoteEntry;
-  quotes: QuoteEntry[];
+  quotes: QuoteSummary[];
 };
 
 const { quote, quotes } = Astro.props;
@@ -24,7 +24,7 @@ function normalizedWords(text: string) {
 }
 
 function pickJourneyWord(
-  nextQuote: QuoteEntry,
+  nextQuote: QuoteSummary,
   nextDirection: "left" | "right",
 ) {
   const words = normalizedWords(nextQuote.bodyText);

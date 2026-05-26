@@ -1,7 +1,7 @@
 ---
 import QuoteNotFound from "../../../elsewhere/quotes/QuoteNotFound.astro";
 import QuotePage from "../../../elsewhere/quotes/QuotePage.astro";
-import { getQuotes } from "../../../elsewhere/quotes/quote-loader";
+import { getQuotePageData } from "../../../elsewhere/quotes/quote-loader";
 
 export const prerender = false;
 
@@ -11,12 +11,13 @@ if (!slug) {
   Astro.response.status = 404;
 }
 
-const quotes = await getQuotes();
-const quote = quotes.find((entry) => entry.slug === slug);
+const { quote, summaries } = slug
+  ? await getQuotePageData(slug)
+  : { quote: undefined, summaries: [] };
 
 if (!quote) {
   Astro.response.status = 404;
 }
 ---
 
-{quote ? <QuotePage quote={quote} quotes={quotes} /> : <QuoteNotFound />}
+{quote ? <QuotePage quote={quote} quotes={summaries} /> : <QuoteNotFound />}

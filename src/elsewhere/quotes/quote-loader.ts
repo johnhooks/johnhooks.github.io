@@ -14,10 +14,13 @@ export type QuoteFrontmatter = Omit<
   retrievedOn: string;
 };
 
-export type QuoteEntry = {
+export type QuoteSummary = {
   slug: string;
   metadata: QuoteFrontmatter;
   bodyText: string;
+};
+
+export type QuoteEntry = QuoteSummary & {
   Content: AstroComponentFactory;
 };
 
@@ -33,10 +36,8 @@ function validateQuoteSlug(entry: CollectionEntry<"quotes">) {
   }
 }
 
-async function normalizeQuote(entry: CollectionEntry<"quotes">) {
+function normalizeQuoteSummary(entry: CollectionEntry<"quotes">) {
   validateQuoteSlug(entry);
-
-  const { Content } = await render(entry);
 
   return {
     slug: entry.id,
@@ -45,15 +46,43 @@ async function normalizeQuote(entry: CollectionEntry<"quotes">) {
       retrievedOn: formatDate(entry.data.retrievedOn),
     },
     bodyText: entry.body ?? "",
+  } satisfies QuoteSummary;
+}
+
+async function normalizeQuote(entry: CollectionEntry<"quotes">) {
+  const summary = normalizeQuoteSummary(entry);
+  const { Content } = await render(entry);
+
+  return {
+    ...summary,
     Content,
   } satisfies QuoteEntry;
 }
 
-export async function getQuotes() {
-  const entries = await getCollection("quotes");
-  const quotes = await Promise.all(entries.map(normalizeQuote));
-
+function sortByTitle<T extends QuoteSummary>(quotes: T[]) {
   return quotes.sort((a, b) =>
     a.metadata.title.localeCompare(b.metadata.title),
   );
+}
+
+export async function getQuoteSummaries() {
+  const entries = await getCollection("quotes");
+
+  return sortByTitle(entries.map(normalizeQuoteSummary));
+}
+
+export async function getQuote(slug: string) {
+  const entries = await getCollection("quotes");
+  const entry = entries.find((candidate) => candidate.id === slug);
+
+  return entry ? normalizeQuote(entry) : undefined;
+}
+
+export async function getQuotePageData(slug: string) {
+  const entries = await getCollection("quotes");
+  const summaries = sortByTitle(entries.map(normalizeQuoteSummary));
+  const entry = entries.find((candidate) => candidate.id === slug);
+  const quote = entry ? await normalizeQuote(entry) : undefined;
+
+  return { quote, summaries };
 }

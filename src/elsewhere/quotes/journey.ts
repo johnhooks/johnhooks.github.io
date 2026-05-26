@@ -1,5 +1,5 @@
 import { createRandom, hashString, pickBySeed } from "../shared/random";
-import type { QuoteEntry } from "./quote-loader";
+import type { QuoteSummary } from "./quote-loader";
 
 export type QuoteJourneyState = {
   seed: string;
@@ -13,7 +13,7 @@ export type QuoteDoor = {
   label: string;
   href: string;
   bias: string;
-  quote: QuoteEntry;
+  quote: QuoteSummary;
 };
 
 const signals = [
@@ -95,7 +95,7 @@ export function readJourneyState(
   };
 }
 
-function byTag(current: QuoteEntry, quotes: QuoteEntry[]) {
+function byTag(current: QuoteSummary, quotes: QuoteSummary[]) {
   return quotes.filter(
     (quote) =>
       quote.slug !== current.slug &&
@@ -103,7 +103,7 @@ function byTag(current: QuoteEntry, quotes: QuoteEntry[]) {
   );
 }
 
-function byAuthor(current: QuoteEntry, quotes: QuoteEntry[]) {
+function byAuthor(current: QuoteSummary, quotes: QuoteSummary[]) {
   return quotes.filter(
     (quote) =>
       quote.slug !== current.slug &&
@@ -111,7 +111,7 @@ function byAuthor(current: QuoteEntry, quotes: QuoteEntry[]) {
   );
 }
 
-function bySignal(current: QuoteEntry, quotes: QuoteEntry[]) {
+function bySignal(current: QuoteSummary, quotes: QuoteSummary[]) {
   return quotes.filter(
     (quote) =>
       quote.slug !== current.slug &&
@@ -119,14 +119,14 @@ function bySignal(current: QuoteEntry, quotes: QuoteEntry[]) {
   );
 }
 
-function withoutCurrent(current: QuoteEntry, quotes: QuoteEntry[]) {
+function withoutCurrent(current: QuoteSummary, quotes: QuoteSummary[]) {
   return quotes.filter((quote) => quote.slug !== current.slug);
 }
 
 function candidatesForBias(
   bias: string,
-  current: QuoteEntry,
-  quotes: QuoteEntry[],
+  current: QuoteSummary,
+  quotes: QuoteSummary[],
 ) {
   if (bias === "author") {
     return byAuthor(current, quotes);
@@ -144,8 +144,8 @@ function candidatesForBias(
 }
 
 function pickQuote(
-  candidates: QuoteEntry[],
-  fallback: QuoteEntry[],
+  candidates: QuoteSummary[],
+  fallback: QuoteSummary[],
   seed: string,
   usedSlugs: Set<string>,
 ) {
@@ -159,7 +159,7 @@ function pickQuote(
 }
 
 function createQuoteHref(
-  quote: QuoteEntry,
+  quote: QuoteSummary,
   state: QuoteJourneyState,
   bias: string,
   currentSlug: string,
@@ -176,8 +176,8 @@ function createQuoteHref(
 }
 
 export function createQuoteDoors(
-  current: QuoteEntry,
-  quotes: QuoteEntry[],
+  current: QuoteSummary,
+  quotes: QuoteSummary[],
   state: QuoteJourneyState,
 ) {
   const fallback = withoutCurrent(current, quotes);
@@ -209,7 +209,7 @@ export function createQuoteDoors(
   });
 }
 
-export function createEntryHref(quotes: QuoteEntry[]) {
+export function createEntryHref(quotes: QuoteSummary[]) {
   const seed = createInitialSeed();
   const quote = pickBySeed(quotes, seed);
   const state = {
