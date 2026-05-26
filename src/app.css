@@ -365,6 +365,10 @@ a:focus-visible {
   margin-block: calc(var(--space-md) + var(--space-2xs));
 }
 
+.prose line-emphasis {
+  margin-block: var(--space-lg);
+}
+
 .prose pre,
 .prose doc-info,
 .prose .link-badges {
@@ -442,6 +446,15 @@ a:focus-visible {
   color: var(--color-muted);
 }
 
+.prose line-emphasis,
+line-emphasis {
+  display: block;
+  color: var(--color-text);
+  font-size: var(--text-xl);
+  font-style: italic;
+  line-height: 1.25;
+}
+
 .prose code:not(pre code) {
   font-family: var(--font-mono);
   font-size: 0.92em;
@@ -453,7 +466,7 @@ a:focus-visible {
   color: var(--astro-code-foreground);
   font-family: var(--font-mono);
   font-size: var(--text-sm);
-  line-height: 1.6;
+  line-height: 1.45;
 }
 
 .prose pre > code {
@@ -472,8 +485,8 @@ a:focus-visible {
 
 .prose pre > code > .line {
   display: block;
-  min-height: 1.6em;
-  padding-inline: var(--space-md);
+  min-height: 1.45em;
+  padding-inline: var(--space-sm);
 }
 
 .prose code[data-line-numbers] {

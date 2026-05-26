@@ -4,6 +4,7 @@ seoTitle: Learning Server Admin for Hosting Multiple Websites on a Single VPS
 slug: learning-admin
 abstract: My journey to run multiple websites on a single VPS using Caddy
 isPublished: true
+isListed: false
 publishedOn: 2022-09-21
 ---
 

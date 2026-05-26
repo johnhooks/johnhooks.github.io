@@ -4,6 +4,7 @@ seoTitle: Learning How to Configure, Use, and Backup Postgres Databases
 slug: learning-postgres
 abstract: Learning how to configure, use and backup Postgres databases.
 isPublished: true
+isListed: false
 publishedOn: 2022-09-20
 ---
 

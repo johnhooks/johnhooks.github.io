@@ -87,6 +87,10 @@ export function getPosts() {
     .sort(byPublishedDateDescending);
 }
 
+export function getListedPosts() {
+  return getPosts().filter((entry) => entry.metadata.isListed !== false);
+}
+
 export function getProjects() {
   const modules = import.meta.glob<ContentModule>("../../projects/*.{md,mdx}", {
     eager: true,
