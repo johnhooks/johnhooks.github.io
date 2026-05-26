@@ -2,14 +2,14 @@
 import Image from "../components/Image.astro";
 import {
   getHomeCurrent,
+  getListedPosts,
   getListedProjects,
-  getPosts,
 } from "../lib/astro/content";
 import SiteLayout from "../layouts/SiteLayout.astro";
 
 export const prerender = true;
 
-const posts = getPosts();
+const posts = getListedPosts();
 const projects = getListedProjects();
 const Current = getHomeCurrent();
 ---
@@ -28,9 +28,9 @@ const Current = getHomeCurrent();
 
     <header class="page-header page-header--home">
       <p class="page-header__links">
-        <a href="https://twitter.com/_johnhooks">Twitter</a>
-        <span class="page-header__separator">/</span>
         <a href="https://github.com/johnhooks">GitHub</a>
+        <span class="page-header__separator">/</span>
+        <a href="https://twitter.com/_johnhooks">Twitter</a>
       </p>
     </header>
 

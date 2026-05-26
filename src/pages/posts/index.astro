@@ -1,10 +1,10 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
-import { getPosts } from "../../lib/astro/content";
+import { getListedPosts } from "../../lib/astro/content";
 
 export const prerender = true;
 
-const posts = getPosts();
+const posts = getListedPosts();
 ---
 
 <SiteLayout
