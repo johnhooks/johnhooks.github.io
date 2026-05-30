@@ -1,7 +1,28 @@
 ---
+import { createEntryHref } from "../../../elsewhere/quotes/journey";
+import { getQuoteSummaries } from "../../../elsewhere/quotes/quote-loader";
+import { handleNoWhereError } from "../../../elsewhere/shared/handleNoWhereError";
+import NoWhereErrorPage from "../../../elsewhere/shared/NoWhereErrorPage.astro";
+import type { NoWhereError } from "../../../elsewhere/shared/NoWhereError";
 import QuotesIndex from "../../../elsewhere/quotes/QuotesIndex.astro";
 
 export const prerender = false;
+
+const quotes = await getQuoteSummaries();
+let elsewhereError: NoWhereError | undefined;
+let entryHref = "";
+
+try {
+  entryHref = createEntryHref(quotes);
+} catch (error) {
+  elsewhereError = handleNoWhereError(error, Astro);
+}
 ---
 
-<QuotesIndex />
+{
+  elsewhereError ? (
+    <NoWhereErrorPage error={elsewhereError} />
+  ) : (
+    <QuotesIndex entryHref={entryHref} />
+  )
+}

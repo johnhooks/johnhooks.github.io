@@ -1,6 +1,7 @@
 ---
 import ElsewhereLayout from "../shared/ElsewhereLayout.astro";
 import ElsewherePageShell from "../shared/ElsewherePageShell.astro";
+import "../shared/elsewhere.css";
 import "./quotes.css";
 ---
 
@@ -10,7 +11,7 @@ import "./quotes.css";
   canonicalPath="/elsewhere/quotes"
 >
   <ElsewherePageShell
-    class="quote-index"
+    class="elsewhere-index"
     labelledBy="quote-not-found-title"
     breadcrumb={[
       { label: "johnhooks.io", href: "/" },
@@ -19,7 +20,7 @@ import "./quotes.css";
       { label: "signal lost" },
     ]}
   >
-    <div class="quote-index__inner">
+    <div class="elsewhere-index__inner">
       <h1 id="quote-not-found-title">signal lost</h1>
       <p>that quote is not on the wire anymore.</p>
       <ul>

@@ -11,8 +11,7 @@ Disallow: /
 `;
 
 export function GET() {
-  const body =
-    env.ENVIRONMENT === "production" ? productionRobots : nonProductionRobots;
+  const body = env.ENVIRONMENT === "production" ? productionRobots : nonProductionRobots;
 
   return new Response(body, {
     headers: {

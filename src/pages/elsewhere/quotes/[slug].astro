@@ -1,7 +1,11 @@
 ---
 import QuoteNotFound from "../../../elsewhere/quotes/QuoteNotFound.astro";
 import QuotePage from "../../../elsewhere/quotes/QuotePage.astro";
+import { createQuoteDoors, readJourneyState } from "../../../elsewhere/quotes/journey";
 import { getQuotePageData } from "../../../elsewhere/quotes/quote-loader";
+import { handleNoWhereError } from "../../../elsewhere/shared/handleNoWhereError";
+import NoWhereErrorPage from "../../../elsewhere/shared/NoWhereErrorPage.astro";
+import type { NoWhereError } from "../../../elsewhere/shared/NoWhereError";
 
 export const prerender = false;
 
@@ -18,6 +22,32 @@ const { quote, summaries } = slug
 if (!quote) {
   Astro.response.status = 404;
 }
+
+let elsewhereError: NoWhereError | undefined;
+let state: ReturnType<typeof readJourneyState> | undefined;
+let doors: ReturnType<typeof createQuoteDoors> = [];
+
+if (quote) {
+  try {
+    state = readJourneyState(Astro.url, quote, summaries);
+    doors = createQuoteDoors(quote, summaries, state);
+  } catch (error) {
+    elsewhereError = handleNoWhereError(error, Astro);
+  }
+}
 ---
 
-{quote ? <QuotePage quote={quote} quotes={summaries} /> : <QuoteNotFound />}
+{
+  elsewhereError ? (
+    <NoWhereErrorPage error={elsewhereError} />
+  ) : quote && state ? (
+    <QuotePage
+      quote={quote}
+      state={state}
+      doors={doors}
+      isJourneyUrl={Astro.url.searchParams.has("seed")}
+    />
+  ) : (
+    <QuoteNotFound />
+  )
+}

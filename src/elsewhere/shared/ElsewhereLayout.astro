@@ -7,9 +7,10 @@ type Props = {
   title: string;
   description: string;
   canonicalPath: string;
+  robots?: string;
 };
 
-const { title, description, canonicalPath } = Astro.props;
+const { title, description, canonicalPath, robots } = Astro.props;
 const canonicalUrl = getSiteUrl(canonicalPath);
 ---
 
@@ -21,6 +22,7 @@ const canonicalUrl = getSiteUrl(canonicalPath);
     <link rel="icon" href="/favicon.png" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {robots ? <meta name="robots" content={robots} /> : null}
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="johnhooks.io" />

@@ -16,4 +16,5 @@ signal:
   mood: plainspoken
 ---
 
-Computers are not very smart. They don't understand human language, so we have to tell them what to do in a language that both humans and computers can understand.
+Computers are not very smart. They don't understand human language, so we have to tell
+them what to do in a language that both humans and computers can understand.

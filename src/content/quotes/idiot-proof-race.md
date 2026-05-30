@@ -16,4 +16,6 @@ signal:
   mood: snarl
 ---
 
-Applications programming is a race between software engineers, who strive to produce idiot-proof programs, and the universe which strives to produce bigger idiots. So far the Universe is winning.
+Applications programming is a race between software engineers, who strive to produce
+idiot-proof programs, and the universe which strives to produce bigger idiots. So far the
+Universe is winning.

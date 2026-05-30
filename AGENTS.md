@@ -78,7 +78,8 @@ pnpm check
 pnpm build
 ```
 
-Documentation-only changes do not require the full build unless they affect rendered content or examples.
+Documentation-only changes do not require the full build unless they affect rendered
+content or examples.
 
 ## Deployment
 
@@ -127,7 +128,8 @@ Dynamic routes:
 - Quotes live in `src/content/quotes/*.{md,mdx}`.
 - Published post and project entries require `isPublished: true` in frontmatter.
 - Homepage ordering is by `publishedOn`, newest first.
-- Some older Markdown files use a custom `<doc-info>` callout element styled in `src/app.css`.
+- Some older Markdown files use a custom `<doc-info>` callout element styled in
+  `src/app.css`.
 
 ## Future Work
 

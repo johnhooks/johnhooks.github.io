@@ -5,9 +5,7 @@ import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 import type { ImageAssetFilename } from "./images";
 
 type DatedCollectionKey = "posts" | "projects";
-type DatedContentCollectionEntry =
-  | CollectionEntry<"posts">
-  | CollectionEntry<"projects">;
+type DatedContentCollectionEntry = CollectionEntry<"posts"> | CollectionEntry<"projects">;
 
 export type Metadata = DatedContentCollectionEntry["data"] & {
   imageFilename?: ImageAssetFilename;

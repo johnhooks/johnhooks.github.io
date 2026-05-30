@@ -37,6 +37,17 @@ const datedContentSchema = z.object({
   writingSourcePath: z.string().optional(),
 });
 
+const nowhereErrorCodeSchema = z.enum([
+  "nowhere.unknown_error",
+  "nowhere.quote.bits_invalid",
+  "nowhere.quote.collection_empty",
+  "nowhere.quote.depth_invalid",
+  "nowhere.quote.depth_out_of_bounds",
+  "nowhere.quote.journey_state_incomplete",
+  "nowhere.quote.root_seed_not_found",
+  "nowhere.quote.route_mismatch",
+]);
+
 const quotes = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/quotes" }),
   schema: z.object({
@@ -66,4 +77,15 @@ export const collections = {
     schema: datedContentSchema,
   }),
   quotes,
+  nowhereErrors: defineCollection({
+    loader: glob({
+      pattern: "**/*.{md,mdx}",
+      base: "./src/content/nowhere-errors",
+    }),
+    schema: z.object({
+      code: nowhereErrorCodeSchema,
+      title: z.string(),
+      description: z.string(),
+    }),
+  }),
 };

@@ -1,12 +1,14 @@
 ---
 import ElsewhereLayout from "../shared/ElsewhereLayout.astro";
 import ElsewherePageShell from "../shared/ElsewherePageShell.astro";
+import "../shared/elsewhere.css";
 import "./quotes.css";
-import { createEntryHref } from "./journey";
-import { getQuoteSummaries } from "./quote-loader";
 
-const quotes = await getQuoteSummaries();
-const entryHref = createEntryHref(quotes);
+type Props = {
+  entryHref: string;
+};
+
+const { entryHref } = Astro.props;
 ---
 
 <ElsewhereLayout
@@ -15,19 +17,20 @@ const entryHref = createEntryHref(quotes);
   canonicalPath="/elsewhere/quotes"
 >
   <ElsewherePageShell
-    class="quote-index"
-    labelledBy="quote-index-title"
+    class="elsewhere-index"
+    labelledBy="elsewhere-index-title"
     breadcrumb={[
       { label: "johnhooks.io", href: "/" },
       { label: "elsewhere", href: "/elsewhere" },
       { label: "quote wire" },
     ]}
   >
-    <div class="quote-index__inner">
-      <h1 id="quote-index-title">quote wire</h1>
+    <div class="elsewhere-index__inner">
+      <h1 id="elsewhere-index-title">quote wire</h1>
       <p>two links continue. the URL keeps the seed.</p>
       <ul>
-        <li><a href={entryHref}>start</a></li>
+        <li><a href={entryHref} rel="nofollow">start the wire</a></li>
+        <li><a href="/elsewhere/quotes/archive">index</a></li>
       </ul>
     </div>
   </ElsewherePageShell>

@@ -8,7 +8,9 @@ isListed: false
 publishedOn: 2022-09-21
 ---
 
-At the moment this is less an article and more of a dumping zone for tidbits I would like to include in an article... And since I published it from the start of my website, I'll leave it here and let it grow.
+At the moment this is less an article and more of a dumping zone for tidbits I would like
+to include in an article... And since I published it from the start of my website, I'll
+leave it here and let it grow.
 
 ## Goal
 
@@ -16,20 +18,25 @@ Create a server configuration that can host many different project on unique dom
 
 ## Reasoning
 
-I have quite a few little hobby projects and hosting them on a per project basis, as most platform as a service hosting require, ends up being complicated and possibly pricy.
+I have quite a few little hobby projects and hosting them on a per project basis, as most
+platform as a service hosting require, ends up being complicated and possibly pricy.
 
-If I can configure a single server to host multiple domains and auto deploy from a GitHub action it would fit the workflow I have become accustom to.
+If I can configure a single server to host multiple domains and auto deploy from a GitHub
+action it would fit the workflow I have become accustom to.
 
 ## The Next Steps
 
-- [ ] - Create a CI workflow to auto deploy projects to the hosting computer from a GitHub action.
-- [ ] - Read _[DevOps for the Desperate](https://nostarch.com/devops-desperate)_ and see if it has any helpful hints.
+- [ ] - Create a CI workflow to auto deploy projects to the hosting computer from a GitHub
+    action.
+- [ ] - Read _[DevOps for the Desperate](https://nostarch.com/devops-desperate)_ and see
+    if it has any helpful hints.
 
 ## Things that work
 
 - Digital Ocean Server works great and the basic setup guides seem to keep it secure.
 - Caddy Server hosting multiple websites with automatic HTTPS cert renewal.
-- PM2 kinda works, at the moment the process doesn't reload on restart and I have to manually do it.
+- PM2 kinda works, at the moment the process doesn't reload on restart and I have to
+  manually do it.
 
 ### Initial Server Setup
 
@@ -136,7 +143,8 @@ node -v
 
 `npm` was also installed.
 
-Because some `npm` packages will require compiling code from source, the `build-essential` package should also be installed.
+Because some `npm` packages will require compiling code from source, the `build-essential`
+package should also be installed.
 
 ```shell
 sudo apt install build-essential
@@ -160,9 +168,11 @@ sudo apt install build-essential
 pm2 startOrReload ecosystem.config.js --update-env
 ```
 
-This may have resolved the below issue. Just make sure the run `pm2 save` afterwards. https://stackoverflow.com/q/44508316
+This may have resolved the below issue. Just make sure the run `pm2 save` afterwards.
+https://stackoverflow.com/q/44508316
 
-I had a lot of trouble changing the configuration of PM2. Before the changes in the `ecosystem.config.js` would be recognized I had to do the following:
+I had a lot of trouble changing the configuration of PM2. Before the changes in the
+`ecosystem.config.js` would be recognized I had to do the following:
 
 1. `pm2 stop all`
 2. `pm2 delete all`

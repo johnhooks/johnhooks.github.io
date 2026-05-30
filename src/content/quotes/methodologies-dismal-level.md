@@ -16,4 +16,6 @@ signal:
   mood: wary
 ---
 
-Beware of Methodologies. They are a great way to bring everyone up to a dismal, but passable, level of performance, but at the same time, they are aggravating to more talented people who chafe at the restrictions that are placed on them.
+Beware of Methodologies. They are a great way to bring everyone up to a dismal, but
+passable, level of performance, but at the same time, they are aggravating to more
+talented people who chafe at the restrictions that are placed on them.

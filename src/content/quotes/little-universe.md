@@ -16,4 +16,5 @@ signal:
   mood: wonder
 ---
 
-Programming computers was so fascinating. You create your own little universe, and then it does what you tell it to do.
+Programming computers was so fascinating. You create your own little universe, and then it
+does what you tell it to do.

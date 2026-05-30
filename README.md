@@ -2,7 +2,8 @@
 
 [johnhooks.io](https://johnhooks.io)
 
-Personal website built with [Astro](https://astro.build) and deployed to Cloudflare Workers.
+Personal website built with [Astro](https://astro.build) and deployed to Cloudflare
+Workers.
 
 ## Developing
 

@@ -16,4 +16,5 @@ signal:
   mood: precise
 ---
 
-A large fraction of the flaws in software development are due to programmers not fully understanding all the possible states their code may execute in.
+A large fraction of the flaws in software development are due to programmers not fully
+understanding all the possible states their code may execute in.

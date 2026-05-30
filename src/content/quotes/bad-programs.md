@@ -16,4 +16,5 @@ signal:
   mood: dry
 ---
 
-There is no programming language, no matter how structured, that will prevent programmers from making bad programs.
+There is no programming language, no matter how structured, that will prevent programmers
+from making bad programs.

@@ -16,4 +16,5 @@ signal:
   mood: lucid
 ---
 
-The main activity of programming is not the origination of new independent programs, but in the integration, modification, and explanation of existing ones.
+The main activity of programming is not the origination of new independent programs, but
+in the integration, modification, and explanation of existing ones.

@@ -16,4 +16,5 @@ signal:
   mood: snarl
 ---
 
-The most important thing in a programming language is the name. A language will not succeed without a good name.
+The most important thing in a programming language is the name. A language will not
+succeed without a good name.
