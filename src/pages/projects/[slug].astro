@@ -21,9 +21,7 @@ if (data.imageFilename) {
   const imageAlt = data.cardAlt ?? data.imageAlt;
 
   if (!imageAlt) {
-    throw new Error(
-      `Image asset for project ${project.slug} requires alt text.`,
-    );
+    throw new Error(`Image asset for project ${project.slug} requires alt text.`);
   }
 
   image = {

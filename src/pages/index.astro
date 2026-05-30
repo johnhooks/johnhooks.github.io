@@ -1,10 +1,6 @@
 ---
 import Image from "../components/Image.astro";
-import {
-  getHomeCurrent,
-  getListedPosts,
-  getListedProjects,
-} from "../lib/astro/content";
+import { getHomeCurrent, getListedPosts, getListedProjects } from "../lib/astro/content";
 import SiteLayout from "../layouts/SiteLayout.astro";
 
 export const prerender = true;
@@ -63,9 +59,7 @@ const Current = getHomeCurrent();
           projects.map((project) => (
             <li class="content-list__item">
               <h3 class="content-list__title">
-                <a href={`/projects/${project.slug}`}>
-                  {project.metadata.title}
-                </a>
+                <a href={`/projects/${project.slug}`}>{project.metadata.title}</a>
               </h3>
               <p class="content-list__summary">{project.metadata.abstract}</p>
             </li>
@@ -75,9 +69,7 @@ const Current = getHomeCurrent();
     </section>
 
     <p class="source-note">
-      Source on <a href="https://github.com/johnhooks/johnhooks.github.io"
-        >GitHub</a
-      >.
+      Source on <a href="https://github.com/johnhooks/johnhooks.github.io">GitHub</a>.
     </p>
   </main>
 </SiteLayout>

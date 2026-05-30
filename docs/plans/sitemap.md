@@ -2,11 +2,13 @@
 
 ## Overview
 
-Generate a `sitemap.xml` at build time using a prerendered Astro endpoint that reuses the existing Astro content helpers.
+Generate a `sitemap.xml` at build time using a prerendered Astro endpoint that reuses the
+existing Astro content helpers.
 
 ## Approach
 
-Create `src/pages/sitemap.xml.ts` with `prerender = true` to generate a static sitemap at build time.
+Create `src/pages/sitemap.xml.ts` with `prerender = true` to generate a static sitemap at
+build time.
 
 ## Implementation
 
@@ -22,9 +24,7 @@ export const prerender = true;
 export function GET() {
   const staticPages = ["", "/about"];
   const postUrls = getPosts().map((post) => `/posts/${post.slug}`);
-  const projectUrls = getProjects().map(
-    (project) => `/projects/${project.slug}`,
-  );
+  const projectUrls = getProjects().map((project) => `/projects/${project.slug}`);
   const allUrls = [...staticPages, ...postUrls, ...projectUrls];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -54,9 +54,12 @@ ${allUrls
 
 ## Considerations
 
-- **SITE_URL at build time**: The sitemap uses `SITE_URL` from Astro env, matching canonical URLs and social cards.
-- **Prerendering**: Since `prerender = true`, the sitemap is generated once at build time, not on every request.
-- **No additional dependencies**: Reuses existing `getPosts()` and `getProjects()` helpers.
+- **SITE_URL at build time**: The sitemap uses `SITE_URL` from Astro env, matching
+  canonical URLs and social cards.
+- **Prerendering**: Since `prerender = true`, the sitemap is generated once at build time,
+  not on every request.
+- **No additional dependencies**: Reuses existing `getPosts()` and `getProjects()`
+  helpers.
 
 ## Verification
 

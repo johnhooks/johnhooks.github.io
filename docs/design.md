@@ -1,8 +1,10 @@
 # Design Direction
 
-This site should feel like freerange HTML with light CSS: a small, personal document on the web, not an app shell or a component showcase.
+This site should feel like freerange HTML with light CSS: a small, personal document on
+the web, not an app shell or a component showcase.
 
-The reference point is early independent blogs and hand-built personal sites, but the goal is not to look old. The site should be plain, direct, and modern in execution.
+The reference point is early independent blogs and hand-built personal sites, but the goal
+is not to look old. The site should be plain, direct, and modern in execution.
 
 ## Goals
 
@@ -32,7 +34,8 @@ The palette should use:
 - quiet rules for separation
 - one vibrant-but-subtle accent color for links, focus, and selected callouts
 
-The accent color should be easy to change. Templates should use semantic classes while site identity lives in custom properties such as:
+The accent color should be easy to change. Templates should use semantic classes while
+site identity lives in custom properties such as:
 
 ```css
 --color-bg
@@ -46,7 +49,8 @@ The accent color should be easy to change. Templates should use semantic classes
 --color-callout
 ```
 
-Use authored CSS for structure, spacing, and identity. Core templates should stay semantic so the theme remains visible in one place.
+Use authored CSS for structure, spacing, and identity. Core templates should stay semantic
+so the theme remains visible in one place.
 
 ## Layout
 
@@ -57,11 +61,13 @@ The default layout is a single text column using the shared measure and gutters:
 --gutter
 ```
 
-Avoid filling the full viewport just because space exists. The site should feel like a document with a comfortable reading measure.
+Avoid filling the full viewport just because space exists. The site should feel like a
+document with a comfortable reading measure.
 
 ## Components
 
-Components should stay small and obvious. Prefer simple markup over reusable abstractions until duplication causes real maintenance friction.
+Components should stay small and obvious. Prefer simple markup over reusable abstractions
+until duplication causes real maintenance friction.
 
 Good component behavior:
 
@@ -94,4 +100,5 @@ All motion must respect `prefers-reduced-motion`.
 
 ## Rule of thumb
 
-If a style makes the site feel more like a UI kit, remove it. If it makes the page feel more readable, personal, or quietly intentional, keep it.
+If a style makes the site feel more like a UI kit, remove it. If it makes the page feel
+more readable, personal, or quietly intentional, keep it.

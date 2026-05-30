@@ -1,0 +1,39 @@
+---
+import ElsewhereLayout from "../shared/ElsewhereLayout.astro";
+import ElsewherePageShell from "../shared/ElsewherePageShell.astro";
+import "../shared/elsewhere.css";
+import "./quotes.css";
+import { getQuoteSummaries } from "./quote-loader";
+
+const quotes = await getQuoteSummaries();
+---
+
+<ElsewhereLayout
+  title="Quote index | Elsewhere quotes"
+  description="A clean index of quotes in the Elsewhere quote wire."
+  canonicalPath="/elsewhere/quotes/archive"
+>
+  <ElsewherePageShell
+    class="elsewhere-index"
+    labelledBy="quote-archive-title"
+    breadcrumb={[
+      { label: "johnhooks.io", href: "/" },
+      { label: "elsewhere", href: "/elsewhere" },
+      { label: "quote wire", href: "/elsewhere/quotes" },
+      { label: "index" },
+    ]}
+  >
+    <div class="elsewhere-index__inner">
+      <h1 id="quote-archive-title">index</h1>
+      <ul>
+        {
+          quotes.map((quote) => (
+            <li>
+              <a href={`/elsewhere/quotes/${quote.slug}`}>{quote.metadata.title}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </ElsewherePageShell>
+</ElsewhereLayout>

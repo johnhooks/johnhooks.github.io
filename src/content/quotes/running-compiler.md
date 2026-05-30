@@ -16,4 +16,5 @@ signal:
   mood: snarl
 ---
 
-I had a running compiler and nobody would touch it. They carefully told me, computers could only do arithmetic; they could not do programs.
+I had a running compiler and nobody would touch it. They carefully told me, computers
+could only do arithmetic; they could not do programs.

@@ -22,6 +22,7 @@
     "deploy": "pnpm build && wrangler deploy --env production --var ENVIRONMENT:production --var SITE_URL:https://johnhooks.io",
     "deploy:staging": "pnpm build && wrangler deploy --env staging --var ENVIRONMENT:staging --var SITE_URL:https://website-staging.johnhooks.workers.dev",
     "check": "astro check",
+    "test": "vitest run",
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write ."
   },
@@ -42,6 +43,7 @@
     "remark-gfm": "^4.0.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.4",
+    "vitest": "^4.1.7",
     "wrangler": "^4.94.0"
   }
 }

@@ -1,6 +1,8 @@
 ---
 title: Beautiful MDSveX Code Blocks
-seoTitle: Add beautifully highlighted code to a SvelteKit project using MDsveX and the Shiki syntax highlighter
+seoTitle:
+  Add beautifully highlighted code to a SvelteKit project using MDsveX and the Shiki
+  syntax highlighter
 slug: highlighter
 abstract: How to configure MDSveX and @bitmachina/highlighter in a SvelteKit project.
 cardFilename: highlighter_640.jpg
@@ -50,9 +52,14 @@ export default {
 };
 ```
 
-The [`@bitmachina/highlighter`](https://github.com/johnhooks/highlighter) package exports the `createHighlighter` function which takes an argument of Shiki `HighlighterOptions`, these are passed directly to Shiki `getHighlighter` internally. The highlighting function returned by `createHighlighter` was built for MDSveX and inserts the proper HTML entities to escape characters syntactically important to Svelte.
+The [`@bitmachina/highlighter`](https://github.com/johnhooks/highlighter) package exports
+the `createHighlighter` function which takes an argument of Shiki `HighlighterOptions`,
+these are passed directly to Shiki `getHighlighter` internally. The highlighting function
+returned by `createHighlighter` was built for MDSveX and inserts the proper HTML entities
+to escape characters syntactically important to Svelte.
 
-Any [Shiki theme](https://github.com/shikijs/shiki/blob/main/docs/themes.md#all-themes) can be used.
+Any [Shiki theme](https://github.com/shikijs/shiki/blob/main/docs/themes.md#all-themes)
+can be used.
 
 ## Table of Contents
 
@@ -67,7 +74,8 @@ Any [Shiki theme](https://github.com/shikijs/shiki/blob/main/docs/themes.md#all-
 
 Code blocks are configured via the meta string on the top codeblock fence.
 
-Some features have been added to make this package comparable to [Rehype Pretty Code](https://rehype-pretty-code.netlify.app/).
+Some features have been added to make this package comparable to
+[Rehype Pretty Code](https://rehype-pretty-code.netlify.app/).
 
 ### Titles
 
@@ -123,9 +131,11 @@ pre[data-code-title]:before {
 
 ### Line numbers
 
-Line numbers can be conditionally be shown, using the `showLineNumbers` directive. This adds a `data-line-numbers` boolean attribute to the `<code>` element.
+Line numbers can be conditionally be shown, using the `showLineNumbers` directive. This
+adds a `data-line-numbers` boolean attribute to the `<code>` element.
 
-The line number is made available in the `data-line-number` attribute on the `<span>` elements containing each line.
+The line number is made available in the `data-line-number` attribute on the `<span>`
+elements containing each line.
 
 ````txt title="example source"
 ```js showLineNumbers
@@ -160,7 +170,8 @@ const example = "The first line of this code block will start at 64";
 
 #### CSS Example
 
-Below is an example of adding line numbers to the code block using CSS and the data attributes.
+Below is an example of adding line numbers to the code block using CSS and the data
+attributes.
 
 ```css
 code[data-line-numbers] > span[data-line-number]::before {
@@ -202,9 +213,7 @@ export declare function parseMetadata(metastring: string | undefined): TMetadata
  * @returns Parsed metadata values object.
  * @public
  */
-export declare function parseMetadata(
-  metastring: string | undefined,
-): TMetadata;
+export declare function parseMetadata(metastring: string | undefined): TMetadata;
 ```
 
 #### CSS Example
@@ -220,7 +229,8 @@ code > span[data-highlighted] {
 
 ## Notes
 
-If languages are known ahead of time, limiting them should speed up loading the highlighter.
+If languages are known ahead of time, limiting them should speed up loading the
+highlighter.
 
 ```js
 // mdsvex.config.js
@@ -255,10 +265,15 @@ If using the CSS variables, add them to your css like so.
 
 ## References
 
-- The rendering was inspired by Shiki's [renderToHtml](https://github.com/shikijs/shiki/blob/a585c9d6860334a6233ff1c035a42d023e016400/packages/shiki/src/renderer.ts) function.
-- The metadata parsing was inspired by [Rehype Pretty Code](https://github.com/atomiks/rehype-pretty-code).
-- More information on theming: [Shiki - Theming with CSS Variables](https://github.com/shikijs/shiki/blob/main/docs/themes.md#theming-with-css-variables)
+- The rendering was inspired by Shiki's
+  [renderToHtml](https://github.com/shikijs/shiki/blob/a585c9d6860334a6233ff1c035a42d023e016400/packages/shiki/src/renderer.ts)
+  function.
+- The metadata parsing was inspired by
+  [Rehype Pretty Code](https://github.com/atomiks/rehype-pretty-code).
+- More information on theming:
+  [Shiki - Theming with CSS Variables](https://github.com/shikijs/shiki/blob/main/docs/themes.md#theming-with-css-variables)
 
 ## License
 
-[MIT](https://github.com/johnhooks/highlighter/blob/main/LICENSE) @ [John Hooks](https://github.com/johnhooks)
+[MIT](https://github.com/johnhooks/highlighter/blob/main/LICENSE) @
+[John Hooks](https://github.com/johnhooks)

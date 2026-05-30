@@ -7,10 +7,7 @@ export type QuoteSignal = {
   mood: string;
 };
 
-export type QuoteFrontmatter = Omit<
-  CollectionEntry<"quotes">["data"],
-  "retrievedOn"
-> & {
+export type QuoteFrontmatter = Omit<CollectionEntry<"quotes">["data"], "retrievedOn"> & {
   retrievedOn: string;
 };
 
@@ -60,9 +57,7 @@ async function normalizeQuote(entry: CollectionEntry<"quotes">) {
 }
 
 function sortByTitle<T extends QuoteSummary>(quotes: T[]) {
-  return quotes.sort((a, b) =>
-    a.metadata.title.localeCompare(b.metadata.title),
-  );
+  return quotes.sort((a, b) => a.metadata.title.localeCompare(b.metadata.title));
 }
 
 export async function getQuoteSummaries() {

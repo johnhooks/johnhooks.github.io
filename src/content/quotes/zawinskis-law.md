@@ -16,4 +16,5 @@ signal:
   mood: snarl
 ---
 
-Every program attempts to expand until it can read mail. Those programs which cannot so expand are replaced by ones which can.
+Every program attempts to expand until it can read mail. Those programs which cannot so
+expand are replaced by ones which can.

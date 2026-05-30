@@ -1,40 +1,3 @@
-.elsewhere-document {
-  --elsewhere-color-canvas: light-dark(#fff, #000);
-  --elsewhere-color-text: light-dark(#000, #fff);
-  --elsewhere-color-purple: light-dark(#4c1d95, #a78bfa);
-  --elsewhere-color-purple-focus: light-dark(#7e22ce, #c084fc);
-
-  --elsewhere-color-link: var(--elsewhere-color-purple);
-  --elsewhere-color-link-focus: var(--elsewhere-color-purple-focus);
-  --color-focus: var(--elsewhere-color-link-focus);
-
-  color-scheme: light dark;
-  background: var(--elsewhere-color-canvas);
-}
-
-.elsewhere-document :focus-visible {
-  outline-color: var(--elsewhere-color-link-focus);
-}
-
-.elsewhere-body {
-  min-height: 100vh;
-  overflow-x: hidden;
-  background: var(--elsewhere-color-canvas);
-  color: var(--elsewhere-color-text);
-}
-
-.elsewhere-shell {
-  --elsewhere-shell-pad: 1rem;
-  position: relative;
-}
-
-.elsewhere-shell > .elsewhere-breadcrumb {
-  position: absolute;
-  inset-block-start: var(--elsewhere-shell-pad);
-  inset-inline-start: var(--elsewhere-shell-pad);
-  z-index: 1;
-}
-
 .quote-page {
   --quote-bg: var(--elsewhere-color-canvas);
   --quote-fg: var(--elsewhere-color-text);
@@ -64,9 +27,7 @@
   min-height: 100svh;
   overflow-x: hidden;
   padding: clamp(0.8rem, 3vmin, 1.5rem);
-  padding-block-start: calc(
-    var(--elsewhere-shell-pad) + 1.35rem + var(--quote-gap)
-  );
+  padding-block-start: calc(var(--elsewhere-shell-pad) + 1.35rem + var(--quote-gap));
   background: var(--quote-bg);
   color: var(--quote-fg);
 }
@@ -91,32 +52,6 @@
   font-family: var(--quote-mono);
   font-size: clamp(0.66rem, 1.45vmin, 0.88rem);
   line-height: 1.35;
-}
-
-.elsewhere-breadcrumb {
-  margin: 0;
-  color: inherit;
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  line-height: 1.35;
-}
-
-.elsewhere-breadcrumb a {
-  color: var(--quote-link);
-  text-decoration-line: underline;
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.2em;
-  transition: color 180ms var(--quote-ease);
-}
-
-.elsewhere-breadcrumb a:visited {
-  color: var(--quote-link-visited);
-}
-
-.elsewhere-breadcrumb a:hover,
-.elsewhere-breadcrumb a:focus,
-.elsewhere-breadcrumb a:focus-visible {
-  color: var(--quote-link-active);
 }
 
 .quote-text {
@@ -218,67 +153,6 @@
 .quote-path:visited:focus,
 .quote-path:visited:focus-visible {
   color: var(--quote-link-active);
-}
-
-.quote-index {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  min-height: 100svh;
-  overflow-x: hidden;
-  padding: 1rem;
-  background: var(--elsewhere-color-canvas);
-  color: var(--elsewhere-color-text);
-  font-family: Georgia, "Times New Roman", Times, serif;
-}
-
-.quote-index__inner {
-  max-width: 42rem;
-  padding-block-start: 2.5rem;
-}
-
-.quote-index__inner > * {
-  margin-block: 0.75rem;
-}
-
-.quote-index h1 {
-  margin-block-start: 1rem;
-  font-size: clamp(2.5rem, 16vmin, 8rem);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.08em;
-  line-height: 0.9;
-}
-
-.quote-index p {
-  font-size: clamp(1rem, 3vmin, 1.4rem);
-  line-height: 1.25;
-}
-
-.quote-index ul {
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-}
-
-.quote-index ul {
-  padding-inline-start: 1.25rem;
-}
-
-.quote-index li + li {
-  margin-block-start: 0.35rem;
-}
-
-.quote-index a {
-  color: var(--elsewhere-color-link);
-}
-
-.quote-index a:visited {
-  color: var(--elsewhere-color-link);
-}
-
-.quote-index a:hover,
-.quote-index a:focus,
-.quote-index a:focus-visible {
-  color: var(--elsewhere-color-link-focus);
 }
 
 @media (width < 42rem) {

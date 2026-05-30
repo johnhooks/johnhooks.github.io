@@ -1,7 +1,7 @@
 ---
 import ElsewhereLayout from "../shared/ElsewhereLayout.astro";
 import ElsewherePageShell from "../shared/ElsewherePageShell.astro";
-import "../quotes/quotes.css";
+import "../shared/elsewhere.css";
 ---
 
 <ElsewhereLayout
@@ -10,11 +10,11 @@ import "../quotes/quotes.css";
   canonicalPath="/elsewhere"
 >
   <ElsewherePageShell
-    class="quote-index"
+    class="elsewhere-index"
     labelledBy="elsewhere-title"
     breadcrumb={[{ label: "johnhooks.io", href: "/" }, { label: "elsewhere" }]}
   >
-    <div class="quote-index__inner">
+    <div class="elsewhere-index__inner">
       <h1 id="elsewhere-title">elsewhere</h1>
       <p>small experiments for getting lost between pages.</p>
       <ul>

@@ -1,0 +1,53 @@
+---
+import { getCollection, render } from "astro:content";
+
+import "./elsewhere.css";
+import ElsewhereLayout from "./ElsewhereLayout.astro";
+import ElsewherePageShell from "./ElsewherePageShell.astro";
+import { NoWhereErrorCode, type NoWhereError } from "./NoWhereError";
+
+type Props = {
+  error: NoWhereError;
+  robots?: string;
+};
+
+const { error, robots = "noindex, nofollow" } = Astro.props;
+const entries = await getCollection("nowhereErrors");
+const entry =
+  entries.find((candidate) => candidate.data.code === error.code) ??
+  entries.find((candidate) => candidate.data.code === NoWhereErrorCode.Unknown);
+
+if (!entry) {
+  throw new Error("Missing unknown NoWhere error content.");
+}
+
+const { Content } = await render(entry);
+---
+
+<ElsewhereLayout
+  title={`${entry.data.title} | Elsewhere`}
+  description={entry.data.description}
+  canonicalPath="/elsewhere"
+  robots={robots}
+>
+  <ElsewherePageShell
+    class="elsewhere-index elsewhere-index--lost"
+    labelledBy="nowhere-error-title"
+    breadcrumb={[
+      { label: "johnhooks.io", href: "/" },
+      { label: "elsewhere", href: "/elsewhere" },
+      { label: entry.data.title },
+    ]}
+  >
+    <div class="elsewhere-index__inner">
+      <h1 id="nowhere-error-title">{entry.data.title}</h1>
+      <Content />
+      <p class="elsewhere-index__diagnostic">
+        {error.code}: {error.detail}
+      </p>
+      <ul>
+        <li><a href="/elsewhere">return to elsewhere</a></li>
+      </ul>
+    </div>
+  </ElsewherePageShell>
+</ElsewhereLayout>

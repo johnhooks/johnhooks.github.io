@@ -16,4 +16,5 @@ signal:
   mood: lucid
 ---
 
-A programming language is for thinking of programs, not for expressing programs you've already thought of.
+A programming language is for thinking of programs, not for expressing programs you've
+already thought of.

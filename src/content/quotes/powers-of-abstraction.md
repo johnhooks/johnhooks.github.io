@@ -16,4 +16,5 @@ signal:
   mood: lucid
 ---
 
-The effective exploitation of his powers of abstraction must be regarded as one of the most vital activities of a competent programmer.
+The effective exploitation of his powers of abstraction must be regarded as one of the
+most vital activities of a competent programmer.

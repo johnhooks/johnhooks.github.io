@@ -12,9 +12,7 @@ export const imageAssets = {
 
 export type ImageAssetFilename = keyof typeof imageAssets;
 
-export function isImageAssetFilename(
-  filename: string,
-): filename is ImageAssetFilename {
+export function isImageAssetFilename(filename: string): filename is ImageAssetFilename {
   return filename in imageAssets;
 }
 

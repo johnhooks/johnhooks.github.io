@@ -16,4 +16,5 @@ signal:
   mood: lucid
 ---
 
-I wanted to invent some software that was completely different, that would grow and change as it was used. That’s how wiki came about.
+I wanted to invent some software that was completely different, that would grow and change
+as it was used. That’s how wiki came about.

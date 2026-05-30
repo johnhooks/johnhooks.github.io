@@ -2,18 +2,19 @@
 import ElsewhereLayout from "../shared/ElsewhereLayout.astro";
 import ElsewherePageShell from "../shared/ElsewherePageShell.astro";
 import { hashString } from "../shared/random";
+import "../shared/elsewhere.css";
 import "./quotes.css";
-import { createQuoteDoors, readJourneyState } from "./journey";
+import type { QuoteDoor, QuoteJourneyState } from "./journey";
 import type { QuoteEntry, QuoteSummary } from "./quote-loader";
 
 type Props = {
   quote: QuoteEntry;
-  quotes: QuoteSummary[];
+  state: QuoteJourneyState;
+  doors: QuoteDoor[];
+  isJourneyUrl: boolean;
 };
 
-const { quote, quotes } = Astro.props;
-const state = readJourneyState(Astro.url, quote.slug);
-const doors = createQuoteDoors(quote, quotes, state);
+const { quote, state, doors, isJourneyUrl } = Astro.props;
 const canonicalPath = `/elsewhere/quotes/${quote.slug}`;
 
 function normalizedWords(text: string) {
@@ -24,6 +25,7 @@ function normalizedWords(text: string) {
 }
 
 function pickJourneyWord(
+  currentState: QuoteJourneyState,
   nextQuote: QuoteSummary,
   nextDirection: "left" | "right",
 ) {
@@ -35,13 +37,12 @@ function pickJourneyWord(
 
   const index =
     hashString(
-      `${state.seed}:${state.depth}:${nextQuote.slug}:${nextDirection}`,
+      `${currentState.seed}:${currentState.depth}:${nextQuote.slug}:${nextDirection}`,
     ) % words.length;
   return words[index];
 }
 
-const leftWord = pickJourneyWord(doors[0].quote, "left");
-const rightWord = pickJourneyWord(doors[1].quote, "right");
+const doorWords = doors.map((door) => pickJourneyWord(state, door.quote, door.direction));
 const { Content } = quote;
 ---
 
@@ -49,6 +50,7 @@ const { Content } = quote;
   title={`${quote.metadata.title} | Elsewhere quotes`}
   description={`A programming quote attributed to ${quote.metadata.author}.`}
   canonicalPath={canonicalPath}
+  robots={isJourneyUrl ? "noindex, nofollow" : undefined}
 >
   <ElsewherePageShell
     class="quote-page"
@@ -61,34 +63,44 @@ const { Content } = quote;
       { label: `depth ${state.depth}` },
     ]}
   >
-    <nav class="quote-paths" aria-label="Continue the journey">
-      <a
-        class="quote-path quote-path--0"
-        href={doors[0].href}
-        data-journey-focus>{leftWord}</a
-      >
-      <a class="quote-path quote-path--1" href={doors[1].href}>{rightWord}</a>
-    </nav>
+    {
+      doors.length > 0 ? (
+        <nav class="quote-paths" aria-label="Continue the journey">
+          {doors.map((door, index) => (
+            <a
+              class={`quote-path quote-path--${index}`}
+              href={door.href}
+              data-journey-focus={index === 0 ? true : undefined}
+            >
+              {doorWords[index]}
+            </a>
+          ))}
+        </nav>
+      ) : (
+        <p class="quote-paths" data-journey-focus tabindex="-1">
+          end of wire
+        </p>
+      )
+    }
 
     <blockquote class="quote-text">
       <Content />
     </blockquote>
 
     <p class="quote-credit" id="quote-title">
-      {quote.metadata.author}{
-        quote.metadata.work ? `, ${quote.metadata.work}` : ""
-      }
+      {quote.metadata.author}
+      {quote.metadata.work ? `, ${quote.metadata.work}` : ""}
     </p>
 
     <p class="quote-attribution">
-      Source: <a href={quote.metadata.sourceUrl}>{quote.metadata.sourceName}</a
-      >.
+      Source:{" "}
+      <a href={quote.metadata.sourceUrl}>{quote.metadata.sourceName}</a>.
       {quote.metadata.license}. Retrieved {quote.metadata.retrievedOn}.
     </p>
 
     <script>
       document
-        .querySelector<HTMLAnchorElement>("[data-journey-focus]")
+        .querySelector<HTMLElement>("[data-journey-focus]")
         ?.focus({ preventScroll: true });
     </script>
   </ElsewherePageShell>
