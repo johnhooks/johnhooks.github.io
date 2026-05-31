@@ -14,7 +14,9 @@ jobs:
     uses: ./.github/workflows/wrangler-deploy.yml
     with:
       environment: production
+      worker_name: website
       site_url: https://johnhooks.io
+      domains: johnhooks.io,www.johnhooks.io
       ref: ${{ inputs.ref }}
     secrets:
       cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}

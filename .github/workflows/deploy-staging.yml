@@ -17,6 +17,7 @@ jobs:
     uses: ./.github/workflows/wrangler-deploy.yml
     with:
       environment: staging
+      worker_name: website-staging
       site_url: https://website-staging.johnhooks.workers.dev
       ref: ${{ inputs.ref }}
     secrets:
