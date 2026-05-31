@@ -3,7 +3,6 @@ title: Beautiful MDSveX Code Blocks
 seoTitle:
   Add beautifully highlighted code to a SvelteKit project using MDsveX and the Shiki
   syntax highlighter
-slug: highlighter
 abstract: How to configure MDSveX and @bitmachina/highlighter in a SvelteKit project.
 cardFilename: highlighter_640.jpg
 cardAlt: The triple backtick highlighter logo.

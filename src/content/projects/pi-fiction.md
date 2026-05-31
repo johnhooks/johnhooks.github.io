@@ -1,7 +1,6 @@
 ---
 title: Pi Fiction
 seoTitle: Pi Fiction, a fiction-writing workspace for Pi
-slug: pi-fiction
 abstract:
   A Pi extension workspace for poking at story ideas, character records, and the useful
   kind of writerly indecision.

@@ -22,7 +22,6 @@ const httpUrlSchema = z.url().refine(
 const datedContentSchema = z.object({
   title: z.string(),
   seoTitle: z.string(),
-  slug: slugSchema.optional(),
   abstract: z.string(),
   cardFilename: z.string().optional(),
   cardAlt: z.string().optional(),
