@@ -1,3 +1,7 @@
+I like building things. For a living, I build for the web. Outside of work, that usually
+means programming, woodworking, electronic music, or whatever else gives me an excuse to
+tinker and learn.
+
 I'm currently using [Pi](https://github.com/earendil-works/pi) as an agent harness for
 coding work. I'm also building [pi-code](https://github.com/johnhooks/pi-code) and
 [pi-fiction](https://github.com/johnhooks/pi-fiction), two Pi extensions for exploring
