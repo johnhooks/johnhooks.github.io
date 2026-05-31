@@ -16,6 +16,15 @@ on:
         type: string
         description: Git ref to deploy
         default: ""
+      worker_name:
+        required: true
+        type: string
+        description: Worker name to deploy
+      domains:
+        required: false
+        type: string
+        description: Comma-separated custom domains for this environment
+        default: ""
     secrets:
       cloudflare_api_token:
         required: true
@@ -42,9 +51,25 @@ jobs:
           SITE_URL: ${{ inputs.site_url }}
 
       - name: Deploy to Cloudflare
-        run: >-
-          pnpm wrangler deploy --env ${{ inputs.environment }} --var ENVIRONMENT:${{
-          inputs.environment }} --var SITE_URL:${{ inputs.site_url }}
+        run: |
+          domain_args=()
+          IFS=',' read -ra domains <<< "$DOMAINS"
+          for domain in "${domains[@]}"; do
+            if [[ -n "$domain" ]]; then
+              domain_args+=(--domain "$domain")
+            fi
+          done
+
+          pnpm wrangler deploy \
+            --env "$ENVIRONMENT" \
+            --name "$WORKER_NAME" \
+            "${domain_args[@]}" \
+            --var "ENVIRONMENT:$ENVIRONMENT" \
+            --var "SITE_URL:$SITE_URL"
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.cloudflare_api_token }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.cloudflare_account_id }}
+          ENVIRONMENT: ${{ inputs.environment }}
+          WORKER_NAME: ${{ inputs.worker_name }}
+          SITE_URL: ${{ inputs.site_url }}
+          DOMAINS: ${{ inputs.domains }}
