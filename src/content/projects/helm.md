@@ -1,7 +1,6 @@
 ---
 title: Helm
 seoTitle: Helm, a starship operating system built on WordPress
-slug: helm
 abstract:
   A slow space exploration game, starship interface, and deeply unserious argument that
   WordPress is ready for command duty.
