@@ -2,7 +2,11 @@ import { env } from "cloudflare:workers";
 
 const quoteJourneyDisallow = "Disallow: /elsewhere/quotes/*?*";
 
-const productionRobots = `User-agent: ClaudeBot
+const productionRobots = `User-agent: meta-externalagent
+Allow: /
+${quoteJourneyDisallow}
+
+User-agent: ClaudeBot
 Allow: /
 ${quoteJourneyDisallow}
 
