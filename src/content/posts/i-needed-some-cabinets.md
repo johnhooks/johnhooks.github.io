@@ -27,8 +27,9 @@ of what you have built.
 It also gave me a project to try [OpenSpec](https://github.com/Fission-AI/OpenSpec) on.
 The UI takes some inspiration from Ableton, just for fun.
 
-You can [try Drafter here](https://drafter.johnhooks.io). The
-[code is on GitHub](https://github.com/johnhooks/drafter).
+You can [try Drafter here](https://drafter.johnhooks.io), read more about the design on
+the [project page](/projects/drafter), or find the
+[code on GitHub](https://github.com/johnhooks/drafter).
 
 <!--
 TODO: Once the cabinet design and build are finished, add:
