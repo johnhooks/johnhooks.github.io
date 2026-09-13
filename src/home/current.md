@@ -3,8 +3,8 @@ means programming, woodworking, electronic music, or whatever else gives me an e
 tinker and learn.
 
 I'm currently using [Pi](https://github.com/earendil-works/pi) as an agent harness for
-coding work. I'm also building [pi-fiction](https://github.com/johnhooks/pi-fiction), a
-Pi extension for exploring better workflows and context for working with agents.
+coding work. I'm also building [pi-fiction](https://github.com/johnhooks/pi-fiction), a Pi
+extension for exploring better workflows and context for working with agents.
 
 I'm building [Drafter](https://drafter.johnhooks.io), a small parametric modeller you can
 try in your browser. Sketch shapes, extrude them into solids, then sketch on the faces of

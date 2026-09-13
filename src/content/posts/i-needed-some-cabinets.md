@@ -11,8 +11,8 @@ publishedOn: 2026-09-13
 I recently moved and needed to design a set of cabinets.
 
 I tried drawing them by hand, but my sketches raised more questions for the cabinet maker
-than they answered. I needed a proper drawing with exact dimensions to show what I had
-in mind.
+than they answered. I needed a proper drawing with exact dimensions to show what I had in
+mind.
 
 I used to be pretty good at Fusion 360, but it had been long enough that I would need to
 learn my way around it again. I could do that, or I could try building something just for
