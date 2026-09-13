@@ -6,6 +6,7 @@ const slugSchema = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 
 const imageAssetFilenameSchema = z.enum([
   "computer_512.png",
+  "drafter.svg",
   "highlighter_512.jpg",
   "johnhooks_avatar_512.jpg",
 ]);

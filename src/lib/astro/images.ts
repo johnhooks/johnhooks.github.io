@@ -1,11 +1,13 @@
 import type { ImageMetadata } from "astro";
 
 import computer512 from "../../assets/images/computer_512.png";
+import drafter from "../../assets/images/drafter.svg";
 import highlighter512 from "../../assets/images/highlighter_512.jpg";
 import johnhooksAvatar512 from "../../assets/images/johnhooks_avatar_512.jpg";
 
 export const imageAssets = {
   "computer_512.png": computer512,
+  "drafter.svg": drafter,
   "highlighter_512.jpg": highlighter512,
   "johnhooks_avatar_512.jpg": johnhooksAvatar512,
 } satisfies Record<string, ImageMetadata>;
